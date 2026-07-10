@@ -50,6 +50,20 @@ def frame_hash(df: pd.DataFrame) -> str:
     ).hexdigest()[:16]
 
 
+def _parquet_safe(df: pd.DataFrame) -> pd.DataFrame:
+    """Coerce non-scalar object values (lists/dicts, e.g. ASA multi-team team_id) to
+    joined strings so frames serialize to parquet losslessly enough for our keys."""
+    df = df.copy()
+    for col in df.columns:
+        if df[col].dtype == object:
+            has_nonscalar = df[col].map(lambda v: isinstance(v, (list, tuple, dict))).any()
+            if has_nonscalar:
+                df[col] = df[col].map(
+                    lambda v: ",".join(map(str, v)) if isinstance(v, (list, tuple))
+                    else (json.dumps(v) if isinstance(v, dict) else v))
+    return df
+
+
 def cached_pull(
     source: str,
     endpoint: str,
@@ -72,7 +86,7 @@ def cached_pull(
     df = fetch()
     if df is None:
         df = pd.DataFrame()
-    # parquet needs consistent types; keep raw fidelity but stringify object columns' Nones safely
+    df = _parquet_safe(df)
     df.to_parquet(fpath, index=False)
 
     manifest = _load_manifest()

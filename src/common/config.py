@@ -28,6 +28,10 @@ def random_seed() -> int:
     return int(load_settings()["random_seed"])
 
 
+def anchor_league() -> str:
+    return str(load_settings()["anchor_league"])
+
+
 def seasons(source: str) -> list[int]:
     """Inclusive season range for a source ('asa' or 'fbref')."""
     block = load_settings()["seasons"][source]

@@ -9,12 +9,24 @@ from __future__ import annotations
 import argparse
 import sys
 
-from src.common.config import load_settings
+from src.common.config import PROJECT_ROOT, load_settings
 from src.common.logging import get_logger
 
 log = get_logger("main")
 
 PHASES = ["phase0", "phase1", "phase2", "phase3", "phase4", "phase5"]
+
+
+def run_gate(name: str) -> None:
+    """Run the phase's acceptance-gate pytest marker; raise on failure."""
+    import subprocess
+    result = subprocess.run(
+        [sys.executable, "-m", "pytest", "-m", f"gate_{name}", "-q"],
+        cwd=str(PROJECT_ROOT),
+    )
+    if result.returncode != 0:
+        raise SystemExit(f"acceptance gate for {name} FAILED (see pytest output)")
+    log.info("acceptance gate for %s passed", name)
 
 
 def run_phase(name: str, refresh: bool = False) -> None:
@@ -63,6 +75,7 @@ def main(argv: list[str] | None = None) -> int:
         for phase in PHASES:
             log.info("=== running %s ===", phase)
             run_phase(phase, refresh=args.refresh)
+            run_gate(phase)
         from src.report import write_run_report
         write_run_report()
         return 0
@@ -73,6 +86,7 @@ def main(argv: list[str] | None = None) -> int:
         return 0
 
     run_phase(args.target, refresh=args.refresh)
+    run_gate(args.target)
     return 0
 
 

@@ -1,0 +1,1820 @@
+{
+  "0442e3638c00a9b1": {
+    "content_hash": "15881c80f67945d4",
+    "endpoint": "player_xpass",
+    "file": "asa__player_xpass__0442e3638c00a9b1.parquet",
+    "params": {
+      "league": "uslc",
+      "season": 2020
+    },
+    "pulled_at": "2026-07-10T03:56:52.788444+00:00",
+    "rows": 861,
+    "source": "asa"
+  },
+  "070735167b7bc464": {
+    "content_hash": "107bd2761fd78eca",
+    "endpoint": "player_xgoals",
+    "file": "asa__player_xgoals__070735167b7bc464.parquet",
+    "params": {
+      "league": "uslc",
+      "season": 2020
+    },
+    "pulled_at": "2026-07-10T03:56:50.908385+00:00",
+    "rows": 861,
+    "source": "asa"
+  },
+  "0830dd970d3252df": {
+    "content_hash": "empty",
+    "endpoint": "player_season_standard",
+    "file": "fbref__player_season_standard__0830dd970d3252df.parquet",
+    "params": {
+      "league": "USA-Major League Soccer",
+      "season": 2019
+    },
+    "pulled_at": "2026-07-10T04:08:39.175535+00:00",
+    "rows": 0,
+    "source": "fbref"
+  },
+  "09ee7917f6b15832": {
+    "content_hash": "39a072ad47da9b8b",
+    "endpoint": "player_goals_added",
+    "file": "asa__player_goals_added__09ee7917f6b15832.parquet",
+    "params": {
+      "league": "nwsl",
+      "season": 2021
+    },
+    "pulled_at": "2026-07-10T03:59:14.226071+00:00",
+    "rows": 243,
+    "source": "asa"
+  },
+  "0b2a0fcd2776bcd1": {
+    "content_hash": "empty",
+    "endpoint": "player_goals_added",
+    "file": "asa__player_goals_added__0b2a0fcd2776bcd1.parquet",
+    "params": {
+      "league": "usls",
+      "season": 2025
+    },
+    "pulled_at": "2026-07-10T04:00:06.470590+00:00",
+    "rows": 0,
+    "source": "asa"
+  },
+  "0d54d89e79152276": {
+    "content_hash": "0963e2506f87b288",
+    "endpoint": "player_xpass",
+    "file": "asa__player_xpass__0d54d89e79152276.parquet",
+    "params": {
+      "league": "usl1",
+      "season": 2023
+    },
+    "pulled_at": "2026-07-10T03:58:00.971658+00:00",
+    "rows": 289,
+    "source": "asa"
+  },
+  "1317ca67103b5295": {
+    "content_hash": "514a8cefdcf36cd5",
+    "endpoint": "player_xpass",
+    "file": "asa__player_xpass__1317ca67103b5295.parquet",
+    "params": {
+      "league": "mls",
+      "season": 2025
+    },
+    "pulled_at": "2026-07-10T03:56:26.954560+00:00",
+    "rows": 854,
+    "source": "asa"
+  },
+  "147309933c781d4e": {
+    "content_hash": "empty",
+    "endpoint": "player_xpass",
+    "file": "asa__player_xpass__147309933c781d4e.parquet",
+    "params": {
+      "league": "usls",
+      "season": 2022
+    },
+    "pulled_at": "2026-07-10T03:59:53.436808+00:00",
+    "rows": 0,
+    "source": "asa"
+  },
+  "17f12f08b86ecd61": {
+    "content_hash": "3650e8cb1bdeccbf",
+    "endpoint": "player_xpass",
+    "file": "asa__player_xpass__17f12f08b86ecd61.parquet",
+    "params": {
+      "league": "usl1",
+      "season": 2025
+    },
+    "pulled_at": "2026-07-10T03:58:10.362714+00:00",
+    "rows": 343,
+    "source": "asa"
+  },
+  "1895cf1003513765": {
+    "content_hash": "8099a8a536ba0305",
+    "endpoint": "player_goals_added",
+    "file": "asa__player_goals_added__1895cf1003513765.parquet",
+    "params": {
+      "league": "mls",
+      "season": 2019
+    },
+    "pulled_at": "2026-07-10T03:55:50.181760+00:00",
+    "rows": 574,
+    "source": "asa"
+  },
+  "1e1470a80a0d0e68": {
+    "content_hash": "empty",
+    "endpoint": "player_xgoals",
+    "file": "asa__player_xgoals__1e1470a80a0d0e68.parquet",
+    "params": {
+      "league": "mlsnp",
+      "season": 2018
+    },
+    "pulled_at": "2026-07-10T03:58:14.523200+00:00",
+    "rows": 0,
+    "source": "asa"
+  },
+  "1ea35ce9603d16b0": {
+    "content_hash": "dca79385465bd31e",
+    "endpoint": "player_xgoals",
+    "file": "asa__player_xgoals__1ea35ce9603d16b0.parquet",
+    "params": {
+      "league": "nwsl",
+      "season": 2023
+    },
+    "pulled_at": "2026-07-10T03:59:20.672597+00:00",
+    "rows": 329,
+    "source": "asa"
+  },
+  "1faf347068ff1c88": {
+    "content_hash": "c62b9f81577a2a3a",
+    "endpoint": "player_goals_added",
+    "file": "asa__player_goals_added__1faf347068ff1c88.parquet",
+    "params": {
+      "league": "nwsl",
+      "season": 2020
+    },
+    "pulled_at": "2026-07-10T03:59:09.506876+00:00",
+    "rows": 201,
+    "source": "asa"
+  },
+  "201c40b273f8b5bc": {
+    "content_hash": "de45ceecdf473f8a",
+    "endpoint": "player_xpass",
+    "file": "asa__player_xpass__201c40b273f8b5bc.parquet",
+    "params": {
+      "league": "uslc",
+      "season": 2025
+    },
+    "pulled_at": "2026-07-10T03:57:25.022044+00:00",
+    "rows": 635,
+    "source": "asa"
+  },
+  "208eb647f15b60c2": {
+    "content_hash": "ca061707ccaeaf3b",
+    "endpoint": "player_xgoals",
+    "file": "asa__player_xgoals__208eb647f15b60c2.parquet",
+    "params": {
+      "league": "mlsnp",
+      "season": 2023
+    },
+    "pulled_at": "2026-07-10T03:58:36.766600+00:00",
+    "rows": 981,
+    "source": "asa"
+  },
+  "24969a5cde69e0d1": {
+    "content_hash": "d65658f88a0fdc1e",
+    "endpoint": "player_xpass",
+    "file": "asa__player_xpass__24969a5cde69e0d1.parquet",
+    "params": {
+      "league": "mls",
+      "season": 2022
+    },
+    "pulled_at": "2026-07-10T03:56:06.712844+00:00",
+    "rows": 769,
+    "source": "asa"
+  },
+  "290e8c359dea14a4": {
+    "content_hash": "31e48eb2858a83ef",
+    "endpoint": "player_xpass",
+    "file": "asa__player_xpass__290e8c359dea14a4.parquet",
+    "params": {
+      "league": "usl1",
+      "season": 2021
+    },
+    "pulled_at": "2026-07-10T03:57:51.431976+00:00",
+    "rows": 325,
+    "source": "asa"
+  },
+  "2a11b8f91e1fd72f": {
+    "content_hash": "fb9ee2bf6851c93c",
+    "endpoint": "player_xpass",
+    "file": "asa__player_xpass__2a11b8f91e1fd72f.parquet",
+    "params": {
+      "league": "nwsl",
+      "season": 2019
+    },
+    "pulled_at": "2026-07-10T03:59:03.320135+00:00",
+    "rows": 225,
+    "source": "asa"
+  },
+  "2a11c8865b56a6e6": {
+    "content_hash": "empty",
+    "endpoint": "player_xgoals",
+    "file": "asa__player_xgoals__2a11c8865b56a6e6.parquet",
+    "params": {
+      "league": "mlsnp",
+      "season": 2021
+    },
+    "pulled_at": "2026-07-10T03:58:26.438800+00:00",
+    "rows": 0,
+    "source": "asa"
+  },
+  "2a4c4546b682ee0d": {
+    "content_hash": "empty",
+    "endpoint": "player_xpass",
+    "file": "asa__player_xpass__2a4c4546b682ee0d.parquet",
+    "params": {
+      "league": "mlsnp",
+      "season": 2019
+    },
+    "pulled_at": "2026-07-10T03:58:19.871859+00:00",
+    "rows": 0,
+    "source": "asa"
+  },
+  "2d9b02206326272e": {
+    "content_hash": "7924c309e5ca08c0",
+    "endpoint": "player_goals_added",
+    "file": "asa__player_goals_added__2d9b02206326272e.parquet",
+    "params": {
+      "league": "mlsnp",
+      "season": 2025
+    },
+    "pulled_at": "2026-07-10T03:58:54.781987+00:00",
+    "rows": 930,
+    "source": "asa"
+  },
+  "2f472dddc121cda7": {
+    "content_hash": "cc5c52060029d1e3",
+    "endpoint": "player_xgoals",
+    "file": "asa__player_xgoals__2f472dddc121cda7.parquet",
+    "params": {
+      "league": "usl1",
+      "season": 2025
+    },
+    "pulled_at": "2026-07-10T03:58:08.801465+00:00",
+    "rows": 343,
+    "source": "asa"
+  },
+  "31e0543b462aca3d": {
+    "content_hash": "fedef6a8dafe4bb8",
+    "endpoint": "player_xgoals",
+    "file": "asa__player_xgoals__31e0543b462aca3d.parquet",
+    "params": {
+      "league": "usl1",
+      "season": 2024
+    },
+    "pulled_at": "2026-07-10T03:58:04.083733+00:00",
+    "rows": 299,
+    "source": "asa"
+  },
+  "3269e4b82aca6469": {
+    "content_hash": "empty",
+    "endpoint": "player_xpass",
+    "file": "asa__player_xpass__3269e4b82aca6469.parquet",
+    "params": {
+      "league": "usls",
+      "season": 2023
+    },
+    "pulled_at": "2026-07-10T03:59:57.377672+00:00",
+    "rows": 0,
+    "source": "asa"
+  },
+  "32ab82653dbf8871": {
+    "content_hash": "empty",
+    "endpoint": "player_xgoals",
+    "file": "asa__player_xgoals__32ab82653dbf8871.parquet",
+    "params": {
+      "league": "usls",
+      "season": 2021
+    },
+    "pulled_at": "2026-07-10T03:59:48.133884+00:00",
+    "rows": 0,
+    "source": "asa"
+  },
+  "32c06dd23a7d612e": {
+    "content_hash": "a6ebecebe8464f5d",
+    "endpoint": "player_xpass",
+    "file": "asa__player_xpass__32c06dd23a7d612e.parquet",
+    "params": {
+      "league": "usl1",
+      "season": 2022
+    },
+    "pulled_at": "2026-07-10T03:57:56.168500+00:00",
+    "rows": 284,
+    "source": "asa"
+  },
+  "331c53693beb3a9e": {
+    "content_hash": "34ac656a68dcccc3",
+    "endpoint": "player_xgoals",
+    "file": "asa__player_xgoals__331c53693beb3a9e.parquet",
+    "params": {
+      "league": "uslc",
+      "season": 2023
+    },
+    "pulled_at": "2026-07-10T03:57:10.824226+00:00",
+    "rows": 598,
+    "source": "asa"
+  },
+  "33fafd723e35d1a2": {
+    "content_hash": "empty",
+    "endpoint": "player_goals_added",
+    "file": "asa__player_goals_added__33fafd723e35d1a2.parquet",
+    "params": {
+      "league": "mlsnp",
+      "season": 2018
+    },
+    "pulled_at": "2026-07-10T03:58:17.219456+00:00",
+    "rows": 0,
+    "source": "asa"
+  },
+  "340cafed721a4e75": {
+    "content_hash": "empty",
+    "endpoint": "player_goals_added",
+    "file": "asa__player_goals_added__340cafed721a4e75.parquet",
+    "params": {
+      "league": "usls",
+      "season": 2019
+    },
+    "pulled_at": "2026-07-10T03:59:42.830358+00:00",
+    "rows": 0,
+    "source": "asa"
+  },
+  "341ae973620ea9f4": {
+    "content_hash": "df20b68905a328e8",
+    "endpoint": "player_xpass",
+    "file": "asa__player_xpass__341ae973620ea9f4.parquet",
+    "params": {
+      "league": "nwsl",
+      "season": 2020
+    },
+    "pulled_at": "2026-07-10T03:59:07.827071+00:00",
+    "rows": 219,
+    "source": "asa"
+  },
+  "354de1a56a6476fb": {
+    "content_hash": "40b6452aa6256a78",
+    "endpoint": "player_goals_added",
+    "file": "asa__player_goals_added__354de1a56a6476fb.parquet",
+    "params": {
+      "league": "mls",
+      "season": 2022
+    },
+    "pulled_at": "2026-07-10T03:56:09.449794+00:00",
+    "rows": 706,
+    "source": "asa"
+  },
+  "37339b16aa9bc3dc": {
+    "content_hash": "empty",
+    "endpoint": "player_xpass",
+    "file": "asa__player_xpass__37339b16aa9bc3dc.parquet",
+    "params": {
+      "league": "usls",
+      "season": 2024
+    },
+    "pulled_at": "2026-07-10T04:00:01.233215+00:00",
+    "rows": 0,
+    "source": "asa"
+  },
+  "3b58df979ff73622": {
+    "content_hash": "61c01fded9ed71c9",
+    "endpoint": "player_xpass",
+    "file": "asa__player_xpass__3b58df979ff73622.parquet",
+    "params": {
+      "league": "uslc",
+      "season": 2022
+    },
+    "pulled_at": "2026-07-10T03:57:06.248753+00:00",
+    "rows": 751,
+    "source": "asa"
+  },
+  "3d890a0938b12519": {
+    "content_hash": "63652e8cd6f0f5f9",
+    "endpoint": "player_xgoals",
+    "file": "asa__player_xgoals__3d890a0938b12519.parquet",
+    "params": {
+      "league": "usl1",
+      "season": 2021
+    },
+    "pulled_at": "2026-07-10T03:57:49.895553+00:00",
+    "rows": 325,
+    "source": "asa"
+  },
+  "3e154f14d43e1aaa": {
+    "content_hash": "758a725969ce0d65",
+    "endpoint": "player_xpass",
+    "file": "asa__player_xpass__3e154f14d43e1aaa.parquet",
+    "params": {
+      "league": "mls",
+      "season": 2020
+    },
+    "pulled_at": "2026-07-10T03:55:53.809074+00:00",
+    "rows": 670,
+    "source": "asa"
+  },
+  "403ea74db315dfca": {
+    "content_hash": "empty",
+    "endpoint": "player_xpass",
+    "file": "asa__player_xpass__403ea74db315dfca.parquet",
+    "params": {
+      "league": "usls",
+      "season": 2018
+    },
+    "pulled_at": "2026-07-10T03:59:37.452348+00:00",
+    "rows": 0,
+    "source": "asa"
+  },
+  "40916fce0dc30478": {
+    "content_hash": "empty",
+    "endpoint": "player_xpass",
+    "file": "asa__player_xpass__40916fce0dc30478.parquet",
+    "params": {
+      "league": "usls",
+      "season": 2021
+    },
+    "pulled_at": "2026-07-10T03:59:49.409110+00:00",
+    "rows": 0,
+    "source": "asa"
+  },
+  "409d76bee6827c53": {
+    "content_hash": "empty",
+    "endpoint": "player_xgoals",
+    "file": "asa__player_xgoals__409d76bee6827c53.parquet",
+    "params": {
+      "league": "usls",
+      "season": 2023
+    },
+    "pulled_at": "2026-07-10T03:59:56.039909+00:00",
+    "rows": 0,
+    "source": "asa"
+  },
+  "420742fbdd77e3ad": {
+    "content_hash": "empty",
+    "endpoint": "player_xpass",
+    "file": "asa__player_xpass__420742fbdd77e3ad.parquet",
+    "params": {
+      "league": "mlsnp",
+      "season": 2018
+    },
+    "pulled_at": "2026-07-10T03:58:15.948800+00:00",
+    "rows": 0,
+    "source": "asa"
+  },
+  "42827e55a0d9bedb": {
+    "content_hash": "eaf262a5e460a2f8",
+    "endpoint": "player_xgoals",
+    "file": "asa__player_xgoals__42827e55a0d9bedb.parquet",
+    "params": {
+      "league": "mls",
+      "season": 2021
+    },
+    "pulled_at": "2026-07-10T03:55:58.174849+00:00",
+    "rows": 731,
+    "source": "asa"
+  },
+  "431da30e394dc4be": {
+    "content_hash": "bc14c98ffb76f354",
+    "endpoint": "player_xgoals",
+    "file": "asa__player_xgoals__431da30e394dc4be.parquet",
+    "params": {
+      "league": "mls",
+      "season": 2018
+    },
+    "pulled_at": "2026-07-10T03:55:39.550708+00:00",
+    "rows": 608,
+    "source": "asa"
+  },
+  "4336ad923a8e1b31": {
+    "content_hash": "3b2be4c0764c4441",
+    "endpoint": "player_xgoals",
+    "file": "asa__player_xgoals__4336ad923a8e1b31.parquet",
+    "params": {
+      "league": "uslc",
+      "season": 2024
+    },
+    "pulled_at": "2026-07-10T03:57:16.994005+00:00",
+    "rows": 633,
+    "source": "asa"
+  },
+  "4763938d98c1b1db": {
+    "content_hash": "ed4b810bcd2e4f31",
+    "endpoint": "player_goals_added",
+    "file": "asa__player_goals_added__4763938d98c1b1db.parquet",
+    "params": {
+      "league": "mls",
+      "season": 2023
+    },
+    "pulled_at": "2026-07-10T03:56:16.177093+00:00",
+    "rows": 763,
+    "source": "asa"
+  },
+  "481b3ae3d92da806": {
+    "content_hash": "2a8c4fddaa14b7ca",
+    "endpoint": "players",
+    "file": "asa__players__481b3ae3d92da806.parquet",
+    "params": {
+      "league": "usl1"
+    },
+    "pulled_at": "2026-07-10T03:57:28.822526+00:00",
+    "rows": 1553,
+    "source": "asa"
+  },
+  "4896da030d0027b9": {
+    "content_hash": "bdde6f73426b27de",
+    "endpoint": "player_xgoals",
+    "file": "asa__player_xgoals__4896da030d0027b9.parquet",
+    "params": {
+      "league": "nwsl",
+      "season": 2024
+    },
+    "pulled_at": "2026-07-10T03:59:25.456284+00:00",
+    "rows": 359,
+    "source": "asa"
+  },
+  "4aba925e8be2eafc": {
+    "content_hash": "4e014656b91e04ec",
+    "endpoint": "players",
+    "file": "asa__players__4aba925e8be2eafc.parquet",
+    "params": {
+      "league": "usls"
+    },
+    "pulled_at": "2026-07-10T03:59:34.826080+00:00",
+    "rows": 386,
+    "source": "asa"
+  },
+  "4b61f0fba401e76f": {
+    "content_hash": "4d3d4638fc4bd524",
+    "endpoint": "players",
+    "file": "asa__players__4b61f0fba401e76f.parquet",
+    "params": {
+      "league": "nwsl"
+    },
+    "pulled_at": "2026-07-10T03:58:55.765185+00:00",
+    "rows": 1153,
+    "source": "asa"
+  },
+  "4c805ef39ccdec76": {
+    "content_hash": "a9271e421edf70c4",
+    "endpoint": "player_goals_added",
+    "file": "asa__player_goals_added__4c805ef39ccdec76.parquet",
+    "params": {
+      "league": "mlsnp",
+      "season": 2022
+    },
+    "pulled_at": "2026-07-10T03:58:35.047619+00:00",
+    "rows": 675,
+    "source": "asa"
+  },
+  "4dd0d9b85a6dae51": {
+    "content_hash": "6b21bc21a890eaa5",
+    "endpoint": "player_goals_added",
+    "file": "asa__player_goals_added__4dd0d9b85a6dae51.parquet",
+    "params": {
+      "league": "nwsl",
+      "season": 2025
+    },
+    "pulled_at": "2026-07-10T03:59:33.835803+00:00",
+    "rows": 327,
+    "source": "asa"
+  },
+  "4fa13cda5a43df62": {
+    "content_hash": "7c2fc7221b538b5f",
+    "endpoint": "player_goals_added",
+    "file": "asa__player_goals_added__4fa13cda5a43df62.parquet",
+    "params": {
+      "league": "uslc",
+      "season": 2019
+    },
+    "pulled_at": "2026-07-10T03:56:49.079246+00:00",
+    "rows": 940,
+    "source": "asa"
+  },
+  "504e51cee2af5c44": {
+    "content_hash": "1d7cce3a7289f693",
+    "endpoint": "player_goals_added",
+    "file": "asa__player_goals_added__504e51cee2af5c44.parquet",
+    "params": {
+      "league": "usl1",
+      "season": 2025
+    },
+    "pulled_at": "2026-07-10T03:58:12.278821+00:00",
+    "rows": 312,
+    "source": "asa"
+  },
+  "55ba8661e8f72285": {
+    "content_hash": "empty",
+    "endpoint": "player_xgoals",
+    "file": "asa__player_xgoals__55ba8661e8f72285.parquet",
+    "params": {
+      "league": "mlsnp",
+      "season": 2020
+    },
+    "pulled_at": "2026-07-10T03:58:22.554048+00:00",
+    "rows": 0,
+    "source": "asa"
+  },
+  "56bfa282d2f0f7a5": {
+    "content_hash": "317e5612bc60e933",
+    "endpoint": "player_goals_added",
+    "file": "asa__player_goals_added__56bfa282d2f0f7a5.parquet",
+    "params": {
+      "league": "nwsl",
+      "season": 2018
+    },
+    "pulled_at": "2026-07-10T03:59:00.377026+00:00",
+    "rows": 188,
+    "source": "asa"
+  },
+  "582e8203fbc6b702": {
+    "content_hash": "empty",
+    "endpoint": "player_xgoals",
+    "file": "asa__player_xgoals__582e8203fbc6b702.parquet",
+    "params": {
+      "league": "usls",
+      "season": 2020
+    },
+    "pulled_at": "2026-07-10T03:59:44.169166+00:00",
+    "rows": 0,
+    "source": "asa"
+  },
+  "5844660aa0a31276": {
+    "content_hash": "61247c72236da46d",
+    "endpoint": "player_goals_added",
+    "file": "asa__player_goals_added__5844660aa0a31276.parquet",
+    "params": {
+      "league": "nwsl",
+      "season": 2024
+    },
+    "pulled_at": "2026-07-10T03:59:28.989648+00:00",
+    "rows": 333,
+    "source": "asa"
+  },
+  "59d4a2bbb105d8ac": {
+    "content_hash": "805f55724fb3afe4",
+    "endpoint": "player_xpass",
+    "file": "asa__player_xpass__59d4a2bbb105d8ac.parquet",
+    "params": {
+      "league": "uslc",
+      "season": 2024
+    },
+    "pulled_at": "2026-07-10T03:57:18.906449+00:00",
+    "rows": 633,
+    "source": "asa"
+  },
+  "5b9dbcdbc9b6607b": {
+    "content_hash": "5b69fcb006f69167",
+    "endpoint": "player_goals_added",
+    "file": "asa__player_goals_added__5b9dbcdbc9b6607b.parquet",
+    "params": {
+      "league": "usl1",
+      "season": 2022
+    },
+    "pulled_at": "2026-07-10T03:57:58.022616+00:00",
+    "rows": 257,
+    "source": "asa"
+  },
+  "5e985614e3c401ef": {
+    "content_hash": "empty",
+    "endpoint": "player_goals_added",
+    "file": "asa__player_goals_added__5e985614e3c401ef.parquet",
+    "params": {
+      "league": "usls",
+      "season": 2021
+    },
+    "pulled_at": "2026-07-10T03:59:50.741526+00:00",
+    "rows": 0,
+    "source": "asa"
+  },
+  "5ec7af9f281a260e": {
+    "content_hash": "e6e7519ebc88f513",
+    "endpoint": "player_goals_added",
+    "file": "asa__player_goals_added__5ec7af9f281a260e.parquet",
+    "params": {
+      "league": "usl1",
+      "season": 2019
+    },
+    "pulled_at": "2026-07-10T03:57:43.729101+00:00",
+    "rows": 254,
+    "source": "asa"
+  },
+  "5f66a1022b634a36": {
+    "content_hash": "4f3c75d1b977aec4",
+    "endpoint": "player_xgoals",
+    "file": "asa__player_xgoals__5f66a1022b634a36.parquet",
+    "params": {
+      "league": "mlsnp",
+      "season": 2022
+    },
+    "pulled_at": "2026-07-10T03:58:30.656323+00:00",
+    "rows": 752,
+    "source": "asa"
+  },
+  "648709da5b96d75d": {
+    "content_hash": "bb834b4f862f94ec",
+    "endpoint": "player_xgoals",
+    "file": "asa__player_xgoals__648709da5b96d75d.parquet",
+    "params": {
+      "league": "uslc",
+      "season": 2022
+    },
+    "pulled_at": "2026-07-10T03:57:04.333468+00:00",
+    "rows": 751,
+    "source": "asa"
+  },
+  "6551118dbdcdc4f9": {
+    "content_hash": "empty",
+    "endpoint": "player_xpass",
+    "file": "asa__player_xpass__6551118dbdcdc4f9.parquet",
+    "params": {
+      "league": "mlsnp",
+      "season": 2020
+    },
+    "pulled_at": "2026-07-10T03:58:23.886103+00:00",
+    "rows": 0,
+    "source": "asa"
+  },
+  "69d82f20aef17c25": {
+    "content_hash": "5c99414c0b39b232",
+    "endpoint": "player_xpass",
+    "file": "asa__player_xpass__69d82f20aef17c25.parquet",
+    "params": {
+      "league": "mls",
+      "season": 2023
+    },
+    "pulled_at": "2026-07-10T03:56:13.423359+00:00",
+    "rows": 828,
+    "source": "asa"
+  },
+  "6c63757d5a4f68a9": {
+    "content_hash": "empty",
+    "endpoint": "player_xgoals",
+    "file": "asa__player_xgoals__6c63757d5a4f68a9.parquet",
+    "params": {
+      "league": "usl1",
+      "season": 2018
+    },
+    "pulled_at": "2026-07-10T03:57:30.327167+00:00",
+    "rows": 0,
+    "source": "asa"
+  },
+  "6f36c07cd357c92c": {
+    "content_hash": "empty",
+    "endpoint": "player_goals_added",
+    "file": "asa__player_goals_added__6f36c07cd357c92c.parquet",
+    "params": {
+      "league": "mlsnp",
+      "season": 2021
+    },
+    "pulled_at": "2026-07-10T03:58:29.005990+00:00",
+    "rows": 0,
+    "source": "asa"
+  },
+  "6fb2d01a33f35141": {
+    "content_hash": "3c42a4950f6b066c",
+    "endpoint": "player_xpass",
+    "file": "asa__player_xpass__6fb2d01a33f35141.parquet",
+    "params": {
+      "league": "uslc",
+      "season": 2018
+    },
+    "pulled_at": "2026-07-10T03:56:38.435389+00:00",
+    "rows": 994,
+    "source": "asa"
+  },
+  "71c428eef808d0ff": {
+    "content_hash": "empty",
+    "endpoint": "player_goals_added",
+    "file": "asa__player_goals_added__71c428eef808d0ff.parquet",
+    "params": {
+      "league": "mlsnp",
+      "season": 2020
+    },
+    "pulled_at": "2026-07-10T03:58:25.150965+00:00",
+    "rows": 0,
+    "source": "asa"
+  },
+  "73044b73c59dd9c1": {
+    "content_hash": "empty",
+    "endpoint": "player_goals_added",
+    "file": "asa__player_goals_added__73044b73c59dd9c1.parquet",
+    "params": {
+      "league": "usls",
+      "season": 2020
+    },
+    "pulled_at": "2026-07-10T03:59:46.784180+00:00",
+    "rows": 0,
+    "source": "asa"
+  },
+  "7400042d9ab5a086": {
+    "content_hash": "63415ad7c7363159",
+    "endpoint": "player_goals_added",
+    "file": "asa__player_goals_added__7400042d9ab5a086.parquet",
+    "params": {
+      "league": "uslc",
+      "season": 2023
+    },
+    "pulled_at": "2026-07-10T03:57:15.292362+00:00",
+    "rows": 545,
+    "source": "asa"
+  },
+  "75421a83b287267e": {
+    "content_hash": "094d58bd43aec8a7",
+    "endpoint": "player_xgoals",
+    "file": "asa__player_xgoals__75421a83b287267e.parquet",
+    "params": {
+      "league": "mls",
+      "season": 2024
+    },
+    "pulled_at": "2026-07-10T03:56:18.187841+00:00",
+    "rows": 801,
+    "source": "asa"
+  },
+  "76ebc1cfc8137183": {
+    "content_hash": "33595b3d103e5a7a",
+    "endpoint": "player_goals_added",
+    "file": "asa__player_goals_added__76ebc1cfc8137183.parquet",
+    "params": {
+      "league": "uslc",
+      "season": 2025
+    },
+    "pulled_at": "2026-07-10T03:57:27.830415+00:00",
+    "rows": 579,
+    "source": "asa"
+  },
+  "7757b2c98f258267": {
+    "content_hash": "74ce509686f9ea65",
+    "endpoint": "player_xgoals",
+    "file": "asa__player_xgoals__7757b2c98f258267.parquet",
+    "params": {
+      "league": "mls",
+      "season": 2022
+    },
+    "pulled_at": "2026-07-10T03:56:04.733300+00:00",
+    "rows": 769,
+    "source": "asa"
+  },
+  "77a7eda98555135f": {
+    "content_hash": "213e86e5b58b725c",
+    "endpoint": "player_goals_added",
+    "file": "asa__player_goals_added__77a7eda98555135f.parquet",
+    "params": {
+      "league": "mls",
+      "season": 2021
+    },
+    "pulled_at": "2026-07-10T03:56:02.772882+00:00",
+    "rows": 666,
+    "source": "asa"
+  },
+  "784cbf2ae62ad60a": {
+    "content_hash": "empty",
+    "endpoint": "player_xgoals",
+    "file": "asa__player_xgoals__784cbf2ae62ad60a.parquet",
+    "params": {
+      "league": "usls",
+      "season": 2018
+    },
+    "pulled_at": "2026-07-10T03:59:36.158766+00:00",
+    "rows": 0,
+    "source": "asa"
+  },
+  "7b42ad28a77ea8ed": {
+    "content_hash": "2f46e23f5f95a2fe",
+    "endpoint": "player_xgoals",
+    "file": "asa__player_xgoals__7b42ad28a77ea8ed.parquet",
+    "params": {
+      "league": "uslc",
+      "season": 2019
+    },
+    "pulled_at": "2026-07-10T03:56:43.747107+00:00",
+    "rows": 1038,
+    "source": "asa"
+  },
+  "7c7d69a0073187d4": {
+    "content_hash": "75cd9e2ef2284d48",
+    "endpoint": "player_goals_added",
+    "file": "asa__player_goals_added__7c7d69a0073187d4.parquet",
+    "params": {
+      "league": "mlsnp",
+      "season": 2024
+    },
+    "pulled_at": "2026-07-10T03:58:48.054612+00:00",
+    "rows": 918,
+    "source": "asa"
+  },
+  "7cd1aecfdec387d3": {
+    "content_hash": "0e70103258573792",
+    "endpoint": "player_goals_added",
+    "file": "asa__player_goals_added__7cd1aecfdec387d3.parquet",
+    "params": {
+      "league": "nwsl",
+      "season": 2019
+    },
+    "pulled_at": "2026-07-10T03:59:05.059156+00:00",
+    "rows": 206,
+    "source": "asa"
+  },
+  "7ce5200e22ae2496": {
+    "content_hash": "53e0836db21a4e07",
+    "endpoint": "player_xgoals",
+    "file": "asa__player_xgoals__7ce5200e22ae2496.parquet",
+    "params": {
+      "league": "uslc",
+      "season": 2021
+    },
+    "pulled_at": "2026-07-10T03:56:57.625364+00:00",
+    "rows": 879,
+    "source": "asa"
+  },
+  "7ebb65924182bbfb": {
+    "content_hash": "7c318a7fc8ce14f5",
+    "endpoint": "player_xpass",
+    "file": "asa__player_xpass__7ebb65924182bbfb.parquet",
+    "params": {
+      "league": "mlsnp",
+      "season": 2023
+    },
+    "pulled_at": "2026-07-10T03:58:38.671073+00:00",
+    "rows": 981,
+    "source": "asa"
+  },
+  "7f4443d0b7f72e4b": {
+    "content_hash": "9367e3b418e751de",
+    "endpoint": "player_xpass",
+    "file": "asa__player_xpass__7f4443d0b7f72e4b.parquet",
+    "params": {
+      "league": "mls",
+      "season": 2024
+    },
+    "pulled_at": "2026-07-10T03:56:20.285895+00:00",
+    "rows": 801,
+    "source": "asa"
+  },
+  "7f69a0010a9823e0": {
+    "content_hash": "15026141d1a69332",
+    "endpoint": "player_xgoals",
+    "file": "asa__player_xgoals__7f69a0010a9823e0.parquet",
+    "params": {
+      "league": "nwsl",
+      "season": 2021
+    },
+    "pulled_at": "2026-07-10T03:59:10.958070+00:00",
+    "rows": 268,
+    "source": "asa"
+  },
+  "803bcb57bb735c2d": {
+    "content_hash": "3e28476f41673cb3",
+    "endpoint": "player_xpass",
+    "file": "asa__player_xpass__803bcb57bb735c2d.parquet",
+    "params": {
+      "league": "nwsl",
+      "season": 2024
+    },
+    "pulled_at": "2026-07-10T03:59:27.012774+00:00",
+    "rows": 359,
+    "source": "asa"
+  },
+  "8098fd1b48a05161": {
+    "content_hash": "empty",
+    "endpoint": "player_goals_added",
+    "file": "asa__player_goals_added__8098fd1b48a05161.parquet",
+    "params": {
+      "league": "mlsnp",
+      "season": 2019
+    },
+    "pulled_at": "2026-07-10T03:58:21.257479+00:00",
+    "rows": 0,
+    "source": "asa"
+  },
+  "83f9e179847e29e3": {
+    "content_hash": "empty",
+    "endpoint": "player_xpass",
+    "file": "asa__player_xpass__83f9e179847e29e3.parquet",
+    "params": {
+      "league": "usls",
+      "season": 2019
+    },
+    "pulled_at": "2026-07-10T03:59:41.493588+00:00",
+    "rows": 0,
+    "source": "asa"
+  },
+  "84c1d7bd0086dd5f": {
+    "content_hash": "34827d9ce8bc738b",
+    "endpoint": "player_xpass",
+    "file": "asa__player_xpass__84c1d7bd0086dd5f.parquet",
+    "params": {
+      "league": "nwsl",
+      "season": 2022
+    },
+    "pulled_at": "2026-07-10T03:59:17.248981+00:00",
+    "rows": 311,
+    "source": "asa"
+  },
+  "85637658773505a0": {
+    "content_hash": "dc8959c229959e27",
+    "endpoint": "player_xpass",
+    "file": "asa__player_xpass__85637658773505a0.parquet",
+    "params": {
+      "league": "nwsl",
+      "season": 2021
+    },
+    "pulled_at": "2026-07-10T03:59:12.474341+00:00",
+    "rows": 268,
+    "source": "asa"
+  },
+  "88c8bc114eca183e": {
+    "content_hash": "empty",
+    "endpoint": "player_xpass",
+    "file": "asa__player_xpass__88c8bc114eca183e.parquet",
+    "params": {
+      "league": "usl1",
+      "season": 2018
+    },
+    "pulled_at": "2026-07-10T03:57:37.498786+00:00",
+    "rows": 0,
+    "source": "asa"
+  },
+  "88f501a2774b104b": {
+    "content_hash": "empty",
+    "endpoint": "player_xgoals",
+    "file": "asa__player_xgoals__88f501a2774b104b.parquet",
+    "params": {
+      "league": "usls",
+      "season": 2022
+    },
+    "pulled_at": "2026-07-10T03:59:52.124303+00:00",
+    "rows": 0,
+    "source": "asa"
+  },
+  "8cbb9f0ae240afa0": {
+    "content_hash": "empty",
+    "endpoint": "player_goals_added",
+    "file": "asa__player_goals_added__8cbb9f0ae240afa0.parquet",
+    "params": {
+      "league": "usls",
+      "season": 2022
+    },
+    "pulled_at": "2026-07-10T03:59:54.753158+00:00",
+    "rows": 0,
+    "source": "asa"
+  },
+  "8f397b0426bd2036": {
+    "content_hash": "empty",
+    "endpoint": "player_goals_added",
+    "file": "asa__player_goals_added__8f397b0426bd2036.parquet",
+    "params": {
+      "league": "usls",
+      "season": 2023
+    },
+    "pulled_at": "2026-07-10T03:59:58.603940+00:00",
+    "rows": 0,
+    "source": "asa"
+  },
+  "91d4e6c401f40e6b": {
+    "content_hash": "640ffaaf7ebde4ac",
+    "endpoint": "player_xgoals",
+    "file": "asa__player_xgoals__91d4e6c401f40e6b.parquet",
+    "params": {
+      "league": "mls",
+      "season": 2019
+    },
+    "pulled_at": "2026-07-10T03:55:45.695893+00:00",
+    "rows": 623,
+    "source": "asa"
+  },
+  "91ffa4eed1c15345": {
+    "content_hash": "be6c9899014c37d0",
+    "endpoint": "player_goals_added",
+    "file": "asa__player_goals_added__91ffa4eed1c15345.parquet",
+    "params": {
+      "league": "mls",
+      "season": 2020
+    },
+    "pulled_at": "2026-07-10T03:55:56.238807+00:00",
+    "rows": 613,
+    "source": "asa"
+  },
+  "93d1ea350915b49c": {
+    "content_hash": "60d3a2bc247f4568",
+    "endpoint": "player_xpass",
+    "file": "asa__player_xpass__93d1ea350915b49c.parquet",
+    "params": {
+      "league": "uslc",
+      "season": 2023
+    },
+    "pulled_at": "2026-07-10T03:57:12.702440+00:00",
+    "rows": 598,
+    "source": "asa"
+  },
+  "9702dd1b8cbc28f1": {
+    "content_hash": "ac2fdfd77920d8e2",
+    "endpoint": "player_xpass",
+    "file": "asa__player_xpass__9702dd1b8cbc28f1.parquet",
+    "params": {
+      "league": "mlsnp",
+      "season": 2022
+    },
+    "pulled_at": "2026-07-10T03:58:32.449485+00:00",
+    "rows": 752,
+    "source": "asa"
+  },
+  "977ce1baaf032614": {
+    "content_hash": "83e4ca04e1516963",
+    "endpoint": "player_xgoals",
+    "file": "asa__player_xgoals__977ce1baaf032614.parquet",
+    "params": {
+      "league": "nwsl",
+      "season": 2019
+    },
+    "pulled_at": "2026-07-10T03:59:01.807109+00:00",
+    "rows": 225,
+    "source": "asa"
+  },
+  "997712de521529b3": {
+    "content_hash": "52d5061cfa846fc6",
+    "endpoint": "player_goals_added",
+    "file": "asa__player_goals_added__997712de521529b3.parquet",
+    "params": {
+      "league": "usl1",
+      "season": 2020
+    },
+    "pulled_at": "2026-07-10T03:57:48.431482+00:00",
+    "rows": 245,
+    "source": "asa"
+  },
+  "9ccab526b881cbfb": {
+    "content_hash": "75bc1e9678268227",
+    "endpoint": "player_goals_added",
+    "file": "asa__player_goals_added__9ccab526b881cbfb.parquet",
+    "params": {
+      "league": "nwsl",
+      "season": 2023
+    },
+    "pulled_at": "2026-07-10T03:59:23.978946+00:00",
+    "rows": 302,
+    "source": "asa"
+  },
+  "9cd6ab1bb5aee040": {
+    "content_hash": "empty",
+    "endpoint": "player_xpass",
+    "file": "asa__player_xpass__9cd6ab1bb5aee040.parquet",
+    "params": {
+      "league": "mlsnp",
+      "season": 2021
+    },
+    "pulled_at": "2026-07-10T03:58:27.693091+00:00",
+    "rows": 0,
+    "source": "asa"
+  },
+  "9ddc5e68dc76b426": {
+    "content_hash": "a88bcb027ba6c472",
+    "endpoint": "player_goals_added",
+    "file": "asa__player_goals_added__9ddc5e68dc76b426.parquet",
+    "params": {
+      "league": "mls",
+      "season": 2024
+    },
+    "pulled_at": "2026-07-10T03:56:23.067750+00:00",
+    "rows": 736,
+    "source": "asa"
+  },
+  "9e4ef0dbf43184e7": {
+    "content_hash": "empty",
+    "endpoint": "player_xgoals",
+    "file": "asa__player_xgoals__9e4ef0dbf43184e7.parquet",
+    "params": {
+      "league": "usls",
+      "season": 2019
+    },
+    "pulled_at": "2026-07-10T03:59:40.069365+00:00",
+    "rows": 0,
+    "source": "asa"
+  },
+  "a0768989ac9bc71f": {
+    "content_hash": "215f80af6735d2b6",
+    "endpoint": "player_goals_added",
+    "file": "asa__player_goals_added__a0768989ac9bc71f.parquet",
+    "params": {
+      "league": "uslc",
+      "season": 2020
+    },
+    "pulled_at": "2026-07-10T03:56:55.587025+00:00",
+    "rows": 782,
+    "source": "asa"
+  },
+  "a2f20888a271b71f": {
+    "content_hash": "944f68ea9f99da95",
+    "endpoint": "player_goals_added",
+    "file": "asa__player_goals_added__a2f20888a271b71f.parquet",
+    "params": {
+      "league": "uslc",
+      "season": 2022
+    },
+    "pulled_at": "2026-07-10T03:57:09.041161+00:00",
+    "rows": 675,
+    "source": "asa"
+  },
+  "a515c34ca0d24d9a": {
+    "content_hash": "763cb53c78f6e596",
+    "endpoint": "player_xgoals",
+    "file": "asa__player_xgoals__a515c34ca0d24d9a.parquet",
+    "params": {
+      "league": "mls",
+      "season": 2020
+    },
+    "pulled_at": "2026-07-10T03:55:51.903226+00:00",
+    "rows": 670,
+    "source": "asa"
+  },
+  "a78ff82e2a673853": {
+    "content_hash": "02481cf22f4bc604",
+    "endpoint": "player_goals_added",
+    "file": "asa__player_goals_added__a78ff82e2a673853.parquet",
+    "params": {
+      "league": "usl1",
+      "season": 2021
+    },
+    "pulled_at": "2026-07-10T03:57:53.222245+00:00",
+    "rows": 297,
+    "source": "asa"
+  },
+  "a7f132444c81e499": {
+    "content_hash": "empty",
+    "endpoint": "player_xgoals",
+    "file": "asa__player_xgoals__a7f132444c81e499.parquet",
+    "params": {
+      "league": "mlsnp",
+      "season": 2019
+    },
+    "pulled_at": "2026-07-10T03:58:18.546649+00:00",
+    "rows": 0,
+    "source": "asa"
+  },
+  "ab1eaf8dbe8f9e29": {
+    "content_hash": "dc69da73e2d91ddf",
+    "endpoint": "player_xpass",
+    "file": "asa__player_xpass__ab1eaf8dbe8f9e29.parquet",
+    "params": {
+      "league": "usl1",
+      "season": 2019
+    },
+    "pulled_at": "2026-07-10T03:57:41.957863+00:00",
+    "rows": 279,
+    "source": "asa"
+  },
+  "ac48b3dbde7009de": {
+    "content_hash": "empty",
+    "endpoint": "player_xpass",
+    "file": "asa__player_xpass__ac48b3dbde7009de.parquet",
+    "params": {
+      "league": "usls",
+      "season": 2020
+    },
+    "pulled_at": "2026-07-10T03:59:45.515046+00:00",
+    "rows": 0,
+    "source": "asa"
+  },
+  "ad5db9ebe316c5f0": {
+    "content_hash": "03c28da86e500a53",
+    "endpoint": "player_season_standard",
+    "file": "fbref__player_season_standard__ad5db9ebe316c5f0.parquet",
+    "params": {
+      "league": "USA-Major League Soccer",
+      "season": 2018
+    },
+    "pulled_at": "2026-07-10T04:03:41.108322+00:00",
+    "rows": 623,
+    "source": "fbref"
+  },
+  "ae60af949af9a1dc": {
+    "content_hash": "1f2ac8f8f2672adc",
+    "endpoint": "player_xpass",
+    "file": "asa__player_xpass__ae60af949af9a1dc.parquet",
+    "params": {
+      "league": "mls",
+      "season": 2021
+    },
+    "pulled_at": "2026-07-10T03:56:00.144484+00:00",
+    "rows": 731,
+    "source": "asa"
+  },
+  "af8a614fcc12a98a": {
+    "content_hash": "34f705e08503809a",
+    "endpoint": "player_goals_added",
+    "file": "asa__player_goals_added__af8a614fcc12a98a.parquet",
+    "params": {
+      "league": "usl1",
+      "season": 2023
+    },
+    "pulled_at": "2026-07-10T03:58:02.658751+00:00",
+    "rows": 260,
+    "source": "asa"
+  },
+  "b0e5858d576478aa": {
+    "content_hash": "0b7b1c22fd373736",
+    "endpoint": "player_xpass",
+    "file": "asa__player_xpass__b0e5858d576478aa.parquet",
+    "params": {
+      "league": "uslc",
+      "season": 2021
+    },
+    "pulled_at": "2026-07-10T03:56:59.563988+00:00",
+    "rows": 879,
+    "source": "asa"
+  },
+  "b41639baf2971334": {
+    "content_hash": "empty",
+    "endpoint": "player_xgoals",
+    "file": "asa__player_xgoals__b41639baf2971334.parquet",
+    "params": {
+      "league": "usls",
+      "season": 2024
+    },
+    "pulled_at": "2026-07-10T03:59:59.943589+00:00",
+    "rows": 0,
+    "source": "asa"
+  },
+  "b6927b4613836d96": {
+    "content_hash": "db2cbde16ce88faf",
+    "endpoint": "player_xgoals",
+    "file": "asa__player_xgoals__b6927b4613836d96.parquet",
+    "params": {
+      "league": "mls",
+      "season": 2025
+    },
+    "pulled_at": "2026-07-10T03:56:24.979768+00:00",
+    "rows": 854,
+    "source": "asa"
+  },
+  "b8122c403ef0c870": {
+    "content_hash": "dca02b5def14a8ff",
+    "endpoint": "player_xgoals",
+    "file": "asa__player_xgoals__b8122c403ef0c870.parquet",
+    "params": {
+      "league": "nwsl",
+      "season": 2025
+    },
+    "pulled_at": "2026-07-10T03:59:30.483008+00:00",
+    "rows": 355,
+    "source": "asa"
+  },
+  "b955578788606e93": {
+    "content_hash": "69aec7be99ab0e7a",
+    "endpoint": "player_xgoals",
+    "file": "asa__player_xgoals__b955578788606e93.parquet",
+    "params": {
+      "league": "nwsl",
+      "season": 2022
+    },
+    "pulled_at": "2026-07-10T03:59:15.695623+00:00",
+    "rows": 311,
+    "source": "asa"
+  },
+  "bc1c4e94561e840f": {
+    "content_hash": "empty",
+    "endpoint": "player_goals_added",
+    "file": "asa__player_goals_added__bc1c4e94561e840f.parquet",
+    "params": {
+      "league": "usl1",
+      "season": 2018
+    },
+    "pulled_at": "2026-07-10T03:57:38.795129+00:00",
+    "rows": 0,
+    "source": "asa"
+  },
+  "bd4fb1374cb5f119": {
+    "content_hash": "5327e8c370a64db5",
+    "endpoint": "player_xgoals",
+    "file": "asa__player_xgoals__bd4fb1374cb5f119.parquet",
+    "params": {
+      "league": "mls",
+      "season": 2023
+    },
+    "pulled_at": "2026-07-10T03:56:11.343774+00:00",
+    "rows": 828,
+    "source": "asa"
+  },
+  "be0495ac97fff3c7": {
+    "content_hash": "6bae787d76ed34b8",
+    "endpoint": "player_xpass",
+    "file": "asa__player_xpass__be0495ac97fff3c7.parquet",
+    "params": {
+      "league": "mls",
+      "season": 2019
+    },
+    "pulled_at": "2026-07-10T03:55:47.712634+00:00",
+    "rows": 623,
+    "source": "asa"
+  },
+  "bfb495adc62528d4": {
+    "content_hash": "5d12fcc46f3f6757",
+    "endpoint": "player_xgoals",
+    "file": "asa__player_xgoals__bfb495adc62528d4.parquet",
+    "params": {
+      "league": "usl1",
+      "season": 2019
+    },
+    "pulled_at": "2026-07-10T03:57:40.401309+00:00",
+    "rows": 279,
+    "source": "asa"
+  },
+  "c31ce3dd0aaf0e7d": {
+    "content_hash": "2e75126fc62a6ca2",
+    "endpoint": "players",
+    "file": "asa__players__c31ce3dd0aaf0e7d.parquet",
+    "params": {
+      "league": "mlsnp"
+    },
+    "pulled_at": "2026-07-10T03:58:13.291992+00:00",
+    "rows": 3044,
+    "source": "asa"
+  },
+  "c519aa8f2bd35e5c": {
+    "content_hash": "empty",
+    "endpoint": "player_goals_added",
+    "file": "asa__player_goals_added__c519aa8f2bd35e5c.parquet",
+    "params": {
+      "league": "usls",
+      "season": 2024
+    },
+    "pulled_at": "2026-07-10T04:00:02.587377+00:00",
+    "rows": 0,
+    "source": "asa"
+  },
+  "c652cb7c632ca643": {
+    "content_hash": "ad32c202c36fabad",
+    "endpoint": "player_goals_added",
+    "file": "asa__player_goals_added__c652cb7c632ca643.parquet",
+    "params": {
+      "league": "uslc",
+      "season": 2021
+    },
+    "pulled_at": "2026-07-10T03:57:02.516123+00:00",
+    "rows": 790,
+    "source": "asa"
+  },
+  "c6cac6fdc0ace0bf": {
+    "content_hash": "b106fc9f058daebc",
+    "endpoint": "player_xpass",
+    "file": "asa__player_xpass__c6cac6fdc0ace0bf.parquet",
+    "params": {
+      "league": "nwsl",
+      "season": 2023
+    },
+    "pulled_at": "2026-07-10T03:59:22.127671+00:00",
+    "rows": 329,
+    "source": "asa"
+  },
+  "c7f534bdb68cf83f": {
+    "content_hash": "fbe17212bbdfbdfc",
+    "endpoint": "player_xpass",
+    "file": "asa__player_xpass__c7f534bdb68cf83f.parquet",
+    "params": {
+      "league": "mls",
+      "season": 2018
+    },
+    "pulled_at": "2026-07-10T03:55:41.447470+00:00",
+    "rows": 608,
+    "source": "asa"
+  },
+  "ca9ac6eb05cd7112": {
+    "content_hash": "b8cceb1d74b1a1d7",
+    "endpoint": "player_goals_added",
+    "file": "asa__player_goals_added__ca9ac6eb05cd7112.parquet",
+    "params": {
+      "league": "mlsnp",
+      "season": 2023
+    },
+    "pulled_at": "2026-07-10T03:58:41.406015+00:00",
+    "rows": 885,
+    "source": "asa"
+  },
+  "cb01e5a88f92ec3f": {
+    "content_hash": "41603c4b815258e9",
+    "endpoint": "player_xgoals",
+    "file": "asa__player_xgoals__cb01e5a88f92ec3f.parquet",
+    "params": {
+      "league": "usl1",
+      "season": 2020
+    },
+    "pulled_at": "2026-07-10T03:57:45.190628+00:00",
+    "rows": 266,
+    "source": "asa"
+  },
+  "cbc3d93435f22f8c": {
+    "content_hash": "10f79aea548de8d2",
+    "endpoint": "player_xpass",
+    "file": "asa__player_xpass__cbc3d93435f22f8c.parquet",
+    "params": {
+      "league": "usl1",
+      "season": 2020
+    },
+    "pulled_at": "2026-07-10T03:57:46.675980+00:00",
+    "rows": 266,
+    "source": "asa"
+  },
+  "cbf63f5e368f14d9": {
+    "content_hash": "25e3ba48532dc295",
+    "endpoint": "player_xpass",
+    "file": "asa__player_xpass__cbf63f5e368f14d9.parquet",
+    "params": {
+      "league": "nwsl",
+      "season": 2018
+    },
+    "pulled_at": "2026-07-10T03:58:58.712915+00:00",
+    "rows": 206,
+    "source": "asa"
+  },
+  "cda8ce990fd364c0": {
+    "content_hash": "5d54a0e0fdf24035",
+    "endpoint": "player_goals_added",
+    "file": "asa__player_goals_added__cda8ce990fd364c0.parquet",
+    "params": {
+      "league": "uslc",
+      "season": 2018
+    },
+    "pulled_at": "2026-07-10T03:56:41.650460+00:00",
+    "rows": 897,
+    "source": "asa"
+  },
+  "d32de6e83193de4e": {
+    "content_hash": "fdf2d9a1a605af02",
+    "endpoint": "player_goals_added",
+    "file": "asa__player_goals_added__d32de6e83193de4e.parquet",
+    "params": {
+      "league": "uslc",
+      "season": 2024
+    },
+    "pulled_at": "2026-07-10T03:57:21.419452+00:00",
+    "rows": 572,
+    "source": "asa"
+  },
+  "d703bebbc5dd72bd": {
+    "content_hash": "cce22c22fcc95cd9",
+    "endpoint": "player_xgoals",
+    "file": "asa__player_xgoals__d703bebbc5dd72bd.parquet",
+    "params": {
+      "league": "uslc",
+      "season": 2018
+    },
+    "pulled_at": "2026-07-10T03:56:36.459067+00:00",
+    "rows": 994,
+    "source": "asa"
+  },
+  "d70e99c05f495da0": {
+    "content_hash": "28278da32f704f08",
+    "endpoint": "player_goals_added",
+    "file": "asa__player_goals_added__d70e99c05f495da0.parquet",
+    "params": {
+      "league": "usl1",
+      "season": 2024
+    },
+    "pulled_at": "2026-07-10T03:58:07.292974+00:00",
+    "rows": 274,
+    "source": "asa"
+  },
+  "d9d3d96da186c27d": {
+    "content_hash": "2057d339867129cf",
+    "endpoint": "players",
+    "file": "asa__players__d9d3d96da186c27d.parquet",
+    "params": {
+      "league": "uslc"
+    },
+    "pulled_at": "2026-07-10T03:56:34.329645+00:00",
+    "rows": 3749,
+    "source": "asa"
+  },
+  "d9e3b9496b700965": {
+    "content_hash": "fb8ccbc73531f1ce",
+    "endpoint": "player_xgoals",
+    "file": "asa__player_xgoals__d9e3b9496b700965.parquet",
+    "params": {
+      "league": "mlsnp",
+      "season": 2025
+    },
+    "pulled_at": "2026-07-10T03:58:49.950303+00:00",
+    "rows": 1033,
+    "source": "asa"
+  },
+  "dc1800a0c7f04aad": {
+    "content_hash": "empty",
+    "endpoint": "player_xgoals",
+    "file": "asa__player_xgoals__dc1800a0c7f04aad.parquet",
+    "params": {
+      "league": "usls",
+      "season": 2025
+    },
+    "pulled_at": "2026-07-10T04:00:03.923872+00:00",
+    "rows": 0,
+    "source": "asa"
+  },
+  "dcba64c8f80b5fee": {
+    "content_hash": "90855c483de9a1bd",
+    "endpoint": "player_xpass",
+    "file": "asa__player_xpass__dcba64c8f80b5fee.parquet",
+    "params": {
+      "league": "usl1",
+      "season": 2024
+    },
+    "pulled_at": "2026-07-10T03:58:05.575114+00:00",
+    "rows": 299,
+    "source": "asa"
+  },
+  "ddf4f856703b04ce": {
+    "content_hash": "c234ab7f951699e8",
+    "endpoint": "player_xgoals",
+    "file": "asa__player_xgoals__ddf4f856703b04ce.parquet",
+    "params": {
+      "league": "usl1",
+      "season": 2022
+    },
+    "pulled_at": "2026-07-10T03:57:54.639968+00:00",
+    "rows": 284,
+    "source": "asa"
+  },
+  "e1feb883d2fe33d1": {
+    "content_hash": "empty",
+    "endpoint": "player_goals_added",
+    "file": "asa__player_goals_added__e1feb883d2fe33d1.parquet",
+    "params": {
+      "league": "usls",
+      "season": 2018
+    },
+    "pulled_at": "2026-07-10T03:59:38.800440+00:00",
+    "rows": 0,
+    "source": "asa"
+  },
+  "e7dae28d466fb7db": {
+    "content_hash": "37fddfb639e7ef17",
+    "endpoint": "player_xpass",
+    "file": "asa__player_xpass__e7dae28d466fb7db.parquet",
+    "params": {
+      "league": "mlsnp",
+      "season": 2024
+    },
+    "pulled_at": "2026-07-10T03:58:45.076675+00:00",
+    "rows": 1019,
+    "source": "asa"
+  },
+  "e81c3f677de0d7e1": {
+    "content_hash": "f54176693d7659ec",
+    "endpoint": "player_goals_added",
+    "file": "asa__player_goals_added__e81c3f677de0d7e1.parquet",
+    "params": {
+      "league": "mls",
+      "season": 2018
+    },
+    "pulled_at": "2026-07-10T03:55:43.875881+00:00",
+    "rows": 560,
+    "source": "asa"
+  },
+  "edfd2ccdd32a2a3e": {
+    "content_hash": "4b84c0b13a3ab732",
+    "endpoint": "player_xgoals",
+    "file": "asa__player_xgoals__edfd2ccdd32a2a3e.parquet",
+    "params": {
+      "league": "nwsl",
+      "season": 2018
+    },
+    "pulled_at": "2026-07-10T03:58:57.198053+00:00",
+    "rows": 206,
+    "source": "asa"
+  },
+  "ee288aeda03f97ba": {
+    "content_hash": "0464310e56221b8a",
+    "endpoint": "players",
+    "file": "asa__players__ee288aeda03f97ba.parquet",
+    "params": {
+      "league": "mls"
+    },
+    "pulled_at": "2026-07-10T03:49:46.870546+00:00",
+    "rows": 3506,
+    "source": "asa"
+  },
+  "ef684254fb75ec7a": {
+    "content_hash": "e30c7b41430aef9b",
+    "endpoint": "player_xpass",
+    "file": "asa__player_xpass__ef684254fb75ec7a.parquet",
+    "params": {
+      "league": "mlsnp",
+      "season": 2025
+    },
+    "pulled_at": "2026-07-10T03:58:51.778421+00:00",
+    "rows": 1033,
+    "source": "asa"
+  },
+  "efc83e935ca9cb6a": {
+    "content_hash": "9f7ca0e8ffd0d119",
+    "endpoint": "player_goals_added",
+    "file": "asa__player_goals_added__efc83e935ca9cb6a.parquet",
+    "params": {
+      "league": "nwsl",
+      "season": 2022
+    },
+    "pulled_at": "2026-07-10T03:59:19.140902+00:00",
+    "rows": 286,
+    "source": "asa"
+  },
+  "f29830fc17d300e8": {
+    "content_hash": "f60d8f387c45969d",
+    "endpoint": "player_goals_added",
+    "file": "asa__player_goals_added__f29830fc17d300e8.parquet",
+    "params": {
+      "league": "mls",
+      "season": 2025
+    },
+    "pulled_at": "2026-07-10T03:56:29.881085+00:00",
+    "rows": 787,
+    "source": "asa"
+  },
+  "f39545e5eece2f8d": {
+    "content_hash": "4df7deb9ac00cca2",
+    "endpoint": "player_xgoals",
+    "file": "asa__player_xgoals__f39545e5eece2f8d.parquet",
+    "params": {
+      "league": "nwsl",
+      "season": 2020
+    },
+    "pulled_at": "2026-07-10T03:59:06.403426+00:00",
+    "rows": 219,
+    "source": "asa"
+  },
+  "f7425b74dd574fdc": {
+    "content_hash": "03cf4c68e0cc9b73",
+    "endpoint": "player_xgoals",
+    "file": "asa__player_xgoals__f7425b74dd574fdc.parquet",
+    "params": {
+      "league": "usl1",
+      "season": 2023
+    },
+    "pulled_at": "2026-07-10T03:57:59.466281+00:00",
+    "rows": 289,
+    "source": "asa"
+  },
+  "fb2c23fd84650a5a": {
+    "content_hash": "f4cc4eac112ae7d7",
+    "endpoint": "player_xpass",
+    "file": "asa__player_xpass__fb2c23fd84650a5a.parquet",
+    "params": {
+      "league": "uslc",
+      "season": 2019
+    },
+    "pulled_at": "2026-07-10T03:56:45.797600+00:00",
+    "rows": 1038,
+    "source": "asa"
+  },
+  "fcc3389aca51a9df": {
+    "content_hash": "ffb183db1e629326",
+    "endpoint": "player_xgoals",
+    "file": "asa__player_xgoals__fcc3389aca51a9df.parquet",
+    "params": {
+      "league": "uslc",
+      "season": 2025
+    },
+    "pulled_at": "2026-07-10T03:57:23.201747+00:00",
+    "rows": 635,
+    "source": "asa"
+  },
+  "fd4081fe47db6218": {
+    "content_hash": "empty",
+    "endpoint": "player_xpass",
+    "file": "asa__player_xpass__fd4081fe47db6218.parquet",
+    "params": {
+      "league": "usls",
+      "season": 2025
+    },
+    "pulled_at": "2026-07-10T04:00:05.169287+00:00",
+    "rows": 0,
+    "source": "asa"
+  },
+  "fd45698132df5af6": {
+    "content_hash": "2f9097c098dab5ff",
+    "endpoint": "player_xpass",
+    "file": "asa__player_xpass__fd45698132df5af6.parquet",
+    "params": {
+      "league": "nwsl",
+      "season": 2025
+    },
+    "pulled_at": "2026-07-10T03:59:32.037627+00:00",
+    "rows": 355,
+    "source": "asa"
+  },
+  "fd8dc6fba9573801": {
+    "content_hash": "069b7da84410d082",
+    "endpoint": "player_xgoals",
+    "file": "asa__player_xgoals__fd8dc6fba9573801.parquet",
+    "params": {
+      "league": "mlsnp",
+      "season": 2024
+    },
+    "pulled_at": "2026-07-10T03:58:43.247572+00:00",
+    "rows": 1019,
+    "source": "asa"
+  }
+}

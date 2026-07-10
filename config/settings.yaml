@@ -46,9 +46,18 @@ movers:
   min_minutes_qualifying: 900
   # league pairs with fewer movers than this are flagged too-thin-to-calibrate
   thin_pair_floor: 5
+  # a move only counts if the destination season starts within this many seasons
+  # of the origin season (longer gaps confound league effect with career drift)
+  max_season_gap: 2
 
 calibration:
-  # shrinkage prior strength: factor is pulled toward 1.0 with weight k / (k + n)
+  # metrics used to estimate conversion factors (must be positive rates; movers with
+  # a non-positive value on either side of a move are excluded from ratios and logged)
+  metrics:
+    - xg_xa_per90
+    - goals_added_raw_per90
+  # shrinkage prior strength: mean log-ratio is scaled by n / (n + k), i.e. pulled
+  # toward log(1.0)=0 for small samples
   shrinkage_k: 4
   bootstrap_iterations: 1000
   # confidence interval width
@@ -60,7 +69,7 @@ validation:
   # ... and their strength-adjusted primary metric does not fall by more than this fraction
   success_max_metric_drop: 0.25
   # primary metric used for the proof-of-concept projection
-  primary_metric: goals_added_per90
+  primary_metric: goals_added_raw_per90
   # held-out share of movers for retrodiction
   holdout_fraction: 0.5
   permutation_iterations: 2000
