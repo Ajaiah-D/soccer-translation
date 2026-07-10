@@ -39,8 +39,8 @@ DATA_DICTIONARY: dict[str, tuple[str, str]] = {
                               "asa:goals_added_raw_total (fbref: n/a)"),
     "goals_added_above_avg_per90": ("goals_added_above_avg_total / minutes * 90",
                                     "asa:goals_added_above_avg_total (fbref: n/a)"),
-    "pass_pct_over_expected": ("pass_completion_percentage - expected_pass_completion_"
-                               "percentage (already a rate; NOT per-90 normalized)",
+    "pass_pct_over_expected": ("pass_completion_percentage - xpass_completion_percentage"
+                               " (already a rate; NOT per-90 normalized)",
                                "asa:xpass endpoint (fbref: n/a)"),
     "share_team_touches": ("minutes-weighted mean share of team touches (already a "
                            "rate; NOT per-90 normalized)", "asa:xpass endpoint (fbref: n/a)"),
@@ -87,7 +87,7 @@ def normalize_asa(xgoals: pd.DataFrame, xpass: pd.DataFrame, goals_added: pd.Dat
 
     xp = xpass.copy()
     xp["pass_pct_over_expected"] = (xp["pass_completion_percentage"]
-                                    - xp["expected_pass_completion_percentage"])
+                                    - xp["xpass_completion_percentage"])
     xp["_w"] = xp["minutes_played"].clip(lower=1)
     xp = xp.groupby(KEY, as_index=False).apply(
         lambda g: pd.Series({

@@ -53,7 +53,7 @@ class AsaPlayerXpassRow(BaseModel):
     minutes_played: int
     attempted_passes: int
     pass_completion_percentage: float
-    expected_pass_completion_percentage: float
+    xpass_completion_percentage: float
     passes_completed_over_expected: float
     share_team_touches: float
     league: str

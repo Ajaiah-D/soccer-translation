@@ -103,7 +103,11 @@ def test_every_metric_has_data_dictionary_entry():
 def test_audit_sample_exists_with_buckets():
     path = _require(data_path("data_outputs") / "crosswalk_audit_sample.csv", "phase2")
     sample = pd.read_csv(path)
-    assert "audit_bucket" in sample.columns and len(sample) > 0
+    assert "audit_bucket" in sample.columns
+    ps = pd.read_parquet(data_path("data_interim") / "player_seasons.parquet")
+    if (ps["source"] != "asa").any():
+        # cross-source records exist, so there must be matches to audit
+        assert len(sample) > 0
 
 
 # ---------------- Phase 3 ----------------

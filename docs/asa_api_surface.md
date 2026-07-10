@@ -53,6 +53,12 @@ The ingest layer flattens this to wide columns before caching (parquet-safe) and
 totals `goals_added_raw_total` / `goals_added_above_avg_total` as the sum across
 action types.
 
+### `get_player_xpass` (observed from cache)
+Columns: `player_id, team_id, season_name, general_position, minutes_played,
+attempted_passes, pass_completion_percentage, xpass_completion_percentage,
+passes_completed_over_expected, passes_completed_over_expected_p100,
+avg_distance_yds, avg_vertical_distance_yds, share_team_touches, count_games`
+
 ### `get_players` (1553 rows for usl1)
 Columns: `player_id, player_name, birth_date, nationality, primary_broad_position,
 primary_general_position, secondary_broad_position, secondary_general_position,

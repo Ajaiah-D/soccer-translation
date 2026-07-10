@@ -1,4 +1,16 @@
 {
+  "013ab7d1c865b2c4": {
+    "content_hash": "empty",
+    "endpoint": "player_season_standard",
+    "file": "fbref__player_season_standard__013ab7d1c865b2c4.parquet",
+    "params": {
+      "league": "USA-Major League Soccer",
+      "season": 2020
+    },
+    "pulled_at": "2026-07-10T04:13:28.723453+00:00",
+    "rows": 0,
+    "source": "fbref"
+  },
   "0442e3638c00a9b1": {
     "content_hash": "15881c80f67945d4",
     "endpoint": "player_xpass",
@@ -668,6 +680,18 @@
     "rows": 633,
     "source": "asa"
   },
+  "5a094e0ace18f04f": {
+    "content_hash": "empty",
+    "endpoint": "player_season_standard",
+    "file": "fbref__player_season_standard__5a094e0ace18f04f.parquet",
+    "params": {
+      "league": "USA-Major League Soccer",
+      "season": 2023
+    },
+    "pulled_at": "2026-07-10T04:24:56.511249+00:00",
+    "rows": 0,
+    "source": "fbref"
+  },
   "5b9dbcdbc9b6607b": {
     "content_hash": "5b69fcb006f69167",
     "endpoint": "player_goals_added",
@@ -1280,6 +1304,18 @@
     "rows": 0,
     "source": "asa"
   },
+  "ad1b9b7ac26760e3": {
+    "content_hash": "942d123430ed1e2f",
+    "endpoint": "player_season_standard",
+    "file": "fbref__player_season_standard__ad1b9b7ac26760e3.parquet",
+    "params": {
+      "league": "USA-Major League Soccer",
+      "season": 2022
+    },
+    "pulled_at": "2026-07-10T04:19:18.099217+00:00",
+    "rows": 784,
+    "source": "fbref"
+  },
   "ad5db9ebe316c5f0": {
     "content_hash": "03c28da86e500a53",
     "endpoint": "player_season_standard",
@@ -1375,6 +1411,18 @@
     "pulled_at": "2026-07-10T03:59:15.695623+00:00",
     "rows": 311,
     "source": "asa"
+  },
+  "b991d4f162246856": {
+    "content_hash": "empty",
+    "endpoint": "player_season_standard",
+    "file": "fbref__player_season_standard__b991d4f162246856.parquet",
+    "params": {
+      "league": "USA-Major League Soccer",
+      "season": 2021
+    },
+    "pulled_at": "2026-07-10T04:18:22.538062+00:00",
+    "rows": 0,
+    "source": "fbref"
   },
   "bc1c4e94561e840f": {
     "content_hash": "empty",
