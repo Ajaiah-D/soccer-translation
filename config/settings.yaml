@@ -1,0 +1,66 @@
+# Single source of truth for all tunable parameters.
+# No logic module may hardcode any of these values.
+
+hello: "cross-league-translation is alive"
+
+random_seed: 42
+
+# League-strength anchor: factors are expressed relative to this league (= 1.0)
+anchor_league: MLS
+
+# Seasons pulled per source (inclusive range, expanded in code)
+seasons:
+  asa:
+    start: 2018
+    end: 2025
+  fbref:
+    start: 2018
+    end: 2025
+
+paths:
+  data_raw: data/raw
+  data_interim: data/interim
+  data_crosswalk: data/crosswalk
+  data_outputs: data/outputs
+  docs_contracts: docs/contracts
+
+ingest:
+  # Seconds to sleep between consecutive live API calls (ASA asks for modest use)
+  rate_limit_seconds: 1.0
+  max_retries: 3
+  backoff_base_seconds: 2.0
+
+crosswalk:
+  # rapidfuzz token_sort_ratio threshold (0-100) for an auto-accepted match
+  accept_threshold: 88
+  # below this, never match
+  reject_threshold: 70
+  # precision target on the labeled fixture, asserted in tests
+  fixture_precision_target: 0.90
+  # audit sample sizes
+  audit_random_n: 25
+  audit_low_confidence_n: 25
+
+movers:
+  # minimum minutes in a league-season for it to count as "qualifying"
+  min_minutes_qualifying: 900
+  # league pairs with fewer movers than this are flagged too-thin-to-calibrate
+  thin_pair_floor: 5
+
+calibration:
+  # shrinkage prior strength: factor is pulled toward 1.0 with weight k / (k + n)
+  shrinkage_k: 4
+  bootstrap_iterations: 1000
+  # confidence interval width
+  ci_level: 0.90
+
+validation:
+  # a mover "succeeds" post-move if they retain at least this share of pre-move minutes-per-season
+  success_min_minutes_share: 0.5
+  # ... and their strength-adjusted primary metric does not fall by more than this fraction
+  success_max_metric_drop: 0.25
+  # primary metric used for the proof-of-concept projection
+  primary_metric: goals_added_per90
+  # held-out share of movers for retrodiction
+  holdout_fraction: 0.5
+  permutation_iterations: 2000

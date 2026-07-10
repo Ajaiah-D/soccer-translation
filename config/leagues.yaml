@@ -1,0 +1,49 @@
+# League registry: canonical code -> per-source identifiers.
+# Canonical codes are used everywhere downstream; source-specific codes only in ingest.
+
+leagues:
+  MLS:
+    name: Major League Soccer
+    asa: mls
+    fbref: USA-Major League Soccer
+    tier: us_1
+  USLC:
+    name: USL Championship
+    asa: uslc
+    fbref: null
+    tier: us_2
+  USL1:
+    name: USL League One
+    asa: usl1
+    fbref: null
+    tier: us_3
+  MLSNP:
+    name: MLS NEXT Pro
+    asa: mlsnp
+    fbref: null
+    tier: us_3
+  NWSL:
+    name: National Women's Soccer League
+    asa: nwsl
+    fbref: null
+    tier: usw_1
+  USLS:
+    name: USL Super League
+    asa: usls
+    fbref: null
+    tier: usw_1
+
+# European comparison leagues via FBref only (kept small to respect scraping limits)
+  ENG1:
+    name: Premier League
+    asa: null
+    fbref: ENG-Premier League
+    tier: eng_1
+
+# Strong footballing priors used by the Phase 4 monotonicity gate:
+# each entry means "left league is stronger than right league" for men's pyramid metrics.
+strength_priors:
+  - [MLS, USLC]
+  - [USLC, USL1]
+  - [MLS, MLSNP]
+  - [ENG1, MLS]

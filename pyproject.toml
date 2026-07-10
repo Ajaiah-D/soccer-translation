@@ -1,0 +1,37 @@
+[project]
+name = "cross-league-translation"
+version = "0.1.0"
+description = "Cross-league player value translation engine (MVP proof-of-concept slice)"
+requires-python = ">=3.12,<3.13"
+dependencies = [
+    "itscalledsoccer>=0.3",
+    "soccerdata>=1.8",
+    "pandas>=2.2",
+    "numpy>=1.26",
+    "scikit-learn>=1.5",
+    "rapidfuzz>=3.9",
+    "pydantic>=2.8",
+    "pyyaml>=6.0",
+    "duckdb>=1.0",
+    "matplotlib>=3.9",
+    "requests>=2.32",
+    "pyarrow>=16",
+]
+
+[dependency-groups]
+dev = ["pytest>=8.2"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["."]
+markers = [
+    "gate_phase0: Phase 0 acceptance gate",
+    "gate_phase1: Phase 1 acceptance gate",
+    "gate_phase2: Phase 2 acceptance gate",
+    "gate_phase3: Phase 3 acceptance gate",
+    "gate_phase4: Phase 4 acceptance gate",
+    "gate_phase5: Phase 5 acceptance gate",
+    "gate_phase6: Phase 6 acceptance gate",
+    "network: tests that require live network access (excluded from default runs)",
+]
+addopts = "-m 'not network'"

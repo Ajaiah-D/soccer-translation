@@ -1,0 +1,22 @@
+# Environments
+.venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+
+# Data: raw pulls are cached locally, never committed (fixtures ARE committed under tests/fixtures)
+data/raw/*
+!data/raw/manifest.json
+data/interim/
+data/crosswalk/
+data/outputs/
+
+# soccerdata's own cache
+.soccerdata/
+
+# Notebooks checkpoints
+notebooks/.ipynb_checkpoints/
+
+# OS
+Thumbs.db
+.DS_Store
