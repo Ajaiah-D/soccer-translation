@@ -200,10 +200,10 @@ def _write_report(metric, train, holdout, usable, n_excluded, strengths,
     ]
     for _, m in usable.sort_values("projected", ascending=False).iterrows():
         lines.append(
-            f"| {m['player_name']} | {m['from_league']}→{m['to_league']} | "
-            f"{m['from_season']}→{m['to_season']} | {m['projected']:.3f} | "
+            f"| {m['player_name']} | {m['from_league']}->{m['to_league']} | "
+            f"{m['from_season']}->{m['to_season']} | {m['projected']:.3f} | "
             f"{m['actual']:.3f} | {m['minutes_share']:.2f} | "
-            f"{'✅' if m['success'] else '❌'} |")
+            f"{'yes' if m['success'] else 'no'} |")
     lines += [
         "", "## Verdict", "",
         f"**{verdict}** — {justification}", "",

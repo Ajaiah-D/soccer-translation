@@ -107,4 +107,15 @@ def run_phase1(refresh: bool = False) -> None:
 
     write_contract_docs()
     report = write_coverage_report(asa_frames, fbref_df)
+
+    from src.common.review_queue import add_review_item
+    add_review_item(
+        title="Transfermarkt real feed request",
+        severity="should-review",
+        context=("The Transfermarkt source is a stub backed by a small hand-entered "
+                 "fixture (interface documented in src/ingest/transfermarkt.py). "
+                 "Market-value validation labels stay out of the proof-of-concept "
+                 "until the owner provides the real scraper/feed."),
+        artifact="src/ingest/transfermarkt.py",
+    )
     log.info("Phase 1 complete: coverage report at %s", report)

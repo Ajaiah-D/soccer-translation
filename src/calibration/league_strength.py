@@ -4,7 +4,7 @@ Method (documented for the diagnostics report):
 1. Per mover and metric, the observed change is the log-ratio
    log(to_metric / from_metric); movers with a non-positive value on either side are
    excluded from that metric (counted, never silent).
-2. Pairwise factor for a directed league pair (A→B): mean log-ratio, SHRUNK toward 0
+2. Pairwise factor for a directed league pair (A->B): mean log-ratio, SHRUNK toward 0
    (= factor 1.0) by n/(n+k) — small samples are pulled toward "no change" (spec §7).
 3. Chaining: weighted least squares on the league graph. Model
    log f_AB = s_A − s_B (a player moving to a weaker league produces more), anchored
@@ -188,14 +188,14 @@ def _write_diagnostics(factors: pd.DataFrame, strengths: pd.DataFrame,
              "| metric | league | strength | CI low | CI high | n touching | low-confidence |",
              "|---|---|---|---|---|---|---|"]
     for _, r in strengths.sort_values(["metric", "strength"], ascending=[True, False]).iterrows():
-        flag = "⚠️ yes" if r["low_confidence"] else "no"
+        flag = "yes (LOW CONFIDENCE)" if r["low_confidence"] else "no"
         lines.append(f"| {r['metric']} | {r['league']} | {r['strength']:.3f} | "
                      f"{r['ci_low']:.3f} | {r['ci_high']:.3f} | {r['n_moves_touching']} | {flag} |")
     lines += ["", "## Directed pairwise factors", "",
               "| metric | from | to | n | raw mean log-ratio | shrunk | factor | low-confidence |",
               "|---|---|---|---|---|---|---|---|"]
     for _, r in factors.sort_values(["metric", "n"], ascending=[True, False]).iterrows():
-        flag = "⚠️ yes" if r["low_confidence"] else "no"
+        flag = "yes (LOW CONFIDENCE)" if r["low_confidence"] else "no"
         lines.append(f"| {r['metric']} | {r['from_league']} | {r['to_league']} | {r['n']} | "
                      f"{r['mean_log_ratio']:.3f} | {r['shrunk_log_ratio']:.3f} | "
                      f"{r['factor']:.3f} | {flag} |")

@@ -764,6 +764,18 @@
     "rows": 0,
     "source": "asa"
   },
+  "66ebb8e00e920f9f": {
+    "content_hash": "empty",
+    "endpoint": "player_season_standard",
+    "file": "fbref__player_season_standard__66ebb8e00e920f9f.parquet",
+    "params": {
+      "league": "USA-Major League Soccer",
+      "season": 2024
+    },
+    "pulled_at": "2026-07-10T04:29:44.245612+00:00",
+    "rows": 0,
+    "source": "fbref"
+  },
   "69d82f20aef17c25": {
     "content_hash": "5c99414c0b39b232",
     "endpoint": "player_xpass",

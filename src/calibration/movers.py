@@ -90,7 +90,7 @@ def write_movers_summary(moves: pd.DataFrame) -> None:
              "## Moves per league pair", "",
              "| from | to | n | thin? |", "|---|---|---|---|"]
     for _, r in pair_counts.iterrows():
-        flag = "⚠️ THIN" if r["thin_sample_flag"] else ""
+        flag = "THIN" if r["thin_sample_flag"] else ""
         lines.append(f"| {r['from_league']} | {r['to_league']} | {r['n_moves']} | {flag} |")
     if len(moves):
         lines += ["", "## Minutes distribution (both sides of moves)", "",
@@ -103,7 +103,7 @@ def write_movers_summary(moves: pd.DataFrame) -> None:
 
     thin = pair_counts[pair_counts["thin_sample_flag"]]
     if len(thin):
-        pairs = ", ".join(f"{r['from_league']}→{r['to_league']} (n={r['n_moves']})"
+        pairs = ", ".join(f"{r['from_league']}->{r['to_league']} (n={r['n_moves']})"
                           for _, r in thin.iterrows())
         add_review_item(
             title="Thin league-pair samples constrain calibration claims",

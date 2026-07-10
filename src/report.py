@@ -81,7 +81,7 @@ def write_run_report() -> Path:
         "|---|---|---|---|",
     ]
     for phase, name, rel in ARTIFACTS:
-        exists = "✅" if (PROJECT_ROOT / rel).exists() else "❌ missing"
+        exists = "yes" if (PROJECT_ROOT / rel).exists() else "MISSING"
         lines.append(f"| {phase} | {name} | `{rel}` | {exists} |")
 
     lines += ["", "## Human review queue (verbatim)", ""]
