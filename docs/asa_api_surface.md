@@ -2,7 +2,7 @@
 
 Introspected on 2026-07-09 against the installed `itscalledsoccer` client
 (`from itscalledsoccer.client import AmericanSoccerAnalysis`). Build against this,
-not against memory (spec §2).
+not against memory (spec section 2).
 
 ## Supported leagues (client constant `LEAGUES`)
 
@@ -14,7 +14,7 @@ not against memory (spec §2).
 
 | Method | Signature (abridged) |
 |---|---|
-| `get_players` | `(leagues, ids, names)` → identity table |
+| `get_players` | `(leagues, ids, names)` -> identity table |
 | `get_teams` | `(leagues, ids, names)` |
 | `get_games` | `(leagues, game_ids, team_ids, team_names, season_name, ...)` |
 | `get_managers` / `get_referees` / `get_stadia` | `(leagues, ids, names)` |
@@ -33,7 +33,7 @@ All filters are keyword arguments. Kwargs observed in docstrings for the player 
 `split_by_seasons`, `split_by_games`, `general_position`.
 
 We pull with `season_name=<year>` and `split_by_seasons=True` so every row is a
-player × team × season observation.
+player x team x season observation.
 
 ## Observed response shapes (live probe: `usl1`, season 2023)
 
@@ -67,5 +67,5 @@ season_name, height_ft, height_in, weight_lb, competition`
 ## Usage etiquette
 
 ASA asks for modest use. Ingest enforces: 1 req/sec rate limit, exponential backoff on
-error (config `ingest.*`), and aggressive local caching — a season/league slice is
+error (config `ingest.*`), and aggressive local caching - a season/league slice is
 fetched exactly once and re-read from `data/raw/` thereafter.

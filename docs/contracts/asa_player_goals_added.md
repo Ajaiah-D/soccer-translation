@@ -1,7 +1,7 @@
 # Contract: `asa_player_goals_added`
 
 Player g+ per league-season, flattened from the nested action-type payload.
-    g+ is an action-value framework, NOT xG — see docs/metric_glossary.md.
+    g+ is an action-value framework, NOT xG - see docs/metric_glossary.md.
 
 | column | type | required |
 |---|---|---|

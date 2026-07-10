@@ -4,8 +4,6 @@ A reproducible pipeline that estimates how player performance translates between
 leagues of the American soccer pyramid (and selected comparison leagues), calibrated
 from players who actually moved, and validated by retrodicting held-out movers.
 
-Built to the specification in [AGENT_BUILD_SPEC.md](AGENT_BUILD_SPEC.md).
-
 ## What it does
 
 1. **Ingest** (Phase 1): player-season metrics from American Soccer Analysis

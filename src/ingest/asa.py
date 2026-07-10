@@ -49,7 +49,7 @@ def _throttled(fetch: Callable[[], pd.DataFrame]) -> pd.DataFrame:
         except Exception as exc:  # noqa: BLE001 - retried, then re-raised
             last_exc = exc
             backoff = float(cfg["backoff_base_seconds"]) * (2 ** attempt)
-            log.warning("ASA call failed (attempt %d): %s — backing off %.1fs",
+            log.warning("ASA call failed (attempt %d): %s - backing off %.1fs",
                         attempt + 1, exc, backoff)
             time.sleep(backoff)
     raise RuntimeError(f"ASA call failed after {cfg['max_retries']} retries") from last_exc
@@ -118,7 +118,7 @@ def pull_players(asa_code: str, refresh: bool = False) -> pd.DataFrame:
 
 
 def pull_all(refresh: bool = False) -> dict[str, pd.DataFrame]:
-    """Pull every configured league × season × endpoint. Returns concatenated frames
+    """Pull every configured league x season x endpoint. Returns concatenated frames
     keyed by endpoint, each with canonical `league` and integer `season` columns."""
     result: dict[str, list[pd.DataFrame]] = {
         "players": [], "player_xgoals": [], "player_xpass": [], "player_goals_added": [],

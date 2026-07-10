@@ -1,4 +1,4 @@
-"""Append-only, idempotent writer for REVIEW_QUEUE.md (spec §0.3)."""
+"""Append-only, idempotent writer for REVIEW_QUEUE.md (items a reviewer should check before trusting results)."""
 
 from __future__ import annotations
 

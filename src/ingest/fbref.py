@@ -81,7 +81,7 @@ def pull_player_season_stats(fbref_league: str, season: int,
 
 
 def pull_all(refresh: bool = False) -> pd.DataFrame:
-    """All configured FBref leagues × seasons, concatenated with canonical league codes.
+    """All configured FBref leagues x seasons, concatenated with canonical league codes.
     A league-season that fails to scrape is recorded as an explicit gap (empty cache
     entry) rather than aborting the run."""
     frames: list[pd.DataFrame] = []
@@ -90,7 +90,7 @@ def pull_all(refresh: bool = False) -> pd.DataFrame:
             try:
                 df = pull_player_season_stats(fbref_league, season, refresh=refresh)
             except Exception as exc:  # noqa: BLE001 - gap is recorded, run continues
-                log.warning("FBref %s %s failed: %s — recorded as coverage gap",
+                log.warning("FBref %s %s failed: %s - recorded as coverage gap",
                             fbref_league, season, exc)
                 df = cached_pull("fbref", "player_season_standard",
                                  {"league": fbref_league, "season": season},

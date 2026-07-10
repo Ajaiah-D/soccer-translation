@@ -1,4 +1,4 @@
-"""Phase 4 gate: statistical guards — shrinkage, chaining recovery, bootstrap seed."""
+"""Phase 4 gate: statistical guards - shrinkage, chaining recovery, bootstrap seed."""
 
 import numpy as np
 import pandas as pd

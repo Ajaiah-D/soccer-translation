@@ -19,7 +19,7 @@ from src.common.config import (
 
 def _require(path: Path, phase: str):
     if not path.exists():
-        pytest.skip(f"{path.name} absent — run `python -m src {phase}` first")
+        pytest.skip(f"{path.name} absent - run `python -m src {phase}` first")
     return path
 
 
@@ -42,7 +42,7 @@ def test_asa_frames_nonempty_and_contract_valid():
 
 @pytest.mark.gate_phase1
 def test_coverage_report_has_zero_silent_gaps():
-    """Every league×season×metric cell is present and labeled ok or MISSING."""
+    """Every leaguexseasonxmetric cell is present and labeled ok or MISSING."""
     report = _require(data_path("data_outputs") / "coverage_report.md", "phase1")
     text = report.read_text(encoding="utf-8")
     for league in asa_league_codes():
@@ -58,7 +58,7 @@ def test_manifest_records_every_cached_pull():
     from src.common.io import _load_manifest
     manifest = _load_manifest()
     if not manifest:
-        pytest.skip("manifest absent — run `python -m src phase1` first")
+        pytest.skip("manifest absent - run `python -m src phase1` first")
     for key, entry in manifest.items():
         assert {"source", "endpoint", "params", "pulled_at", "rows",
                 "content_hash"} <= set(entry)
@@ -155,5 +155,5 @@ def test_no_confident_prior_violation_in_diagnostics():
     text = path.read_text(encoding="utf-8")
     assert "Prior checks" in text
     assert "VIOLATION-confident" not in text, \
-        "confident prior violation surfaced — see review queue (blocker)"
+        "confident prior violation surfaced - see review queue (blocker)"
     assert len(strength_priors()) > 0

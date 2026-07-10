@@ -54,8 +54,8 @@ calibration:
   # metrics used to estimate conversion factors (must be positive rates; movers with
   # a non-positive value on either side of a move are excluded from ratios and logged)
   metrics:
-    - xg_xa_per90
-    - goals_added_raw_per90
+   - xg_xa_per90
+   - goals_added_raw_per90
   # shrinkage prior strength: mean log-ratio is scaled by n / (n + k), i.e. pulled
   # toward log(1.0)=0 for small samples
   shrinkage_k: 4

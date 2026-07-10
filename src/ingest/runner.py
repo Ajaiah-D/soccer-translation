@@ -1,5 +1,5 @@
 """Phase 1 orchestration: pull + cache + contract-validate all sources, then emit
-data/outputs/coverage_report.md with every gap explicit (spec Phase 1 gate)."""
+data/outputs/coverage_report.md with every gap explicit (acceptance requirement)."""
 
 from __future__ import annotations
 
@@ -22,7 +22,7 @@ COVERAGE_METRICS = ["g+", "xG", "xPass", "minutes", "position"]
 
 def _coverage_cell(frames: dict[str, pd.DataFrame], league: str, season: int,
                    metric: str) -> str:
-    """'ok (n=..)' or an explicit MISSING label — never a silent gap."""
+    """'ok (n=..)' or an explicit MISSING label - never a silent gap."""
     endpoint = {"g+": "player_goals_added", "xG": "player_xgoals",
                 "xPass": "player_xpass", "minutes": "player_xgoals",
                 "position": "player_xgoals"}[metric]
@@ -46,7 +46,7 @@ def _coverage_cell(frames: dict[str, pd.DataFrame], league: str, season: int,
 def write_coverage_report(asa_frames: dict[str, pd.DataFrame],
                           fbref_df: pd.DataFrame) -> Path:
     lines = [
-        "# Coverage report — metrics × leagues × seasons",
+        "# Coverage report - metrics x leagues x seasons",
         "",
         "Every cell is either `ok (n=rows)` or an explicit `MISSING (...)` label.",
         "There are no silent gaps: a league-season absent from a source appears here as MISSING.",
@@ -89,7 +89,7 @@ def run_phase1(refresh: bool = False) -> None:
     fbref_df = fbref.pull_all(refresh=refresh)
     tm_df = transfermarkt.get_player_valuations()
 
-    # contract validation — fail loudly on drift
+    # contract validation - fail loudly on drift
     validate_frame(asa_frames["players"], CONTRACTS["asa_players"], "asa_players")
     validate_frame(asa_frames["player_xgoals"], CONTRACTS["asa_player_xgoals"], "asa_player_xgoals")
     validate_frame(asa_frames["player_xpass"], CONTRACTS["asa_player_xpass"], "asa_player_xpass")

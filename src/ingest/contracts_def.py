@@ -1,4 +1,4 @@
-"""Pydantic data contracts for every ingested source (spec §3).
+"""Pydantic data contracts for every ingested source (pending a real feed).
 
 Each contract models one ROW of the frame. validate_frame() (src.common.contracts)
 checks column presence for all fields and type-validates a row sample on load.
@@ -62,7 +62,7 @@ class AsaPlayerXpassRow(BaseModel):
 
 class AsaPlayerGoalsAddedRow(BaseModel):
     """Player g+ per league-season, flattened from the nested action-type payload.
-    g+ is an action-value framework, NOT xG — see docs/metric_glossary.md."""
+    g+ is an action-value framework, NOT xG - see docs/metric_glossary.md."""
     player_id: str
     team_id: str
     season_name: str

@@ -1,4 +1,4 @@
-"""Phase 5: proof-of-concept validation — retrodict held-out movers.
+"""Phase 5: proof-of-concept validation - retrodict held-out movers.
 
 Honesty guarantees:
 - Movers are split 50/50 (seeded). League strengths are RE-ESTIMATED on the
@@ -104,9 +104,9 @@ def _spearman(x: np.ndarray, y: np.ndarray) -> float:
 def decide_verdict(n: int, r: float, p_r: float, auc: float | None,
                    p_auc: float | None) -> tuple[str, str]:
     """Explicit verdict rule (the human ratifies via review queue):
-    - signal: permutation p < 0.05 on the continuous skill AND r > 0
-    - no-signal: n >= 30 and p >= 0.05
-    - inconclusive-need-more-data: otherwise (small n dominates)
+   - signal: permutation p < 0.05 on the continuous skill AND r > 0
+   - no-signal: n >= 30 and p >= 0.05
+   - inconclusive-need-more-data: otherwise (small n dominates)
     """
     if p_r < 0.05 and r > 0:
         return "signal", (f"projected vs actual Spearman r={r:.3f} beats shuffled "
@@ -159,7 +159,7 @@ def run_phase5() -> None:
     add_review_item(
         title="Proof-of-concept signal interpretation (verdict ratification)",
         severity="must-review-before-trusting-results",
-        context=(f"Agent-proposed verdict: **{verdict}** — {justification}. "
+        context=(f"Proposed verdict: **{verdict}** - {justification}. "
                  "With thin mover samples, distinguishing real signal from noise is a "
                  "judgment call: the human ratifies or overrides this verdict before "
                  "any Stage 3/4/6 work is unlocked."),
@@ -181,7 +181,7 @@ def _write_report(metric, train, holdout, usable, n_excluded, strengths,
         f"(no held-out post-move data touches the factors): "
         + ", ".join(f"{k}={np.exp(v):.3f}" for k, v in sorted(strengths.items())),
         f"- held-out moves usable (projection & actual both defined): **{len(usable)}** "
-        f"({n_excluded} excluded for missing metric on either side — reported, not imputed)",
+        f"({n_excluded} excluded for missing metric on either side - reported, not imputed)",
         "",
         "## Results", "",
         f"- Spearman r (projected vs actual): **{r:.3f}**",
@@ -206,8 +206,8 @@ def _write_report(metric, train, holdout, usable, n_excluded, strengths,
             f"{'yes' if m['success'] else 'no'} |")
     lines += [
         "", "## Verdict", "",
-        f"**{verdict}** — {justification}", "",
-        "_This verdict is proposed by the agent and must be ratified by a human "
+        f"**{verdict}** - {justification}", "",
+        "_This verdict is proposed by the pipeline and must be ratified by a human "
         "(see REVIEW_QUEUE.md) before Stage 3/4/6 work is unlocked._",
     ]
     out = data_path("data_outputs") / "proof_of_concept.md"

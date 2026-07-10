@@ -1,3 +1,37 @@
+# RUN REPORT - Cross-League Player Value Translation Engine
+
+_Generated 2026-07-10 05:16 UTC by `python -m src report`._
+
+## Key numbers
+
+- normalized player-seasons: **21791** ({'asa': 20415, 'fbref': 1376})
+- qualifying moves: **689** across 576 players
+- league strengths (goals_added_raw_per90, anchor MLS=1.0): MLS 1.00, USLC 0.82, USL1 0.76, MLSNP 0.64
+- proof-of-concept verdict: **signal** - projected vs actual Spearman r=0.530 beats shuffled labels (p=0.0005, n=303)
+
+## Artifacts by phase
+
+| phase | artifact | path | exists |
+|---|---|---|---|
+| Phase 1 | Coverage report | `data/outputs/coverage_report.md` | yes |
+| Phase 1 | ASA API surface | `docs/asa_api_surface.md` | yes |
+| Phase 1 | Metric glossary (incl. g+) | `docs/metric_glossary.md` | yes |
+| Phase 1 | Data contracts | `docs/contracts/` | yes |
+| Phase 2 | Player crosswalk | `data/crosswalk/player_crosswalk.parquet` | yes |
+| Phase 2 | Crosswalk audit sample (HUMAN REVIEW) | `data/outputs/crosswalk_audit_sample.csv` | yes |
+| Phase 2 | Unmatched report | `data/outputs/crosswalk_unmatched_report.md` | yes |
+| Phase 2 | Data dictionary | `docs/data_dictionary.md` | yes |
+| Phase 3 | Mover set | `data/interim/movers.parquet` | yes |
+| Phase 3 | Movers summary | `data/outputs/movers_summary.md` | yes |
+| Phase 4 | League strengths (+CI) | `data/outputs/league_strength.parquet` | yes |
+| Phase 4 | Calibration diagnostics | `data/outputs/calibration_diagnostics.md` | yes |
+| Phase 5 | Proof-of-concept verdict (HUMAN REVIEW) | `data/outputs/proof_of_concept.md` | yes |
+| All | Decision log | `DECISIONS.md` | yes |
+| All | Review queue | `REVIEW_QUEUE.md` | yes |
+| All | Data lineage log | `data/outputs/data_lineage.jsonl` | yes |
+
+## Human review queue (verbatim)
+
 # REVIEW_QUEUE.md - human review queue (items a reviewer should check before trusting results)
 
 Severity levels: `info` | `should-review` | `must-review-before-trusting-results`

@@ -1,4 +1,4 @@
-"""Configuration loading. All tunables live in config/*.yaml — nothing is hardcoded in logic."""
+"""Configuration loading. All tunables live in config/*.yaml - nothing is hardcoded in logic."""
 
 from __future__ import annotations
 

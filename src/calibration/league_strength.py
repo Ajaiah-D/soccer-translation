@@ -5,9 +5,9 @@ Method (documented for the diagnostics report):
    log(to_metric / from_metric); movers with a non-positive value on either side are
    excluded from that metric (counted, never silent).
 2. Pairwise factor for a directed league pair (A->B): mean log-ratio, SHRUNK toward 0
-   (= factor 1.0) by n/(n+k) — small samples are pulled toward "no change" (spec §7).
+   (= factor 1.0) by n/(n+k) - small samples are pulled toward "no change" (methodology guardrail).
 3. Chaining: weighted least squares on the league graph. Model
-   log f_AB = s_A − s_B (a player moving to a weaker league produces more), anchored
+   log f_AB = s_A - s_B (a player moving to a weaker league produces more), anchored
    at s_anchor = 0. Weights = shrunk observation counts.
 4. Uncertainty: bootstrap over movers (seeded); percentile CIs for every league
    strength and pairwise factor.
@@ -199,13 +199,13 @@ def _write_diagnostics(factors: pd.DataFrame, strengths: pd.DataFrame,
         lines.append(f"| {r['metric']} | {r['from_league']} | {r['to_league']} | {r['n']} | "
                      f"{r['mean_log_ratio']:.3f} | {r['shrunk_log_ratio']:.3f} | "
                      f"{r['factor']:.3f} | {flag} |")
-    lines += ["", "## Prior checks (spec §7: violations surface, never hide)", ""]
+    lines += ["", "## Prior checks (methodology rule: violations surface, never hide)", ""]
     for metric, findings in prior_findings:
         lines.append(f"### {metric}")
         for f in findings:
             lines.append(f"- {f['pair'][0]} > {f['pair'][1]}: **{f['status']}**"
                          + (f" (diff CI {f['diff_ci'][0]:.3f}..{f['diff_ci'][1]:.3f})"
-                            if "diff_ci" in f else f" — {f.get('detail','')}"))
+                            if "diff_ci" in f else f" - {f.get('detail','')}"))
         lines.append("")
     out = data_path("data_outputs") / "calibration_diagnostics.md"
     out.write_text("\n".join(lines), encoding="utf-8")
