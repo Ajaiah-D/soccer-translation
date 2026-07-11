@@ -31,15 +31,16 @@ log = get_logger("ingest.fbref_direct")
 BASE = "https://fbref.com"
 
 
-def season_url(canon: str, season: int) -> str:
-    """Build the stats-page URL for a canonical league code and season start year."""
+def season_url(canon: str, season: int, page: str = "stats") -> str:
+    """Build a stats-page URL for a canonical league code and season start year.
+    `page` selects the stat family: 'stats' (standard) or 'shooting' (has xG)."""
     spec = load_leagues()["leagues"][canon]
     comp, slug = spec["fbref_comp_id"], spec["fbref_slug"]
     if spec["fbref_season_style"] == "cross":
         code = f"{season}-{season + 1}"
     else:
         code = str(season)
-    return f"{BASE}/en/comps/{comp}/{code}/stats/{code}-{slug}-Stats"
+    return f"{BASE}/en/comps/{comp}/{code}/{page}/{code}-{slug}-Stats"
 
 
 def _launch_chrome():
@@ -128,10 +129,11 @@ def _uncomment(html: str) -> str:
     return html.replace("<!--", "").replace("-->", "")
 
 
-def parse_standard_table(html: str) -> pd.DataFrame:
-    """Parse the stats_standard table into the flat snake_case schema the
-    fbref_player_season contract expects."""
-    tables = pd.read_html(StringIO(_uncomment(html)), attrs={"id": "stats_standard"})
+def parse_standard_table(html: str, table_id: str = "stats_standard") -> pd.DataFrame:
+    """Parse an FBref player-stats table into the flat snake_case schema the
+    fbref_player_season contract expects. Works for stats_standard and
+    stats_shooting (same layout conventions)."""
+    tables = pd.read_html(StringIO(_uncomment(html)), attrs={"id": table_id})
     df = tables[0]
     # flatten the two-row header
     cols = []

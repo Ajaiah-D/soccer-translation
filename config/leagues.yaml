@@ -42,7 +42,8 @@ leagues:
     group: womens
     tier: usw_1
 
-# European comparison leagues via FBref only (kept small to respect scraping limits)
+# European comparison leagues (Understat: fully automatic player xG/xA;
+# FBref ids kept for the cached historical slices)
   ENG1:
     name: Premier League
     asa: null
@@ -53,6 +54,34 @@ leagues:
     understat: EPL
     group: mens
     tier: eng_1
+  GER1:
+    name: Bundesliga
+    asa: null
+    fbref: null
+    understat: Bundesliga
+    group: mens
+    tier: ger_1
+  ESP1:
+    name: La Liga
+    asa: null
+    fbref: null
+    understat: La_liga
+    group: mens
+    tier: esp_1
+  ITA1:
+    name: Serie A
+    asa: null
+    fbref: null
+    understat: Serie_A
+    group: mens
+    tier: ita_1
+  FRA1:
+    name: Ligue 1
+    asa: null
+    fbref: null
+    understat: Ligue_1
+    group: mens
+    tier: fra_1
 
 # Strong footballing priors used by the Phase 4 monotonicity gate:
 # each entry means "left league is stronger than right league" for men's pyramid metrics.
@@ -61,3 +90,7 @@ strength_priors:
   - [USLC, USL1]
   - [MLS, MLSNP]
   - [ENG1, MLS]
+  - [GER1, MLS]
+  - [ESP1, MLS]
+  - [ITA1, MLS]
+  - [FRA1, MLS]

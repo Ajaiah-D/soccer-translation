@@ -53,3 +53,29 @@ def test_season_url_styles():
         "https://fbref.com/en/comps/22/2019/stats/2019-Major-League-Soccer-Stats"
     assert season_url("ENG1", 2019) == \
         "https://fbref.com/en/comps/9/2019-2020/stats/2019-2020-Premier-League-Stats"
+    assert season_url("MLS", 2021, page="shooting") == \
+        "https://fbref.com/en/comps/22/2021/shooting/2021-Major-League-Soccer-Stats"
+
+
+SHOOTING_FIXTURE_HTML = """
+<html><body><div id="all_stats_shooting">
+<!--
+<table id="stats_shooting">
+<thead>
+<tr><th colspan="6"></th><th colspan="2">Standard</th><th colspan="2">Expected</th><th></th></tr>
+<tr><th>Rk</th><th>Player</th><th>Nation</th><th>Pos</th><th>Squad</th><th>Born</th><th>Sh</th><th>SoT</th><th>xG</th><th>npxG</th><th>Matches</th></tr>
+</thead>
+<tbody>
+<tr><td>1</td><td>Carles Gil</td><td>es ESP</td><td>MF</td><td>New England</td><td>1992</td><td>58</td><td>21</td><td>5.5</td><td>4.9</td><td>Matches</td></tr>
+</tbody>
+</table>
+-->
+</div></body></html>
+"""
+
+
+def test_parse_shooting_table_by_id():
+    df = parse_standard_table(SHOOTING_FIXTURE_HTML, table_id="stats_shooting")
+    assert df.loc[0, "player"] == "Carles Gil"
+    assert df.loc[0, "expected_xg"] == pytest.approx(5.5)
+    assert df.loc[0, "expected_npxg"] == pytest.approx(4.9)

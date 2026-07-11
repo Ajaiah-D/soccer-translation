@@ -4,6 +4,29 @@ Every non-trivial choice: what was decided, alternatives, reasoning, reversibili
 
 ---
 
+## D-017: FBref live fetching is opt-in (default off); pipeline is fully unattended
+- **Decided:** `ingest.fbref_fetch_enabled: false` by default. FBref is treated as a frozen cached historical source; uncached slices surface as explicit coverage gaps. ASA and Understat cover all recurring needs without any interaction.
+- **Why:** FBref's bot protection can demand an interactive verification click; the owner requires zero-intervention runs.
+- **Reversible:** yes (flip the config flag)
+
+## D-018: Seam consistency check uses goals (model-free), not FBref xG
+- **Decided:** The MLS<->ENG1 seam check re-measures cross movers on goals per 90 three ways: FBref both sides (single provider, cached), mixed-source goals, and the production mixed xG+xA. No new scraping.
+- **Why:** Goals are identically defined in every source, so they cannot carry xG-model bias; FBref's cached standard tables already have them for both leagues. The planned FBref-xG backfill (shooting pages) was dropped: it required an interactive click.
+- **Result (first run):** single-provider goals factors agree with mixed-source ones within noise (e.g. ENG1->MLS 1.445 vs 1.404), supporting the production factor.
+- **Reversible:** yes
+
+## D-019: European coverage expanded to the Big-5 via Understat; second tiers out of scope
+- **Decided:** Bundesliga, La Liga, Serie A, Ligue 1 added alongside the Premier League (config-only change; same Understat endpoint, fully automatic). Second-division European leagues (EFL Championship, 2. Bundesliga, ...) are NOT included: no open, fully-automatic per-player source exists (Understat lacks them; FBref needs interaction; FotMob/Sofascore gate their APIs).
+- **Note:** Understat uses one global player id across its leagues, so intra-European moves link by id with no fuzzy matching.
+- **UEFA coefficients were considered and rejected** as a strength substitute: they rank clubs/countries in continental competition, do not cover second divisions, and would replace the mover-based measurement this project exists to make.
+- **Reversible:** yes
+
+## D-016: Single-provider consistency check for the MLS<->ENG1 seam
+- **Decided:** FBref's shooting pages (which still carry xG) are backfilled for MLS and ENG1 2018-2025 and merged into the FBref frames; Phase 4 diagnostics re-measure the MLS<->ENG1 movers with FBref xG on BOTH sides and report that factor next to the production (ASA xG vs Understat xG) estimate.
+- **Why:** No fully-open source publishes xG for both MLS and the Premier League (ASA is US-only, Understat is Europe-only; fbrapi.com is dead, FotMob's API is gated behind signed app headers). The production factor therefore mixes two xG models; measuring the same movers within one provider cancels model bias and shows whether the seam distorts the estimate.
+- **Scope:** the American-pyramid calibration is unaffected (single source, ASA, complete 2018-2025 for all six leagues). The FBref backfill is one-time, cached forever; recurring updates need only ASA + Understat, which run unattended.
+- **Reversible:** yes
+
 ## D-014: Understat is the xG/xA source for European comparison leagues
 - **Decided:** Premier League player-season xG/xA comes from Understat's JSON endpoint (POST /main/getPlayersStats/), cached like every source. FBref's cached standard tables remain for identity/minutes/goals.
 - **Cause:** FBref removed the Expected (xG/xAG) columns from its standard-stats pages, and its bot protection requires an interactive verification that makes the browser path non-repeatable.

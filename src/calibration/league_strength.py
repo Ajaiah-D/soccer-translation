@@ -116,6 +116,87 @@ def check_priors(strengths: pd.DataFrame, boot: pd.DataFrame) -> list[dict]:
     return findings
 
 
+def _directed_pairs_from_lookup(cross: pd.DataFrame, lookup, k: float) -> pd.DataFrame:
+    """Shrunk directed factors for cross moves, measuring both sides with `lookup`
+    ((person_id, league, season) -> per-90 value)."""
+    rows = []
+    for _, mv in cross.iterrows():
+        try:
+            v_from = lookup.loc[(mv["person_id"], mv["from_league"], mv["from_season"])]
+            v_to = lookup.loc[(mv["person_id"], mv["to_league"], mv["to_season"])]
+        except KeyError:
+            continue
+        if pd.notna(v_from) and pd.notna(v_to) and v_from > 0 and v_to > 0:
+            rows.append({"person_id": mv["person_id"], "from_league": mv["from_league"],
+                         "to_league": mv["to_league"],
+                         "log_ratio": float(np.log(v_to / v_from))})
+    return pairwise_factors(pd.DataFrame(rows), k) if rows else pd.DataFrame()
+
+
+def cross_source_consistency_lines(moves: pd.DataFrame) -> list[str]:
+    """Diagnostics for the MLS<->ENG1 seam: the production xG factor mixes ASA's
+    model (MLS side) with Understat's (ENG1 side). Goals are model-free - a goal is
+    a goal in every source - and FBref's cached standard tables carry goals for BOTH
+    leagues. So the same movers are re-measured two ways that cannot carry model
+    bias: FBref goals on both sides (single provider), and mixed-source goals.
+    Agreement with the production factor means the provider seam is not driving it.
+    Fully computed from cached data - no scraping."""
+    cfg = load_settings()["calibration"]
+    k = float(cfg["shrinkage_k"])
+    interim = data_path("data_interim")
+    lines = ["", "## Cross-source consistency check (MLS<->ENG1 seam)", "",
+             "The production factor measures MLS with ASA xG and ENG1 with Understat "
+             "xG, so provider-model differences fold into the factor. Goals are "
+             "model-free, and FBref covers both leagues: re-measuring the same movers "
+             "on goals per 90 isolates whether the xG-model seam distorts the "
+             "estimate.", ""]
+    try:
+        ps = pd.read_parquet(interim / "player_seasons.parquet")
+        cw = pd.read_parquet(data_path("data_crosswalk") / "player_crosswalk.parquet")
+    except FileNotFoundError:
+        return lines + ["- SKIPPED: interim frames unavailable"]
+
+    cross = moves[((moves["from_league"] == "MLS") & (moves["to_league"] == "ENG1"))
+                  | ((moves["from_league"] == "ENG1") & (moves["to_league"] == "MLS"))]
+    if not len(cross):
+        return lines + ["- no MLS<->ENG1 moves in the mover set this run."]
+
+    with_person = ps.merge(cw[["source", "source_player_id", "person_id"]],
+                           on=["source", "source_player_id"], how="left")
+    fb = with_person[with_person["source"] == "fbref"]
+    fb_goals = fb.set_index(["person_id", "league", "season"])["goals_per90"]
+
+    # mixed-source lookups follow the production dedup preference (asa > understat > fbref)
+    ranked = with_person.copy()
+    ranked["_rank"] = ranked["source"].map({"asa": 0, "understat": 1}).fillna(2)
+    ranked = (ranked.sort_values(["person_id", "league", "season", "_rank"])
+              .drop_duplicates(["person_id", "league", "season"], keep="first"))
+    mixed_goals = ranked.set_index(["person_id", "league", "season"])["goals_per90"]
+    mixed_xg = ranked.set_index(["person_id", "league", "season"])["xg_xa_per90"]
+
+    pairings = [
+        ("FBref goals both sides (single provider)", _directed_pairs_from_lookup(cross, fb_goals, k)),
+        ("ASA/Understat goals (mixed, model-free)", _directed_pairs_from_lookup(cross, mixed_goals, k)),
+        ("ASA/Understat xG+xA (production)", _directed_pairs_from_lookup(cross, mixed_xg, k)),
+    ]
+    lines += ["| direction | measurement | n | shrunk factor |", "|---|---|---|---|"]
+    any_rows = False
+    for label, pairs in pairings:
+        for _, r in pairs.iterrows():
+            any_rows = True
+            lines.append(f"| {r['from_league']}->{r['to_league']} | {label} "
+                         f"| {r['n']} | {r['factor']:.3f} |")
+    if not any_rows:
+        return lines + ["- no cross moves measurable on any pairing this run."]
+    lines += ["", "Read: factors in the same direction should broadly agree across "
+              "measurements. If the single-provider goals factor diverges sharply "
+              "from the production xG factor, the provider seam is contaminating "
+              "the ENG1 estimate and it should not be trusted until reconciled. "
+              "Goals-based factors are noisier (finishing variance), so judge "
+              "direction and rough magnitude, not decimals."]
+    return lines
+
+
 def run_phase4() -> None:
     cfg = load_settings()["calibration"]
     anchor = anchor_league()
@@ -157,7 +238,8 @@ def run_phase4() -> None:
     strengths.to_parquet(data_path("data_outputs") / "league_strength.parquet", index=False)
     factors.to_parquet(data_path("data_outputs") / "pairwise_factors.parquet", index=False)
 
-    _write_diagnostics(factors, strengths, prior_findings)
+    _write_diagnostics(factors, strengths, prior_findings,
+                       extra_lines=cross_source_consistency_lines(moves))
 
     confident_violations = [
         (metric, f) for metric, findings in prior_findings
@@ -177,7 +259,7 @@ def run_phase4() -> None:
 
 
 def _write_diagnostics(factors: pd.DataFrame, strengths: pd.DataFrame,
-                       prior_findings: list) -> None:
+                       prior_findings: list, extra_lines: list[str] | None = None) -> None:
     cfg = load_settings()["calibration"]
     lines = ["# Calibration diagnostics (Phase 4)", "",
              f"- shrinkage k = {cfg['shrinkage_k']} (mean log-ratio scaled by n/(n+k))",
@@ -207,5 +289,7 @@ def _write_diagnostics(factors: pd.DataFrame, strengths: pd.DataFrame,
                          + (f" (diff CI {f['diff_ci'][0]:.3f}..{f['diff_ci'][1]:.3f})"
                             if "diff_ci" in f else f" - {f.get('detail','')}"))
         lines.append("")
+    if extra_lines:
+        lines += extra_lines
     out = data_path("data_outputs") / "calibration_diagnostics.md"
     out.write_text("\n".join(lines), encoding="utf-8")

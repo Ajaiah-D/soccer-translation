@@ -70,3 +70,11 @@ All 16 FBref league-season slices are now cached (10,415 player-season rows) via
 - **Artifact:** data/outputs/crosswalk_audit_sample.csv
 
 After adding Premier League data, 'Amy Rodriguez' (NWSL) auto-matched to 'Jay Rodriguez' (Premier League, same seasons, ~92 name score, no birth years available to penalize), fabricating an NWSL->ENG1 move. Fixed systematically: players from disjoint league systems (mens/womens) can never match, enforced in the matcher and covered by a regression test. The audit sample was regenerated after the fix; the earlier owner sign-off predates Premier League data and this sample refresh.
+
+## Second-tier European leagues need an owner decision on sourcing
+
+- **Severity:** `should-review`
+- **Added:** 2026-07-11
+- **Artifact:** DECISIONS.md
+
+Championship / 2. Bundesliga / similar second tiers are not in the study: no open per-player source works without interaction (Understat lacks them, FBref requires a verification click, FotMob/Sofascore gate their APIs). Options: (a) flip ingest.fbref_fetch_enabled once and click through a single cached backfill session, (b) a paid API (StatsBomb/Opta/API-Football), or (c) keep top-flight-only scope. Mover-based factors for those tiers are impossible until one is chosen.

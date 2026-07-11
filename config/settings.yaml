@@ -31,6 +31,10 @@ ingest:
   backoff_base_seconds: 2.0
   # spacing between FBref page loads (stay well under the site's rate limits)
   fbref_page_delay_seconds: 6.0
+  # FBref pages sit behind bot protection that can demand an interactive
+  # verification click, so live FBref fetching is OPT-IN. The pipeline runs fully
+  # unattended on ASA + Understat; already-cached FBref slices are always used.
+  fbref_fetch_enabled: false
 
 crosswalk:
   # rapidfuzz token_sort_ratio threshold (0-100) for an auto-accepted match

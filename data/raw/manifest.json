@@ -143,6 +143,30 @@
     "rows": 574,
     "source": "asa"
   },
+  "19c11d646ffd7ec1": {
+    "content_hash": "2a163e972f8bd20c",
+    "endpoint": "league_players",
+    "file": "understat__league_players__19c11d646ffd7ec1.parquet",
+    "params": {
+      "league": "La_liga",
+      "season": 2020
+    },
+    "pulled_at": "2026-07-11T20:39:00.364981+00:00",
+    "rows": 570,
+    "source": "understat"
+  },
+  "19e3c8abb9330276": {
+    "content_hash": "8a7fea5902fb9505",
+    "endpoint": "league_players",
+    "file": "understat__league_players__19e3c8abb9330276.parquet",
+    "params": {
+      "league": "Serie_A",
+      "season": 2023
+    },
+    "pulled_at": "2026-07-11T20:39:23.311584+00:00",
+    "rows": 590,
+    "source": "understat"
+  },
   "1e1470a80a0d0e68": {
     "content_hash": "empty",
     "endpoint": "player_xgoals",
@@ -203,6 +227,18 @@
     "rows": 981,
     "source": "asa"
   },
+  "219f5b7092204635": {
+    "content_hash": "7f441f7858fce81f",
+    "endpoint": "league_players",
+    "file": "understat__league_players__219f5b7092204635.parquet",
+    "params": {
+      "league": "Serie_A",
+      "season": 2021
+    },
+    "pulled_at": "2026-07-11T20:39:19.460581+00:00",
+    "rows": 608,
+    "source": "understat"
+  },
   "24969a5cde69e0d1": {
     "content_hash": "d65658f88a0fdc1e",
     "endpoint": "player_xpass",
@@ -214,6 +250,18 @@
     "pulled_at": "2026-07-10T03:56:06.712844+00:00",
     "rows": 769,
     "source": "asa"
+  },
+  "276d85ab8d655e3d": {
+    "content_hash": "4b4812e9586cd3c2",
+    "endpoint": "league_players",
+    "file": "understat__league_players__276d85ab8d655e3d.parquet",
+    "params": {
+      "league": "Bundesliga",
+      "season": 2020
+    },
+    "pulled_at": "2026-07-11T20:38:44.982997+00:00",
+    "rows": 496,
+    "source": "understat"
   },
   "290e8c359dea14a4": {
     "content_hash": "31e48eb2858a83ef",
@@ -323,6 +371,18 @@
     "rows": 0,
     "source": "asa"
   },
+  "326be197ff41667e": {
+    "content_hash": "f89dfa1f4b0abc7a",
+    "endpoint": "league_players",
+    "file": "understat__league_players__326be197ff41667e.parquet",
+    "params": {
+      "league": "Serie_A",
+      "season": 2025
+    },
+    "pulled_at": "2026-07-11T20:39:27.624118+00:00",
+    "rows": 586,
+    "source": "understat"
+  },
   "32ab82653dbf8871": {
     "content_hash": "empty",
     "endpoint": "player_xgoals",
@@ -395,6 +455,18 @@
     "rows": 219,
     "source": "asa"
   },
+  "34c4b7fe31cb9b20": {
+    "content_hash": "e4ed02c5a8158036",
+    "endpoint": "league_players",
+    "file": "understat__league_players__34c4b7fe31cb9b20.parquet",
+    "params": {
+      "league": "Ligue_1",
+      "season": 2021
+    },
+    "pulled_at": "2026-07-11T20:39:35.798791+00:00",
+    "rows": 589,
+    "source": "understat"
+  },
   "354de1a56a6476fb": {
     "content_hash": "40b6452aa6256a78",
     "endpoint": "player_goals_added",
@@ -454,6 +526,18 @@
     "pulled_at": "2026-07-10T03:55:53.809074+00:00",
     "rows": 670,
     "source": "asa"
+  },
+  "3f4ebb3271602c67": {
+    "content_hash": "f1f3a3323d07bc53",
+    "endpoint": "league_players",
+    "file": "understat__league_players__3f4ebb3271602c67.parquet",
+    "params": {
+      "league": "Serie_A",
+      "season": 2018
+    },
+    "pulled_at": "2026-07-11T20:39:13.154094+00:00",
+    "rows": 543,
+    "source": "understat"
   },
   "403ea74db315dfca": {
     "content_hash": "empty",
@@ -551,6 +635,18 @@
     "rows": 546,
     "source": "fbref"
   },
+  "46faa49c60571129": {
+    "content_hash": "afd5c180b1766cd5",
+    "endpoint": "league_players",
+    "file": "understat__league_players__46faa49c60571129.parquet",
+    "params": {
+      "league": "Serie_A",
+      "season": 2020
+    },
+    "pulled_at": "2026-07-11T20:39:17.014219+00:00",
+    "rows": 594,
+    "source": "understat"
+  },
   "4763938d98c1b1db": {
     "content_hash": "ed4b810bcd2e4f31",
     "endpoint": "player_goals_added",
@@ -632,6 +728,18 @@
     "rows": 574,
     "source": "fbref"
   },
+  "4d993715889b3325": {
+    "content_hash": "2587470b8b7e5267",
+    "endpoint": "league_players",
+    "file": "understat__league_players__4d993715889b3325.parquet",
+    "params": {
+      "league": "Ligue_1",
+      "season": 2020
+    },
+    "pulled_at": "2026-07-11T20:39:33.757067+00:00",
+    "rows": 575,
+    "source": "understat"
+  },
   "4dd0d9b85a6dae51": {
     "content_hash": "6b21bc21a890eaa5",
     "endpoint": "player_goals_added",
@@ -690,6 +798,18 @@
     },
     "pulled_at": "2026-07-11T16:37:51.602322+00:00",
     "rows": 537,
+    "source": "understat"
+  },
+  "548d55b7a460d1ea": {
+    "content_hash": "0b4d5782b173f3ac",
+    "endpoint": "league_players",
+    "file": "understat__league_players__548d55b7a460d1ea.parquet",
+    "params": {
+      "league": "Bundesliga",
+      "season": 2018
+    },
+    "pulled_at": "2026-07-11T20:38:40.803667+00:00",
+    "rows": 468,
     "source": "understat"
   },
   "55a9e8fad65bb013": {
@@ -834,6 +954,18 @@
     },
     "pulled_at": "2026-07-11T16:37:43.008226+00:00",
     "rows": 537,
+    "source": "understat"
+  },
+  "63e590e4b2f1f94e": {
+    "content_hash": "3d36332513d35692",
+    "endpoint": "league_players",
+    "file": "understat__league_players__63e590e4b2f1f94e.parquet",
+    "params": {
+      "league": "Ligue_1",
+      "season": 2022
+    },
+    "pulled_at": "2026-07-11T20:39:38.233699+00:00",
+    "rows": 585,
     "source": "understat"
   },
   "648709da5b96d75d": {
@@ -1196,6 +1328,18 @@
     "rows": 268,
     "source": "asa"
   },
+  "86e281226c6b0848": {
+    "content_hash": "2f32caac61f7c6ca",
+    "endpoint": "league_players",
+    "file": "understat__league_players__86e281226c6b0848.parquet",
+    "params": {
+      "league": "La_liga",
+      "season": 2023
+    },
+    "pulled_at": "2026-07-11T20:39:06.080074+00:00",
+    "rows": 598,
+    "source": "understat"
+  },
   "88c8bc114eca183e": {
     "content_hash": "empty",
     "endpoint": "player_xpass",
@@ -1220,6 +1364,18 @@
     "rows": 0,
     "source": "asa"
   },
+  "8badf46fa4f283bf": {
+    "content_hash": "caf83125dc4f7d4a",
+    "endpoint": "league_players",
+    "file": "understat__league_players__8badf46fa4f283bf.parquet",
+    "params": {
+      "league": "La_liga",
+      "season": 2022
+    },
+    "pulled_at": "2026-07-11T20:39:04.179070+00:00",
+    "rows": 584,
+    "source": "understat"
+  },
   "8cbb9f0ae240afa0": {
     "content_hash": "empty",
     "endpoint": "player_goals_added",
@@ -1243,6 +1399,18 @@
     "pulled_at": "2026-07-11T16:15:39.187352+00:00",
     "rows": 569,
     "source": "fbref"
+  },
+  "8e5b3b2dfb1ee19a": {
+    "content_hash": "cf33b6a65823b91c",
+    "endpoint": "league_players",
+    "file": "understat__league_players__8e5b3b2dfb1ee19a.parquet",
+    "params": {
+      "league": "Bundesliga",
+      "season": 2019
+    },
+    "pulled_at": "2026-07-11T20:38:43.187803+00:00",
+    "rows": 487,
+    "source": "understat"
   },
   "8f397b0426bd2036": {
     "content_hash": "empty",
@@ -1292,6 +1460,30 @@
     "rows": 613,
     "source": "asa"
   },
+  "926ce96516ae058c": {
+    "content_hash": "10be3545acf30f95",
+    "endpoint": "league_players",
+    "file": "understat__league_players__926ce96516ae058c.parquet",
+    "params": {
+      "league": "Serie_A",
+      "season": 2022
+    },
+    "pulled_at": "2026-07-11T20:39:21.379477+00:00",
+    "rows": 577,
+    "source": "understat"
+  },
+  "9378b9eb50b94578": {
+    "content_hash": "0784f69391999039",
+    "endpoint": "league_players",
+    "file": "understat__league_players__9378b9eb50b94578.parquet",
+    "params": {
+      "league": "Bundesliga",
+      "season": 2022
+    },
+    "pulled_at": "2026-07-11T20:38:48.580473+00:00",
+    "rows": 506,
+    "source": "understat"
+  },
   "93d1ea350915b49c": {
     "content_hash": "60d3a2bc247f4568",
     "endpoint": "player_xpass",
@@ -1303,6 +1495,18 @@
     "pulled_at": "2026-07-10T03:57:12.702440+00:00",
     "rows": 598,
     "source": "asa"
+  },
+  "93f44c5c3743c6b7": {
+    "content_hash": "empty",
+    "endpoint": "player_season_shooting",
+    "file": "fbref__player_season_shooting__93f44c5c3743c6b7.parquet",
+    "params": {
+      "league": "USA-Major League Soccer",
+      "season": 2018
+    },
+    "pulled_at": "2026-07-11T20:35:01.577114+00:00",
+    "rows": 0,
+    "source": "fbref"
   },
   "9702dd1b8cbc28f1": {
     "content_hash": "ac2fdfd77920d8e2",
@@ -1339,6 +1543,18 @@
     "pulled_at": "2026-07-10T03:57:48.431482+00:00",
     "rows": 245,
     "source": "asa"
+  },
+  "9a139cb21f6e0743": {
+    "content_hash": "6ae9350bfcc47871",
+    "endpoint": "league_players",
+    "file": "understat__league_players__9a139cb21f6e0743.parquet",
+    "params": {
+      "league": "Ligue_1",
+      "season": 2018
+    },
+    "pulled_at": "2026-07-11T20:39:29.630492+00:00",
+    "rows": 548,
+    "source": "understat"
   },
   "9ccab526b881cbfb": {
     "content_hash": "75bc1e9678268227",
@@ -1436,6 +1652,18 @@
     "rows": 580,
     "source": "fbref"
   },
+  "a36d8b4ff8fb3cc6": {
+    "content_hash": "4d998ffd94fa12ad",
+    "endpoint": "league_players",
+    "file": "understat__league_players__a36d8b4ff8fb3cc6.parquet",
+    "params": {
+      "league": "La_liga",
+      "season": 2019
+    },
+    "pulled_at": "2026-07-11T20:38:58.402256+00:00",
+    "rows": 556,
+    "source": "understat"
+  },
   "a515c34ca0d24d9a": {
     "content_hash": "763cb53c78f6e596",
     "endpoint": "player_xgoals",
@@ -1447,6 +1675,18 @@
     "pulled_at": "2026-07-10T03:55:51.903226+00:00",
     "rows": 670,
     "source": "asa"
+  },
+  "a71b95ce8a295619": {
+    "content_hash": "5bf1d57a011b8c3c",
+    "endpoint": "league_players",
+    "file": "understat__league_players__a71b95ce8a295619.parquet",
+    "params": {
+      "league": "La_liga",
+      "season": 2021
+    },
+    "pulled_at": "2026-07-11T20:39:02.278239+00:00",
+    "rows": 603,
+    "source": "understat"
   },
   "a78ff82e2a673853": {
     "content_hash": "02481cf22f4bc604",
@@ -1471,6 +1711,18 @@
     "pulled_at": "2026-07-10T03:58:18.546649+00:00",
     "rows": 0,
     "source": "asa"
+  },
+  "ab1871e3d37c66f6": {
+    "content_hash": "053239c2c3aa05b9",
+    "endpoint": "league_players",
+    "file": "understat__league_players__ab1871e3d37c66f6.parquet",
+    "params": {
+      "league": "La_liga",
+      "season": 2018
+    },
+    "pulled_at": "2026-07-11T20:38:56.507257+00:00",
+    "rows": 531,
+    "source": "understat"
   },
   "ab1eaf8dbe8f9e29": {
     "content_hash": "dc69da73e2d91ddf",
@@ -1519,6 +1771,18 @@
     "pulled_at": "2026-07-10T04:03:41.108322+00:00",
     "rows": 623,
     "source": "fbref"
+  },
+  "ae5a9fc897b8beea": {
+    "content_hash": "737f7d4e1da12bd5",
+    "endpoint": "league_players",
+    "file": "understat__league_players__ae5a9fc897b8beea.parquet",
+    "params": {
+      "league": "Bundesliga",
+      "season": 2021
+    },
+    "pulled_at": "2026-07-11T20:38:46.773642+00:00",
+    "rows": 511,
+    "source": "understat"
   },
   "ae60af949af9a1dc": {
     "content_hash": "1f2ac8f8f2672adc",
@@ -1616,6 +1880,18 @@
     "rows": 743,
     "source": "fbref"
   },
+  "bbf5a309a865b58c": {
+    "content_hash": "5c7beaf888a4746e",
+    "endpoint": "league_players",
+    "file": "understat__league_players__bbf5a309a865b58c.parquet",
+    "params": {
+      "league": "Ligue_1",
+      "season": 2023
+    },
+    "pulled_at": "2026-07-11T20:39:40.176696+00:00",
+    "rows": 525,
+    "source": "understat"
+  },
   "bc1c4e94561e840f": {
     "content_hash": "empty",
     "endpoint": "player_goals_added",
@@ -1627,6 +1903,18 @@
     "pulled_at": "2026-07-10T03:57:38.795129+00:00",
     "rows": 0,
     "source": "asa"
+  },
+  "bcf1cbcf10490a6c": {
+    "content_hash": "b4b37047eb3c1b49",
+    "endpoint": "league_players",
+    "file": "understat__league_players__bcf1cbcf10490a6c.parquet",
+    "params": {
+      "league": "Ligue_1",
+      "season": 2019
+    },
+    "pulled_at": "2026-07-11T20:39:31.438039+00:00",
+    "rows": 531,
+    "source": "understat"
   },
   "bd4fb1374cb5f119": {
     "content_hash": "5327e8c370a64db5",
@@ -1687,6 +1975,18 @@
     "rows": 0,
     "source": "asa"
   },
+  "c56b1fec3ebb4881": {
+    "content_hash": "34a9f759023d5bf3",
+    "endpoint": "league_players",
+    "file": "understat__league_players__c56b1fec3ebb4881.parquet",
+    "params": {
+      "league": "Bundesliga",
+      "season": 2023
+    },
+    "pulled_at": "2026-07-11T20:38:50.393996+00:00",
+    "rows": 494,
+    "source": "understat"
+  },
   "c652cb7c632ca643": {
     "content_hash": "ad32c202c36fabad",
     "endpoint": "player_goals_added",
@@ -1722,6 +2022,30 @@
     "pulled_at": "2026-07-10T03:55:41.447470+00:00",
     "rows": 608,
     "source": "asa"
+  },
+  "c94a0ed587a78543": {
+    "content_hash": "9d5cdc5bcd61fc2d",
+    "endpoint": "league_players",
+    "file": "understat__league_players__c94a0ed587a78543.parquet",
+    "params": {
+      "league": "Bundesliga",
+      "season": 2024
+    },
+    "pulled_at": "2026-07-11T20:38:52.184533+00:00",
+    "rows": 481,
+    "source": "understat"
+  },
+  "ca6901956cbf67ef": {
+    "content_hash": "c17fcd0cd6cedf6d",
+    "endpoint": "league_players",
+    "file": "understat__league_players__ca6901956cbf67ef.parquet",
+    "params": {
+      "league": "Bundesliga",
+      "season": 2025
+    },
+    "pulled_at": "2026-07-11T20:38:54.586972+00:00",
+    "rows": 499,
+    "source": "understat"
   },
   "ca9ac6eb05cd7112": {
     "content_hash": "b8cceb1d74b1a1d7",
@@ -1783,6 +2107,18 @@
     "rows": 897,
     "source": "asa"
   },
+  "cfd982a3f3d215a4": {
+    "content_hash": "a9980d60bdc968f4",
+    "endpoint": "league_players",
+    "file": "understat__league_players__cfd982a3f3d215a4.parquet",
+    "params": {
+      "league": "Ligue_1",
+      "season": 2025
+    },
+    "pulled_at": "2026-07-11T20:39:43.987414+00:00",
+    "rows": 553,
+    "source": "understat"
+  },
   "d32de6e83193de4e": {
     "content_hash": "fdf2d9a1a605af02",
     "endpoint": "player_goals_added",
@@ -1806,6 +2142,18 @@
     "pulled_at": "2026-07-11T16:15:03.763434+00:00",
     "rows": 522,
     "source": "fbref"
+  },
+  "d546bd8eb250fc7e": {
+    "content_hash": "9c4f245c04ec52e5",
+    "endpoint": "league_players",
+    "file": "understat__league_players__d546bd8eb250fc7e.parquet",
+    "params": {
+      "league": "Serie_A",
+      "season": 2024
+    },
+    "pulled_at": "2026-07-11T20:39:25.648190+00:00",
+    "rows": 599,
+    "source": "understat"
   },
   "d6dda9ba19c0ca31": {
     "content_hash": "fbbcb36c4b3aa84c",
@@ -1878,6 +2226,18 @@
     "rows": 0,
     "source": "asa"
   },
+  "dc799eed72601234": {
+    "content_hash": "3278b30383786d82",
+    "endpoint": "league_players",
+    "file": "understat__league_players__dc799eed72601234.parquet",
+    "params": {
+      "league": "La_liga",
+      "season": 2025
+    },
+    "pulled_at": "2026-07-11T20:39:10.594865+00:00",
+    "rows": 600,
+    "source": "understat"
+  },
   "dcba64c8f80b5fee": {
     "content_hash": "90855c483de9a1bd",
     "endpoint": "player_xpass",
@@ -1913,6 +2273,18 @@
     "pulled_at": "2026-07-10T03:59:38.800440+00:00",
     "rows": 0,
     "source": "asa"
+  },
+  "e6c36a45b258fb9d": {
+    "content_hash": "1646f1e57f0a9dde",
+    "endpoint": "league_players",
+    "file": "understat__league_players__e6c36a45b258fb9d.parquet",
+    "params": {
+      "league": "La_liga",
+      "season": 2024
+    },
+    "pulled_at": "2026-07-11T20:39:08.036825+00:00",
+    "rows": 590,
+    "source": "understat"
   },
   "e7dae28d466fb7db": {
     "content_hash": "37fddfb639e7ef17",
@@ -1984,6 +2356,30 @@
     "pulled_at": "2026-07-10T03:59:19.140902+00:00",
     "rows": 286,
     "source": "asa"
+  },
+  "f058128909deaa47": {
+    "content_hash": "d7615c3dd083da3c",
+    "endpoint": "league_players",
+    "file": "understat__league_players__f058128909deaa47.parquet",
+    "params": {
+      "league": "Serie_A",
+      "season": 2019
+    },
+    "pulled_at": "2026-07-11T20:39:15.084496+00:00",
+    "rows": 572,
+    "source": "understat"
+  },
+  "f08f9ce0729e912c": {
+    "content_hash": "22692b9499f4a8a6",
+    "endpoint": "league_players",
+    "file": "understat__league_players__f08f9ce0729e912c.parquet",
+    "params": {
+      "league": "Ligue_1",
+      "season": 2024
+    },
+    "pulled_at": "2026-07-11T20:39:42.071851+00:00",
+    "rows": 542,
+    "source": "understat"
   },
   "f29830fc17d300e8": {
     "content_hash": "f60d8f387c45969d",

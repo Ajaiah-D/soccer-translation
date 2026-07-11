@@ -1,13 +1,13 @@
 # RUN REPORT - Cross-League Player Value Translation Engine
 
-_Generated 2026-07-11 16:44 UTC by `python -m src report`._
+_Generated 2026-07-11 20:42 UTC by `python -m src report`._
 
 ## Key numbers
 
-- normalized player-seasons: **34896** ({'asa': 20415, 'fbref': 10177, 'understat': 4304})
-- qualifying moves: **733** across 606 players
+- normalized player-seasons: **52587** ({'understat': 21995, 'asa': 20415, 'fbref': 10177})
+- qualifying moves: **1633** across 1275 players
 - league strengths (goals_added_raw_per90, anchor MLS=1.0): MLS 1.00, USLC 0.82, USL1 0.76, MLSNP 0.65
-- proof-of-concept verdict: **signal** - projected vs actual Spearman r=0.551 beats shuffled labels (p=0.0005, n=324)
+- proof-of-concept verdict: **signal** - projected vs actual Spearman r=0.547 beats shuffled labels (p=0.0005, n=321)
 
 ## Artifacts by phase
 
@@ -104,3 +104,11 @@ All 16 FBref league-season slices are now cached (10,415 player-season rows) via
 - **Artifact:** data/outputs/crosswalk_audit_sample.csv
 
 After adding Premier League data, 'Amy Rodriguez' (NWSL) auto-matched to 'Jay Rodriguez' (Premier League, same seasons, ~92 name score, no birth years available to penalize), fabricating an NWSL->ENG1 move. Fixed systematically: players from disjoint league systems (mens/womens) can never match, enforced in the matcher and covered by a regression test. The audit sample was regenerated after the fix; the earlier owner sign-off predates Premier League data and this sample refresh.
+
+## Second-tier European leagues need an owner decision on sourcing
+
+- **Severity:** `should-review`
+- **Added:** 2026-07-11
+- **Artifact:** DECISIONS.md
+
+Championship / 2. Bundesliga / similar second tiers are not in the study: no open per-player source works without interaction (Understat lacks them, FBref requires a verification click, FotMob/Sofascore gate their APIs). Options: (a) flip ingest.fbref_fetch_enabled once and click through a single cached backfill session, (b) a paid API (StatsBomb/Opta/API-Football), or (c) keep top-flight-only scope. Mover-based factors for those tiers are impossible until one is chosen.
