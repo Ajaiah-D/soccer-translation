@@ -14,7 +14,7 @@ import pandas as pd
 from src.common.config import data_path, fbref_league_codes, load_leagues, seasons
 from src.common.io import cache_key, cached_pull
 from src.common.logging import get_logger
-from src.ingest.fbref_direct import fetch_pages, parse_standard_table, season_url
+from src.ingest.fbref_direct import BrowserSession, parse_standard_table, season_url
 
 log = get_logger("ingest.fbref")
 
@@ -40,29 +40,34 @@ def pull_all(refresh: bool = False) -> pd.DataFrame:
 
     to_fetch = [(canon, fbref_league, season) for canon, fbref_league, season in plan
                 if refresh or not _is_cached(fbref_league, season)]
-    pages: dict[str, str | None] = {}
+
+    # fetch AND cache incrementally: one browser session, each slice is written to
+    # the cache the moment its page is parsed, so an interrupted batch loses nothing
     if to_fetch:
-        urls = [season_url(canon, season) for canon, _, season in to_fetch]
-        log.info("fetching %d FBref pages in one browser session", len(urls))
-        pages = fetch_pages(urls)
+        log.info("fetching %d FBref pages in one browser session", len(to_fetch))
+        with BrowserSession() as session:
+            for canon, fbref_league, season in to_fetch:
+                def fetch(canon=canon, season=season) -> pd.DataFrame:
+                    html = session.fetch(season_url(canon, season))
+                    if not html:
+                        log.warning("FBref %s %s unavailable - cached as explicit "
+                                    "empty gap", canon, season)
+                        return pd.DataFrame()
+                    try:
+                        return parse_standard_table(html)
+                    except Exception as exc:  # noqa: BLE001 - gap recorded, run continues
+                        log.warning("FBref %s %s parse failed: %s - cached as empty gap",
+                                    canon, season, str(exc)[:120])
+                        return pd.DataFrame()
+
+                cached_pull("fbref", "player_season_standard",
+                            _slice_params(fbref_league, season), fetch, refresh=refresh)
 
     frames: list[pd.DataFrame] = []
     for canon, fbref_league, season in plan:
-        def fetch(canon=canon, season=season) -> pd.DataFrame:
-            html = pages.get(season_url(canon, season))
-            if not html:
-                log.warning("FBref %s %s unavailable - cached as explicit empty gap",
-                            canon, season)
-                return pd.DataFrame()
-            try:
-                return parse_standard_table(html)
-            except Exception as exc:  # noqa: BLE001 - gap is recorded, run continues
-                log.warning("FBref %s %s parse failed: %s - cached as empty gap",
-                            canon, season, str(exc)[:120])
-                return pd.DataFrame()
-
         df = cached_pull("fbref", "player_season_standard",
-                         _slice_params(fbref_league, season), fetch, refresh=refresh)
+                         _slice_params(fbref_league, season),
+                         lambda: pd.DataFrame(), refresh=False)
         if len(df):
             frames.append(df.assign(league=canon, season=int(season)))
     return pd.concat(frames, ignore_index=True) if frames else pd.DataFrame()

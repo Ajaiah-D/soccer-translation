@@ -5,7 +5,6 @@ description = "Cross-league player value translation engine (MVP proof-of-concep
 requires-python = ">=3.12,<3.13"
 dependencies = [
     "itscalledsoccer>=0.3",
-    "soccerdata>=1.8",
     "pandas>=2.2",
     "numpy>=1.26",
     "scikit-learn>=1.5",
@@ -16,7 +15,8 @@ dependencies = [
     "matplotlib>=3.9",
     "requests>=2.32",
     "pyarrow>=16",
-    "curl-cffi>=0.15.0",
+    "selenium>=4.30",
+    "lxml>=5",
 ]
 
 [dependency-groups]

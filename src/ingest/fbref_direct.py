@@ -56,43 +56,59 @@ def _launch_chrome():
     return driver
 
 
+class BrowserSession:
+    """One polite browser session for a batch of page fetches. Use as a context
+    manager; the browser launches lazily on the first fetch."""
+
+    def __init__(self) -> None:
+        self._driver = None
+        self._first = True
+        self._delay = float(load_settings()["ingest"].get("fbref_page_delay_seconds", 6.0))
+
+    def __enter__(self) -> "BrowserSession":
+        return self
+
+    def __exit__(self, *exc) -> None:
+        if self._driver is not None:
+            self._driver.quit()
+
+    def fetch(self, url: str) -> str | None:
+        """Fetch one URL, returning the rendered HTML or None. The first page may
+        present an interactive "verify you are human" checkbox; a single human click
+        clears the whole session, so the first page waits much longer."""
+        if self._driver is None:
+            self._driver = _launch_chrome()
+        wait_seconds = 180 if self._first else 25
+        html = None
+        for attempt in range(2):
+            try:
+                self._driver.get(url)
+                for _ in range(wait_seconds):
+                    page = self._driver.page_source
+                    if "stats_standard" in page:
+                        html = page
+                        break
+                    time.sleep(1)
+                if html:
+                    break
+            except Exception as exc:  # noqa: BLE001 - per-page failure is recorded
+                log.warning("browser fetch failed (%s attempt %d): %s",
+                            url, attempt + 1, str(exc)[:120])
+            time.sleep(self._delay)
+        self._first = False
+        log.info("fetched %s -> %s", url, f"{len(html)} bytes" if html else "FAILED")
+        time.sleep(self._delay)
+        return html
+
+
 def fetch_pages(urls: list[str]) -> dict[str, str | None]:
-    """Fetch each URL in one browser session. Returns url -> html (None on failure).
-    Pages are spaced politely; each page gets up to two attempts."""
-    delay = float(load_settings()["ingest"].get("fbref_page_delay_seconds", 6.0))
+    """Fetch each URL in one browser session. Returns url -> html (None on failure)."""
     results: dict[str, str | None] = {}
     if not urls:
         return results
-    driver = _launch_chrome()
-    try:
-        first = True
+    with BrowserSession() as session:
         for url in urls:
-            html = None
-            # The first page may present an interactive "verify you are human"
-            # checkbox; a single human click clears the whole session. Wait long
-            # on the first page, briefly on the rest.
-            wait_seconds = 180 if first else 25
-            for attempt in range(2):
-                try:
-                    driver.get(url)
-                    for _ in range(wait_seconds):
-                        page = driver.page_source
-                        if "stats_standard" in page:
-                            html = page
-                            break
-                        time.sleep(1)
-                    if html:
-                        break
-                except Exception as exc:  # noqa: BLE001 - per-page failure is recorded
-                    log.warning("browser fetch failed (%s attempt %d): %s",
-                                url, attempt + 1, str(exc)[:120])
-                time.sleep(delay)
-            results[url] = html
-            first = False
-            log.info("fetched %s -> %s", url, f"{len(html)} bytes" if html else "FAILED")
-            time.sleep(delay)
-    finally:
-        driver.quit()
+            results[url] = session.fetch(url)
     return results
 
 
