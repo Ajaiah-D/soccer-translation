@@ -116,10 +116,11 @@ def test_audit_sample_exists_with_buckets():
 def test_every_mover_has_two_qualifying_seasons():
     path = _require(data_path("data_interim") / "movers.parquet", "phase3")
     moves = pd.read_parquet(path)
-    threshold = float(load_settings()["movers"]["min_minutes_qualifying"])
+    min_from = float(load_settings()["movers"]["min_minutes_qualifying"])
+    min_to = float(load_settings()["movers"]["min_minutes_destination"])
     assert len(moves) > 0
-    assert (moves["from_minutes"] >= threshold).all()
-    assert (moves["to_minutes"] >= threshold).all()
+    assert (moves["from_minutes"] >= min_from).all()
+    assert (moves["to_minutes"] >= min_to).all()
     assert (moves["from_league"] != moves["to_league"]).all()
     assert (moves["to_season"] > moves["from_season"]).all()
 

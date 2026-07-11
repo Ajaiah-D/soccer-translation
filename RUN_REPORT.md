@@ -1,13 +1,13 @@
 # RUN REPORT - Cross-League Player Value Translation Engine
 
-_Generated 2026-07-11 21:09 UTC by `python -m src report`._
+_Generated 2026-07-11 21:32 UTC by `python -m src report`._
 
 ## Key numbers
 
 - normalized player-seasons: **52587** ({'understat': 21995, 'asa': 20415, 'fbref': 10177})
-- qualifying moves: **1633** across 1275 players
-- league strengths (goals_added_raw_per90, anchor MLS=1.0): MLS 1.00, USLC 0.79, USL1 0.73, MLSNP 0.63
-- proof-of-concept verdict: **signal** - projected vs actual Spearman r=0.547 beats shuffled labels (p=0.0005, n=321)
+- qualifying moves: **1871** across 1460 players
+- league strengths (goals_added_raw_per90, anchor MLS=1.0): MLS 1.00, USLC 0.79, USL1 0.73, MLSNP 0.64
+- proof-of-concept verdict: **signal** - projected vs actual Spearman r=0.580 beats shuffled labels (p=0.0005, n=372)
 
 ## Artifacts by phase
 

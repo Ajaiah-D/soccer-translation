@@ -52,9 +52,37 @@ def build_player_seasons() -> pd.DataFrame:
     fbref_norm = normalize_fbref(fbref)
     understat_norm = normalize_understat(understat)
     combined = pd.concat([asa_norm, fbref_norm, understat_norm], ignore_index=True)
+    combined = _enrich_birth_years(combined)
     combined = combined.sort_values(
         ["source", "source_player_id", "league", "season"]).reset_index(drop=True)
     return combined
+
+
+def _enrich_birth_years(player_seasons: pd.DataFrame) -> pd.DataFrame:
+    """Fill missing birth years from Wikidata for potential movers (players with
+    substantial seasons in >=2 leagues), so their deltas can be age-adjusted.
+    Lookups are cached; ambiguous names stay missing (counted, never guessed)."""
+    from src.common.config import load_settings
+    from src.ingest.wikidata_dob import lookup_birth_years
+
+    min_to = float(load_settings()["movers"]["min_minutes_destination"])
+    no_by = player_seasons[player_seasons["birth_year"].isna()
+                           & (player_seasons["minutes"] >= min_to)]
+    league_counts = no_by.groupby("player_name")["league"].nunique()
+    candidates = sorted(league_counts[league_counts >= 2].index)
+    if not candidates:
+        return player_seasons
+
+    found = lookup_birth_years(candidates)
+    matched = found[found["birth_year"].notna()]
+    log_lineage("birth_year_enrichment", "filled-from-wikidata", int(len(matched)),
+                f"of {len(candidates)} multi-league players without a birth year "
+                "(exact-label, single-plausible-match only)")
+    fill = dict(zip(matched["player_name"], matched["birth_year"]))
+    mask = player_seasons["birth_year"].isna()
+    player_seasons.loc[mask, "birth_year"] = (
+        player_seasons.loc[mask, "player_name"].map(fill))
+    return player_seasons
 
 
 EMPTY_MATCHES = pd.DataFrame(columns=["source_player_id", "matched_asa_id",

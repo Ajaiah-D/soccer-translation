@@ -4,6 +4,21 @@ Every non-trivial choice: what was decided, alternatives, reasoning, reversibili
 
 ---
 
+## D-023: Asymmetric minutes thresholds with precision weighting
+- **Decided:** A move needs >=900 minutes in the ORIGIN season (trustworthy baseline) but only >=450 in the DESTINATION season, and every mover's log-ratio is weighted by the harmonic mean of the two seasons' minutes (in 90s). Shrinkage still uses raw mover counts.
+- **Why:** The old symmetric 900/900 rule silently excluded partial failures abroad, biasing strong destination leagues toward "easy" (survivorship). Lowering only the destination side pulls those failures into the sample; minutes-weighting keeps short noisy stints from dominating. A sensitivity table in the diagnostics shows factors under both definitions.
+- **Reversible:** yes (config movers.min_minutes_destination)
+
+## D-024: Attrition metric quantifies invisible failed moves
+- **Decided:** Phase 3 reports, per directed league pair, origin-qualified players who appeared in the destination league within the gap window but never reached the destination threshold - failed moves that cannot produce a ratio. Players who left covered leagues entirely remain an acknowledged undercount.
+- **Why:** The factors cannot see total failures; reporting their frequency (e.g. 54% MLSNP->MLS, 43% USLC->MLS) lets a reader judge the residual survivorship instead of trusting a hidden assumption.
+- **Reversible:** yes
+
+## D-025: Wikidata birth-year enrichment for European movers
+- **Decided:** Players lacking a birth year with substantial seasons in >=2 leagues are looked up on Wikidata (batched exact-label SPARQL, cached; human + association-footballer + single plausible birth year required; ambiguous names skipped and counted). First run: 688 of 954 filled, 49 ambiguous, 217 unmatched.
+- **Why:** Understat has no birth dates, which blocked age adjustment for intra-European movers. With 72% coverage the age adjustment now applies to most of the European graph.
+- **Reversible:** yes (cached lookups; enrichment only fills missing values, never overwrites)
+
 ## D-020: Age adjustment of mover deltas
 - **Decided:** Mover log-ratios are adjusted by the expected age-driven change, using aging curves estimated from within-league consecutive season pairs in this project's own data (per-age bucket means, shrunk toward 0; config calibration.age_adjust / aging_shrinkage_k). Phase 5 estimates its curve without held-out persons' seasons.
 - **Why:** Transatlantic movers have systematically asymmetric ages (Europe->MLS movers past peak, MLS->Europe movers pre-peak), so unadjusted deltas conflate aging with league strength - the mechanism behind the implausible "Big-5 weaker than MLS" first-pass numbers.

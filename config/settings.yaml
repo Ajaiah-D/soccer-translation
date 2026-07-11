@@ -48,8 +48,11 @@ crosswalk:
   audit_low_confidence_n: 25
 
 movers:
-  # minimum minutes in a league-season for it to count as "qualifying"
+  # minimum minutes in the ORIGIN season of a move (trustworthy pre-move baseline)
   min_minutes_qualifying: 900
+  # minimum minutes in the DESTINATION season: lower, to pull partial failures into
+  # the sample (survivorship mitigation); noise is handled by minutes-weighting
+  min_minutes_destination: 450
   # league pairs with fewer movers than this are flagged too-thin-to-calibrate
   thin_pair_floor: 5
   # a move only counts if the destination season starts within this many seasons

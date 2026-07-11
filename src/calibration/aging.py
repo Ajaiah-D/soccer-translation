@@ -110,4 +110,7 @@ def age_adjust_log_ratios(ratios: pd.DataFrame, moves: pd.DataFrame,
             out = known
     else:
         out = known
-    return out[["person_id", "from_league", "to_league", "log_ratio"]].reset_index(drop=True)
+    keep = ["person_id", "from_league", "to_league", "log_ratio"]
+    if "weight" in out.columns:
+        keep.append("weight")
+    return out[keep].reset_index(drop=True)

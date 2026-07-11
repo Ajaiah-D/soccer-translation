@@ -29,7 +29,10 @@ log = get_logger("calibration.league_strength")
 
 
 def log_ratios(moves: pd.DataFrame, metric: str) -> pd.DataFrame:
-    """Per-mover log-ratio for one metric; excludes non-positive sides (logged)."""
+    """Per-mover log-ratio for one metric; excludes non-positive sides (logged).
+    Each observation carries a precision weight: the harmonic mean of the two
+    seasons' minutes in 90s-equivalents, so a 500-minute destination stint counts
+    for less than a 3000-minute one instead of counting equally."""
     f, t = f"from_{metric}", f"to_{metric}"
     usable = moves[(moves[f] > 0) & (moves[t] > 0)].copy()
     excluded = len(moves) - len(usable)
@@ -37,16 +40,32 @@ def log_ratios(moves: pd.DataFrame, metric: str) -> pd.DataFrame:
         log_lineage("log_ratios", "excluded-from-metric", excluded,
                     f"non-positive {metric} on one side of the move (ratio undefined)")
     usable["log_ratio"] = np.log(usable[t] / usable[f])
-    return usable[["person_id", "from_league", "to_league", "log_ratio"]]
+    if {"from_minutes", "to_minutes"} <= set(usable.columns):
+        usable["weight"] = (2.0 / (1.0 / usable["from_minutes"]
+                                   + 1.0 / usable["to_minutes"])) / 90.0
+    else:
+        usable["weight"] = 1.0
+    return usable[["person_id", "from_league", "to_league", "log_ratio", "weight"]]
 
 
 def pairwise_factors(ratios: pd.DataFrame, shrinkage_k: float) -> pd.DataFrame:
-    """Directed pairwise factors with shrinkage toward 1.0."""
-    grp = ratios.groupby(["from_league", "to_league"])["log_ratio"]
-    out = grp.agg(n="count", mean_log_ratio="mean").reset_index()
-    out["shrunk_log_ratio"] = out["mean_log_ratio"] * out["n"] / (out["n"] + shrinkage_k)
-    out["factor"] = np.exp(out["shrunk_log_ratio"])
-    return out
+    """Directed pairwise factors with shrinkage toward 1.0. When observations carry
+    a `weight` column the pair mean is minutes-weighted; shrinkage still uses the
+    raw mover count n so a pair of ten short stints is shrunk like ten movers."""
+    df = ratios.copy()
+    if "weight" not in df.columns:
+        df["weight"] = 1.0
+    df["_wx"] = df["log_ratio"] * df["weight"]
+    grouped = df.groupby(["from_league", "to_league"]).agg(
+        n=("log_ratio", "count"),
+        w_sum=("weight", "sum"),
+        wx_sum=("_wx", "sum"),
+    ).reset_index()
+    grouped["mean_log_ratio"] = grouped["wx_sum"] / grouped["w_sum"]
+    grouped["shrunk_log_ratio"] = (grouped["mean_log_ratio"]
+                                   * grouped["n"] / (grouped["n"] + shrinkage_k))
+    grouped["factor"] = np.exp(grouped["shrunk_log_ratio"])
+    return grouped.drop(columns=["wx_sum"])
 
 
 def chain_strengths(pairs: pd.DataFrame, anchor: str) -> dict[str, float]:
@@ -59,7 +78,7 @@ def chain_strengths(pairs: pd.DataFrame, anchor: str) -> dict[str, float]:
     idx = {l: i for i, l in enumerate(free)}
     X = np.zeros((len(pairs), len(free)))
     y = pairs["shrunk_log_ratio"].to_numpy()
-    w = pairs["n"].to_numpy(dtype=float)
+    w = (pairs["w_sum"] if "w_sum" in pairs.columns else pairs["n"]).to_numpy(dtype=float)
     for row, (_, r) in enumerate(pairs.iterrows()):
         if r["from_league"] != anchor:
             X[row, idx[r["from_league"]]] = 1.0
@@ -216,6 +235,36 @@ def calibration_ratios(moves: pd.DataFrame, metric: str,
     return age_adjust_log_ratios(ratios, moves, curve, metric), curve
 
 
+def sensitivity_lines(moves: pd.DataFrame) -> list[str]:
+    """Diagnostics: how much do factors move if the destination-minutes threshold is
+    raised back to the origin threshold (the old, survivorship-heavier definition)?
+    Small deltas mean the lowered threshold added information without instability."""
+    cfg = load_settings()["calibration"]
+    min_from = float(load_settings()["movers"]["min_minutes_qualifying"])
+    metric = "xg_xa_per90"
+    lines = ["", "## Sensitivity: destination-minutes threshold", "",
+             f"Factors for `{metric}` estimated on all movers (destination >= "
+             f"{load_settings()['movers']['min_minutes_destination']} min, "
+             "minutes-weighted) vs only full-qualifying destinations "
+             f"(>= {min_from:.0f} min).", "",
+             "| from | to | n all | factor all | n strict | factor strict |",
+             "|---|---|---|---|---|---|"]
+    ratios_all, _ = calibration_ratios(moves, metric)
+    strict_moves = moves[moves["to_minutes"] >= min_from]
+    ratios_strict, _ = calibration_ratios(strict_moves, metric)
+    if ratios_all.empty or ratios_strict.empty:
+        return lines + ["- not computable this run."]
+    pa = pairwise_factors(ratios_all, float(cfg["shrinkage_k"])).set_index(
+        ["from_league", "to_league"])
+    ps = pairwise_factors(ratios_strict, float(cfg["shrinkage_k"])).set_index(
+        ["from_league", "to_league"])
+    for key in sorted(set(pa.index) & set(ps.index)):
+        a, s = pa.loc[key], ps.loc[key]
+        lines.append(f"| {key[0]} | {key[1]} | {int(a['n'])} | {a['factor']:.3f} "
+                     f"| {int(s['n'])} | {s['factor']:.3f} |")
+    return lines
+
+
 def aging_curve_lines(curves: dict[str, pd.DataFrame]) -> list[str]:
     """Diagnostics: the estimated aging curves used for mover adjustment."""
     if not any(len(c) for c in curves.values()):
@@ -324,6 +373,7 @@ def run_phase4() -> None:
     factors.to_parquet(data_path("data_outputs") / "pairwise_factors.parquet", index=False)
 
     extra = (cross_source_consistency_lines(moves)
+             + sensitivity_lines(moves)
              + aging_curve_lines(aging_curves)
              + anchor_comparison_lines(strengths))
     _write_diagnostics(factors, strengths, prior_findings, extra_lines=extra)

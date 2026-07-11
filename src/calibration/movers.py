@@ -50,15 +50,19 @@ def resolve_persons(player_seasons: pd.DataFrame, crosswalk: pd.DataFrame) -> pd
 
 
 def find_moves(person_seasons: pd.DataFrame) -> pd.DataFrame:
-    """One row per qualifying move with from_/to_ metric vectors."""
+    """One row per qualifying move with from_/to_ metric vectors.
+    Origin seasons need min_minutes_qualifying; destination seasons only
+    min_minutes_destination (lower, so partial failures stay in the sample -
+    downstream estimation weights by minutes)."""
     cfg = load_settings()["movers"]
-    min_minutes = float(cfg["min_minutes_qualifying"])
+    min_from = float(cfg["min_minutes_qualifying"])
+    min_to = float(cfg["min_minutes_destination"])
     max_gap = int(cfg["max_season_gap"])
 
-    qualifying = person_seasons[person_seasons["minutes"] >= min_minutes].copy()
-    log_lineage("find_moves", "filtered-non-qualifying",
+    qualifying = person_seasons[person_seasons["minutes"] >= min_to].copy()
+    log_lineage("find_moves", "filtered-below-destination-threshold",
                 int(len(person_seasons) - len(qualifying)),
-                f"minutes < {min_minutes} (config movers.min_minutes_qualifying)")
+                f"minutes < {min_to} (config movers.min_minutes_destination)")
 
     qualifying = qualifying.sort_values(["person_id", "season", "league"])
     moves = []
@@ -66,6 +70,7 @@ def find_moves(person_seasons: pd.DataFrame) -> pd.DataFrame:
         rows = grp.to_dict(orient="records")
         for a, b in zip(rows, rows[1:]):
             if (b["league"] != a["league"]
+                    and a["minutes"] >= min_from
                     and a["season"] < b["season"] <= a["season"] + max_gap):
                 birth_year = a.get("birth_year") or b.get("birth_year")
                 move = {
@@ -85,13 +90,56 @@ def find_moves(person_seasons: pd.DataFrame) -> pd.DataFrame:
         ["person_id", "from_season", "to_season"]).reset_index(drop=True)
 
 
-def write_movers_summary(moves: pd.DataFrame) -> None:
+def compute_attrition(person_seasons: pd.DataFrame) -> pd.DataFrame:
+    """Survivorship quantification: per directed league pair, players with a
+    qualifying origin season who APPEARED in the destination league within the gap
+    window but never reached the destination-minutes threshold there. These moves
+    produce no ratio (their failure is invisible to the factors), so their count is
+    reported next to the mover count. Players who left coverage entirely cannot be
+    counted and are noted as a further undercount."""
+    cfg = load_settings()["movers"]
+    min_from = float(cfg["min_minutes_qualifying"])
+    min_to = float(cfg["min_minutes_destination"])
+    max_gap = int(cfg["max_season_gap"])
+
+    origins = person_seasons[person_seasons["minutes"] >= min_from]
+    rows = []
+    by_person = dict(tuple(person_seasons.groupby("person_id")))
+    for _, o in origins.iterrows():
+        ps = by_person[o["person_id"]]
+        window = ps[(ps["season"] > o["season"])
+                    & (ps["season"] <= o["season"] + max_gap)
+                    & (ps["league"] != o["league"])]
+        for league, grp in window.groupby("league"):
+            best = grp["minutes"].max()
+            if best < min_to:
+                rows.append({"from_league": o["league"], "to_league": league,
+                             "person_id": o["person_id"]})
+    if not rows:
+        return pd.DataFrame(columns=["from_league", "to_league", "n_attrition"])
+    att = pd.DataFrame(rows).drop_duplicates()
+    return (att.groupby(["from_league", "to_league"]).size()
+            .rename("n_attrition").reset_index())
+
+
+def write_movers_summary(moves: pd.DataFrame,
+                         attrition: pd.DataFrame | None = None) -> None:
     cfg = load_settings()["movers"]
     floor = int(cfg["thin_pair_floor"])
     pair_counts = (moves.groupby(["from_league", "to_league"]).size()
                    .rename("n_moves").reset_index()
                    .sort_values("n_moves", ascending=False))
     pair_counts["thin_sample_flag"] = pair_counts["n_moves"] < floor
+    if attrition is not None and len(attrition):
+        pair_counts = pair_counts.merge(attrition, on=["from_league", "to_league"],
+                                        how="outer")
+        pair_counts["n_moves"] = pair_counts["n_moves"].fillna(0).astype(int)
+        pair_counts["n_attrition"] = pair_counts["n_attrition"].fillna(0).astype(int)
+        pair_counts["thin_sample_flag"] = pair_counts["thin_sample_flag"].fillna(True)
+        pair_counts["attrition_share"] = (
+            pair_counts["n_attrition"]
+            / (pair_counts["n_attrition"] + pair_counts["n_moves"]).clip(lower=1))
+        pair_counts = pair_counts.sort_values("n_moves", ascending=False)
 
     lines = ["# Movers summary (Phase 3)", "",
              f"- total moves: **{len(moves)}** across {moves['person_id'].nunique()} players",
@@ -99,10 +147,19 @@ def write_movers_summary(moves: pd.DataFrame) -> None:
              f"- max season gap: {cfg['max_season_gap']}",
              f"- thin-pair floor (too thin to calibrate alone): {floor}", "",
              "## Moves per league pair", "",
-             "| from | to | n | thin? |", "|---|---|---|---|"]
+             "Attrition = origin-qualified players who appeared in the destination "
+             "league inside the gap window but never reached the destination-minutes "
+             "threshold there: failed moves the factors cannot see (players who left "
+             "covered leagues entirely are a further undercount).", "",
+             "| from | to | n moves | n attrition | attrition share | thin? |",
+             "|---|---|---|---|---|---|"]
     for _, r in pair_counts.iterrows():
         flag = "THIN" if r["thin_sample_flag"] else ""
-        lines.append(f"| {r['from_league']} | {r['to_league']} | {r['n_moves']} | {flag} |")
+        n_att = int(r.get("n_attrition", 0) or 0)
+        share = r.get("attrition_share")
+        share_s = f"{share:.0%}" if pd.notna(share) else "-"
+        lines.append(f"| {r['from_league']} | {r['to_league']} | {r['n_moves']} "
+                     f"| {n_att} | {share_s} | {flag} |")
     if len(moves):
         lines += ["", "## Minutes distribution (both sides of moves)", "",
                   f"- from_minutes: min {moves['from_minutes'].min():.0f}, "
@@ -135,5 +192,8 @@ def run_phase3() -> None:
 
     moves = find_moves(person_seasons)
     moves.to_parquet(interim / "movers.parquet", index=False)
-    write_movers_summary(moves)
-    log.info("Phase 3 complete: %d moves", len(moves))
+    attrition = compute_attrition(person_seasons)
+    attrition.to_parquet(interim / "attrition.parquet", index=False)
+    write_movers_summary(moves, attrition)
+    log.info("Phase 3 complete: %d moves, %d attrition pair-counts",
+             len(moves), len(attrition))
