@@ -78,3 +78,11 @@ After adding Premier League data, 'Amy Rodriguez' (NWSL) auto-matched to 'Jay Ro
 - **Artifact:** DECISIONS.md
 
 Championship / 2. Bundesliga / similar second tiers are not in the study: no open per-player source works without interaction (Understat lacks them, FBref requires a verification click, FotMob/Sofascore gate their APIs). Options: (a) flip ingest.fbref_fetch_enabled once and click through a single cached backfill session, (b) a paid API (StatsBomb/Opta/API-Football), or (c) keep top-flight-only scope. Mover-based factors for those tiers are impossible until one is chosen.
+
+## Transatlantic factors: survivorship limitation and anchor divergence
+
+- **Severity:** `must-review-before-trusting-results`
+- **Added:** 2026-07-11
+- **Artifact:** data/outputs/calibration_diagnostics.md
+
+The SPI anchor puts Big-5 club quality at 1.6-1.9x MLS while the age-adjusted mover factors put per-90 production translation near 0.9-1.1x. Production factors are legitimately much flatter than club-quality gaps, but part of the residual is survivorship: movers who fail abroad rarely reach 900 qualifying minutes, so failures are undersampled and strong leagues look easier. Treat US<->Europe factors as directional with wide uncertainty; the American-pyramid factors are unaffected (dense, symmetric-age, single-source). Possible future mitigations: lower destination-minutes threshold with minutes-weighting, explicit selection modeling, European birth-year enrichment via Wikidata to age-adjust intra-Europe movers.

@@ -9,6 +9,7 @@ leagues:
     fbref_comp_id: 22
     fbref_slug: Major-League-Soccer
     fbref_season_style: calendar
+    spi: Major League Soccer
     group: mens
     tier: us_1
   USLC:
@@ -52,6 +53,7 @@ leagues:
     fbref_slug: Premier-League
     fbref_season_style: cross
     understat: EPL
+    spi: Barclays Premier League
     group: mens
     tier: eng_1
   GER1:
@@ -59,6 +61,7 @@ leagues:
     asa: null
     fbref: null
     understat: Bundesliga
+    spi: German Bundesliga
     group: mens
     tier: ger_1
   ESP1:
@@ -66,6 +69,7 @@ leagues:
     asa: null
     fbref: null
     understat: La_liga
+    spi: Spanish Primera Division
     group: mens
     tier: esp_1
   ITA1:
@@ -73,6 +77,7 @@ leagues:
     asa: null
     fbref: null
     understat: Serie_A
+    spi: Italy Serie A
     group: mens
     tier: ita_1
   FRA1:
@@ -80,8 +85,28 @@ leagues:
     asa: null
     fbref: null
     understat: Ligue_1
+    spi: French Ligue 1
     group: mens
     tier: fra_1
+
+# Anchor-only leagues: no open per-player data source, included so the SPI anchor
+# can report their relative strength; they never enter the mover calibration.
+  ENG2:
+    name: EFL Championship
+    asa: null
+    fbref: null
+    spi: English League Championship
+    anchor_only: true
+    group: mens
+    tier: eng_2
+  GER2:
+    name: 2. Bundesliga
+    asa: null
+    fbref: null
+    spi: German 2. Bundesliga
+    anchor_only: true
+    group: mens
+    tier: ger_2
 
 # Strong footballing priors used by the Phase 4 monotonicity gate:
 # each entry means "left league is stronger than right league" for men's pyramid metrics.

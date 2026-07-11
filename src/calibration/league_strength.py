@@ -197,6 +197,89 @@ def cross_source_consistency_lines(moves: pd.DataFrame) -> list[str]:
     return lines
 
 
+def calibration_ratios(moves: pd.DataFrame, metric: str,
+                       exclude_persons: set | None = None) -> tuple[pd.DataFrame, pd.DataFrame]:
+    """Mover log-ratios for a metric, age-adjusted when calibration.age_adjust is on.
+    Returns (ratios, aging_curve). The aging curve is estimated from within-league
+    season pairs in person_seasons; `exclude_persons` keeps held-out movers' seasons
+    out of the curve during validation."""
+    from src.calibration.aging import (age_adjust_log_ratios, estimate_aging_curve,
+                                       within_league_pairs)
+    cfg = load_settings()["calibration"]
+    ratios = log_ratios(moves, metric)
+    if not bool(cfg.get("age_adjust", False)) or ratios.empty:
+        return ratios, pd.DataFrame()
+    person_seasons = pd.read_parquet(data_path("data_interim") / "person_seasons.parquet")
+    if exclude_persons:
+        person_seasons = person_seasons[~person_seasons["person_id"].isin(exclude_persons)]
+    curve = estimate_aging_curve(within_league_pairs(person_seasons, metric))
+    return age_adjust_log_ratios(ratios, moves, curve, metric), curve
+
+
+def aging_curve_lines(curves: dict[str, pd.DataFrame]) -> list[str]:
+    """Diagnostics: the estimated aging curves used for mover adjustment."""
+    if not any(len(c) for c in curves.values()):
+        return []
+    lines = ["", "## Aging curves (age adjustment of mover deltas)", "",
+             "Expected year-over-year change in log(metric) per age, estimated from "
+             "within-league consecutive season pairs (no league change involved) and "
+             "shrunk toward 0 in thin buckets. Movers' deltas have the cumulative "
+             "expected change over their move subtracted; movers without a known "
+             "birth year are excluded and counted in the lineage log.", ""]
+    for metric, curve in curves.items():
+        if not len(curve):
+            continue
+        lines += [f"### {metric}", "", "| age | expected delta log | n pairs |",
+                  "|---|---|---|"]
+        for _, r in curve.sort_values("age").iterrows():
+            lines.append(f"| {int(r['age'])} | {r['expected_delta_log']:+.4f} | {int(r['n'])} |")
+        lines.append("")
+    return lines
+
+
+def anchor_comparison_lines(strengths: pd.DataFrame) -> list[str]:
+    """Diagnostics: mover-based strengths vs the external SPI anchor (validation
+    only). Also reports anchor-only leagues (no player data) on the same scale."""
+    from src.common.config import seasons as cfg_seasons
+    from src.ingest.anchors import anchor_only_leagues, league_anchor_table
+    anchor = anchor_league()
+    lines = ["", "## External anchor comparison (FiveThirtyEight SPI, validation only)", "",
+             "Independent yardstick: mean club SPI per league (match-weighted), "
+             "normalized to the anchor league. SPI is a club-form model covering "
+             "2016-2023 only; treat as ordering + rough magnitude. It never enters "
+             "the production factors.", ""]
+    try:
+        window = (min(cfg_seasons("fbref")), max(cfg_seasons("fbref")))
+        table = league_anchor_table(seasons_window=window)
+    except Exception as exc:  # noqa: BLE001 - anchor is optional, never fatal
+        return lines + [f"- anchor unavailable this run: {str(exc)[:120]}"]
+    if table.empty or anchor not in set(table["league_code"]):
+        return lines + ["- anchor data empty or anchor league missing."]
+    base = float(table.loc[table["league_code"] == anchor, "mean_spi"].iloc[0])
+    table["spi_relative"] = table["mean_spi"] / base
+
+    # compare on the metric that covers the European leagues (g+ is ASA-only)
+    compare_metric = "xg_xa_per90"
+    mover = strengths[strengths["metric"] == compare_metric].set_index("league")["strength"]
+    lines += ["| league | SPI relative (anchor=1.0) | mover-based strength "
+              f"({compare_metric}) | SPI seasons |", "|---|---|---|---|"]
+    for _, r in table.sort_values("spi_relative", ascending=False).iterrows():
+        code = r["league_code"]
+        mv = f"{mover[code]:.3f}" if code in mover.index else (
+            "anchor-only (no player data)" if code in anchor_only_leagues() else "-")
+        lines.append(f"| {code} | {r['spi_relative']:.3f} | {mv} | {r['seasons_covered']} |")
+    lines += ["", "Note: SPI relative values are club-quality ratios, not per-90 "
+              "production conversion factors; the two columns should agree on "
+              "ordering, not on decimals. Production factors are expected to be "
+              "much flatter than club-quality gaps (players and roles adapt), but a "
+              "large residual gap also reflects survivorship in the mover sample: "
+              "movers who fail abroad rarely reach the qualifying-minutes threshold, "
+              "so the worst outcomes are undersampled and strong destination leagues "
+              "look easier than they are. The 2023-2025 tail of the study window "
+              "has no anchor coverage (SPI is defunct)."]
+    return lines
+
+
 def run_phase4() -> None:
     cfg = load_settings()["calibration"]
     anchor = anchor_league()
@@ -204,8 +287,10 @@ def run_phase4() -> None:
     thin_floor = int(load_settings()["movers"]["thin_pair_floor"])
 
     all_factors, all_strengths, prior_findings = [], [], []
+    aging_curves: dict[str, pd.DataFrame] = {}
     for metric in cfg["metrics"]:
-        ratios = log_ratios(moves, metric)
+        ratios, curve = calibration_ratios(moves, metric)
+        aging_curves[metric] = curve
         if ratios.empty:
             log.warning("no usable ratios for %s", metric)
             continue
@@ -238,8 +323,10 @@ def run_phase4() -> None:
     strengths.to_parquet(data_path("data_outputs") / "league_strength.parquet", index=False)
     factors.to_parquet(data_path("data_outputs") / "pairwise_factors.parquet", index=False)
 
-    _write_diagnostics(factors, strengths, prior_findings,
-                       extra_lines=cross_source_consistency_lines(moves))
+    extra = (cross_source_consistency_lines(moves)
+             + aging_curve_lines(aging_curves)
+             + anchor_comparison_lines(strengths))
+    _write_diagnostics(factors, strengths, prior_findings, extra_lines=extra)
 
     confident_violations = [
         (metric, f) for metric, findings in prior_findings

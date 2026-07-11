@@ -25,7 +25,11 @@ import pandas as pd
 from src.common.config import anchor_league, data_path, load_settings, random_seed
 from src.common.logging import get_logger
 from src.common.review_queue import add_review_item
-from src.calibration.league_strength import chain_strengths, log_ratios, pairwise_factors
+from src.calibration.league_strength import (
+    calibration_ratios,
+    chain_strengths,
+    pairwise_factors,
+)
 
 log = get_logger("validate.retrodict")
 
@@ -47,9 +51,13 @@ def split_movers(moves: pd.DataFrame) -> tuple[pd.DataFrame, pd.DataFrame]:
     return train, holdout
 
 
-def train_strengths(train_moves: pd.DataFrame, metric: str) -> dict[str, float]:
+def train_strengths(train_moves: pd.DataFrame, metric: str,
+                    holdout_persons: set | None = None) -> dict[str, float]:
+    """Strengths from the train half only. The aging curve backing the age
+    adjustment is likewise estimated without any held-out person's seasons."""
     cfg = load_settings()["calibration"]
-    ratios = log_ratios(train_moves, metric)
+    ratios, _ = calibration_ratios(train_moves, metric,
+                                   exclude_persons=holdout_persons)
     pairs = pairwise_factors(ratios, float(cfg["shrinkage_k"]))
     return chain_strengths(pairs, anchor_league())
 
@@ -124,7 +132,8 @@ def run_phase5() -> None:
     moves = pd.read_parquet(data_path("data_interim") / "movers.parquet")
 
     train, holdout = split_movers(moves)
-    strengths = train_strengths(train, metric)
+    strengths = train_strengths(train, metric,
+                                holdout_persons=set(holdout["person_id"]))
 
     feats = build_features(holdout, strengths, metric)
     labeled = label_outcomes(holdout, feats, metric)

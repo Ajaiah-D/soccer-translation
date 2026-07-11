@@ -28,6 +28,13 @@ def resolve_persons(player_seasons: pd.DataFrame, crosswalk: pd.DataFrame) -> pd
         on=["source", "source_player_id"], how="left", validate="many_to_one")
     assert merged["person_id"].notna().all(), "every player-season must resolve to a person"
 
+    # birth_year is person-level: broadcast the first known value across sources so
+    # e.g. Understat rows (no birth dates) inherit the ASA/FBref birth year
+    known_by = (merged.dropna(subset=["birth_year"])
+                .groupby("person_id")["birth_year"].first())
+    merged["birth_year"] = merged["birth_year"].fillna(
+        merged["person_id"].map(known_by))
+
     before = len(merged)
     # preference when two sources cover the same person-league-season:
     # asa (richest metrics) > understat (has xG/xA) > fbref (identity/minutes only)
@@ -60,6 +67,7 @@ def find_moves(person_seasons: pd.DataFrame) -> pd.DataFrame:
         for a, b in zip(rows, rows[1:]):
             if (b["league"] != a["league"]
                     and a["season"] < b["season"] <= a["season"] + max_gap):
+                birth_year = a.get("birth_year") or b.get("birth_year")
                 move = {
                     "person_id": person_id,
                     "player_name": a["player_name"] or b["player_name"],
@@ -67,6 +75,7 @@ def find_moves(person_seasons: pd.DataFrame) -> pd.DataFrame:
                     "from_season": int(a["season"]), "to_season": int(b["season"]),
                     "from_minutes": float(a["minutes"]), "to_minutes": float(b["minutes"]),
                     "position": a.get("position"),
+                    "birth_year": float(birth_year) if pd.notna(birth_year) else None,
                 }
                 for m in METRIC_COLUMNS:
                     move[f"from_{m}"] = a.get(m)

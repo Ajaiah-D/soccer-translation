@@ -4,6 +4,23 @@ Every non-trivial choice: what was decided, alternatives, reasoning, reversibili
 
 ---
 
+## D-020: Age adjustment of mover deltas
+- **Decided:** Mover log-ratios are adjusted by the expected age-driven change, using aging curves estimated from within-league consecutive season pairs in this project's own data (per-age bucket means, shrunk toward 0; config calibration.age_adjust / aging_shrinkage_k). Phase 5 estimates its curve without held-out persons' seasons.
+- **Why:** Transatlantic movers have systematically asymmetric ages (Europe->MLS movers past peak, MLS->Europe movers pre-peak), so unadjusted deltas conflate aging with league strength - the mechanism behind the implausible "Big-5 weaker than MLS" first-pass numbers.
+- **Reversible:** yes (config flag)
+
+## D-021: Age-unknown movers keep unadjusted deltas (config age_adjust_unknown=keep)
+- **Decided:** Movers without a birth year (mostly intra-European; Understat has no birth dates) are retained with raw deltas, flagged and counted, rather than excluded.
+- **Alternatives:** exclude (tested: collapses the European graph, e.g. ENG1 n 453->39, CIs balloon); impute mean ages (rejected: silent-ish imputation).
+- **Reasoning:** The age-asymmetry bias is concentrated in transatlantic edges, all of which HAVE birth years (ASA side) and get adjusted. Intra-European move-age profiles are roughly symmetric by direction, so their aggregate aging bias largely cancels within pairs. Enriching European birth years (e.g. Wikidata) is logged as future work.
+- **Reversible:** yes (config)
+
+## D-022: FiveThirtyEight SPI as external validation anchor
+- **Decided:** League strengths are compared against mean club SPI per league (2016-2023), pulled from a pinned Internet Archive snapshot of the final SPI match file - fully automatic and permanently reproducible. Anchor-only leagues (EFL Championship, 2. Bundesliga) get SPI-based strength context without entering the mover calibration.
+- **Why chosen over alternatives:** UEFA coefficients cover only continental-competition clubs (no MLS, no second tiers); FIFA ranks national teams; Opta's archive lacks league labels (mapping deferred); ClubElo is Europe-only. SPI is the only defunct-but-archived source with MLS + Big-5 + second tiers on one scale.
+- **Limits (reported in diagnostics):** anchor ends early 2023; SPI measures club quality, not per-90 production conversion, so only ordering and rough magnitude are comparable.
+- **Reversible:** yes
+
 ## D-017: FBref live fetching is opt-in (default off); pipeline is fully unattended
 - **Decided:** `ingest.fbref_fetch_enabled: false` by default. FBref is treated as a frozen cached historical source; uncached slices surface as explicit coverage gaps. ASA and Understat cover all recurring needs without any interaction.
 - **Why:** FBref's bot protection can demand an interactive verification click; the owner requires zero-intervention runs.

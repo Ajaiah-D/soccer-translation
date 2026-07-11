@@ -65,6 +65,15 @@ calibration:
   # shrinkage prior strength: mean log-ratio is scaled by n / (n + k), i.e. pulled
   # toward log(1.0)=0 for small samples
   shrinkage_k: 4
+  # subtract the expected age-driven metric change from each mover's delta before
+  # estimating factors
+  age_adjust: true
+  # movers without a known birth year (mostly intra-European, where age profiles of
+  # moves are roughly symmetric): 'keep' = retain with unadjusted delta (flagged and
+  # counted), 'exclude' = drop them entirely
+  age_adjust_unknown: keep
+  # shrinkage for per-age aging-curve buckets (bucket mean scaled by n/(n+k))
+  aging_shrinkage_k: 25
   bootstrap_iterations: 1000
   # confidence interval width
   ci_level: 0.90

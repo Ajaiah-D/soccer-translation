@@ -1136,6 +1136,17 @@
     "rows": 769,
     "source": "asa"
   },
+  "7777fdcee40c6d25": {
+    "content_hash": "b232b02ae1520aec",
+    "endpoint": "matches",
+    "file": "spi__matches__7777fdcee40c6d25.parquet",
+    "params": {
+      "snapshot": "20230625"
+    },
+    "pulled_at": "2026-07-11T21:04:26.737443+00:00",
+    "rows": 20958,
+    "source": "spi"
+  },
   "77a7eda98555135f": {
     "content_hash": "213e86e5b58b725c",
     "endpoint": "player_goals_added",
