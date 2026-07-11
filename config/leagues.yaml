@@ -9,31 +9,37 @@ leagues:
     fbref_comp_id: 22
     fbref_slug: Major-League-Soccer
     fbref_season_style: calendar
+    group: mens
     tier: us_1
   USLC:
     name: USL Championship
     asa: uslc
     fbref: null
+    group: mens
     tier: us_2
   USL1:
     name: USL League One
     asa: usl1
     fbref: null
+    group: mens
     tier: us_3
   MLSNP:
     name: MLS NEXT Pro
     asa: mlsnp
     fbref: null
+    group: mens
     tier: us_3
   NWSL:
     name: National Women's Soccer League
     asa: nwsl
     fbref: null
+    group: womens
     tier: usw_1
   USLS:
     name: USL Super League
     asa: usls
     fbref: null
+    group: womens
     tier: usw_1
 
 # European comparison leagues via FBref only (kept small to respect scraping limits)
@@ -44,6 +50,8 @@ leagues:
     fbref_comp_id: 9
     fbref_slug: Premier-League
     fbref_season_style: cross
+    understat: EPL
+    group: mens
     tier: eng_1
 
 # Strong footballing priors used by the Phase 4 monotonicity gate:

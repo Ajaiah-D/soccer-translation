@@ -11,7 +11,7 @@ from src.common.config import asa_league_codes, data_path, fbref_league_codes, s
 from src.common.contracts import validate_frame
 from src.common.io import write_output
 from src.common.logging import get_logger
-from src.ingest import asa, fbref, transfermarkt
+from src.ingest import asa, fbref, transfermarkt, understat
 from src.ingest.contracts_def import CONTRACTS, write_contract_docs
 
 log = get_logger("ingest.runner")
@@ -44,7 +44,8 @@ def _coverage_cell(frames: dict[str, pd.DataFrame], league: str, season: int,
 
 
 def write_coverage_report(asa_frames: dict[str, pd.DataFrame],
-                          fbref_df: pd.DataFrame) -> Path:
+                          fbref_df: pd.DataFrame,
+                          understat_df: pd.DataFrame | None = None) -> Path:
     lines = [
         "# Coverage report - metrics x leagues x seasons",
         "",
@@ -73,6 +74,19 @@ def write_coverage_report(asa_frames: dict[str, pd.DataFrame],
                 rows = f"ok (n={n})" if n else "MISSING (no rows)"
             lines.append(f"| {league} | {season} | {rows} |")
 
+    lines += ["", "## Understat comparison leagues (xG/xA source)", "",
+              "| league | season | rows |", "|---|---|---|"]
+    from src.ingest.understat import understat_league_codes
+    for league in understat_league_codes():
+        for season in seasons("fbref"):
+            if understat_df is None or understat_df.empty:
+                rows = "MISSING (source empty)"
+            else:
+                n = len(understat_df[(understat_df["league"] == league)
+                                     & (understat_df["season"] == season)])
+                rows = f"ok (n={n})" if n else "MISSING (no rows)"
+            lines.append(f"| {league} | {season} | {rows} |")
+
     lines += ["", "## Transfermarkt", "",
               f"Stub fixture rows: {len(transfermarkt.get_player_valuations())} "
               "(hand-entered; real feed requested via review queue).", ""]
@@ -87,6 +101,8 @@ def run_phase1(refresh: bool = False) -> None:
     asa_frames = asa.pull_all(refresh=refresh)
     log.info("Phase 1: pulling FBref")
     fbref_df = fbref.pull_all(refresh=refresh)
+    log.info("Phase 1: pulling Understat")
+    understat_df = understat.pull_all(refresh=refresh)
     tm_df = transfermarkt.get_player_valuations()
 
     # contract validation - fail loudly on drift
@@ -97,16 +113,20 @@ def run_phase1(refresh: bool = False) -> None:
                    "asa_player_goals_added")
     if len(fbref_df):
         validate_frame(fbref_df, CONTRACTS["fbref_player_season"], "fbref_player_season")
+    if len(understat_df):
+        validate_frame(understat_df, CONTRACTS["understat_league_players"],
+                       "understat_league_players")
     validate_frame(tm_df, CONTRACTS["transfermarkt"], "transfermarkt")
 
     # persist consolidated interim frames for Phase 2
     for name, df in asa_frames.items():
         write_output(df, "data_interim", f"asa_{name}.parquet")
     write_output(fbref_df, "data_interim", "fbref_player_season.parquet")
+    write_output(understat_df, "data_interim", "understat_league_players.parquet")
     write_output(tm_df, "data_interim", "transfermarkt.parquet")
 
     write_contract_docs()
-    report = write_coverage_report(asa_frames, fbref_df)
+    report = write_coverage_report(asa_frames, fbref_df, understat_df)
 
     from src.common.review_queue import add_review_item
     add_review_item(

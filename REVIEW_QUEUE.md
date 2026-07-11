@@ -54,3 +54,19 @@ The Transfermarkt source is a stub backed by a small hand-entered fixture (inter
 - **Artifact:** data/outputs/crosswalk_audit_sample.csv
 
 Owner reviewed data/outputs/crosswalk_audit_sample.csv in full and confirmed every match is correct. The crosswalk is cleared for downstream use.
+
+## RESOLVED: FBref coverage blocker (2026-07-11)
+
+- **Severity:** `info`
+- **Added:** 2026-07-11
+- **Artifact:** data/outputs/coverage_report.md
+
+All 16 FBref league-season slices are now cached (10,415 player-season rows) via the direct browser fetcher. Separately, FBref removed xG columns from its standard-stats pages, so Premier League xG/xA now comes from Understat's JSON endpoint - a plain-HTTP, fully repeatable path with no bot-protection interaction. The original blocker no longer constrains the calibration: ENG1 is in the league graph (n=24 moves touching, wide CI, honestly labeled).
+
+## Crosswalk false positive found and fixed: cross-system name collision
+
+- **Severity:** `info`
+- **Added:** 2026-07-11
+- **Artifact:** data/outputs/crosswalk_audit_sample.csv
+
+After adding Premier League data, 'Amy Rodriguez' (NWSL) auto-matched to 'Jay Rodriguez' (Premier League, same seasons, ~92 name score, no birth years available to penalize), fabricating an NWSL->ENG1 move. Fixed systematically: players from disjoint league systems (mens/womens) can never match, enforced in the matcher and covered by a regression test. The audit sample was regenerated after the fix; the earlier owner sign-off predates Premier League data and this sample refresh.

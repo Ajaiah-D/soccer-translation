@@ -57,12 +57,18 @@ def _per90(total: pd.Series, minutes: pd.Series) -> pd.Series:
     return rate.where(minutes > 0)
 
 
+def _sum_keep_nan(s: pd.Series) -> float:
+    """Sum that stays NaN when every value is missing - a metric a source never
+    provides must remain missing, never a fabricated 0 (data-integrity rule)."""
+    return s.sum(min_count=1)
+
+
 def _aggregate_player_season(df: pd.DataFrame, sum_cols: list[str]) -> pd.DataFrame:
     """Collapse to one row per player-league-season, summing count columns and
     keeping the modal position."""
     present = [c for c in sum_cols if c in df.columns]
     agg = df.groupby(KEY, as_index=False).agg(
-        {**{c: "sum" for c in present},
+        {**{c: _sum_keep_nan for c in present},
          "minutes_played": "sum",
          "general_position": lambda s: s.mode().iloc[0] if len(s.mode()) else None})
     return agg
@@ -135,9 +141,9 @@ def normalize_fbref(fbref: pd.DataFrame) -> pd.DataFrame:
             df[col] = np.nan
     grouped = df.groupby(["_id", "player", "league", "season"], as_index=False).agg(
         minutes=("playing_time_min", "sum"),
-        goals=("performance_gls", "sum"),
-        xg=("expected_xg", "sum"),
-        xag=("expected_xag", "sum"),
+        goals=("performance_gls", _sum_keep_nan),
+        xg=("expected_xg", _sum_keep_nan),
+        xag=("expected_xag", _sum_keep_nan),
         nationality=("nation", "first"),
         position=("pos", "first"),
         birth_year=("birth_year", "first"),
@@ -153,6 +159,40 @@ def normalize_fbref(fbref: pd.DataFrame) -> pd.DataFrame:
         grouped[absent] = np.nan
     grouped = grouped.rename(columns={"_id": "source_player_id", "player": "player_name"})
     grouped["source"] = "fbref"
+    return grouped[["source", "source_player_id", "player_name", "birth_year",
+                    "nationality", "league", "season", "minutes", "position"]
+                   + METRIC_COLUMNS]
+
+
+def normalize_understat(understat: pd.DataFrame) -> pd.DataFrame:
+    """Understat player-season xG data -> unified per-90 schema.
+    Understat has no g+ / xPass equivalents, birth dates, or nationalities;
+    those columns are explicitly NaN/None."""
+    if understat.empty:
+        return pd.DataFrame()
+    df = understat.copy()
+    grouped = df.groupby(["id", "player_name", "league", "season"], as_index=False).agg(
+        minutes=("time", "sum"),
+        goals=("goals", _sum_keep_nan),
+        xg=("xG", _sum_keep_nan),
+        xa=("xA", _sum_keep_nan),
+        key_passes=("key_passes", _sum_keep_nan),
+        position=("position", "first"),
+    )
+    # understat positions look like "F S" / "M S" (S = substitute); keep the role
+    grouped["position"] = grouped["position"].astype(str).str.split().str[0]
+    grouped["goals_per90"] = _per90(grouped["goals"], grouped["minutes"])
+    grouped["xgoals_per90"] = _per90(grouped["xg"], grouped["minutes"])
+    grouped["xassists_per90"] = _per90(grouped["xa"], grouped["minutes"])
+    grouped["key_passes_per90"] = _per90(grouped["key_passes"], grouped["minutes"])
+    grouped["xg_xa_per90"] = _per90(grouped["xg"] + grouped["xa"], grouped["minutes"])
+    for absent in ["goals_added_raw_per90", "goals_added_above_avg_per90",
+                   "pass_pct_over_expected", "share_team_touches"]:
+        grouped[absent] = np.nan
+    grouped["birth_year"] = np.nan
+    grouped["nationality"] = None
+    grouped = grouped.rename(columns={"id": "source_player_id"})
+    grouped["source"] = "understat"
     return grouped[["source", "source_player_id", "player_name", "birth_year",
                     "nationality", "league", "season", "minutes", "position"]
                    + METRIC_COLUMNS]

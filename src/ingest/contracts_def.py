@@ -86,6 +86,20 @@ class FbrefPlayerSeasonRow(BaseModel):
     season: int
 
 
+class UnderstatPlayerRow(BaseModel):
+    """Understat player-season xG data (POST /main/getPlayersStats/)."""
+    id: str
+    player_name: str
+    time: float  # minutes played
+    goals: float
+    xG: float
+    assists: float
+    xA: float
+    position: Optional[str] = None
+    league: str
+    season: int
+
+
 class TransfermarktRow(BaseModel):
     """Market value / transfer labels (stub fixture or real feed)."""
     player_name: str
@@ -101,6 +115,7 @@ CONTRACTS: dict[str, Type[BaseModel]] = {
     "asa_player_xpass": AsaPlayerXpassRow,
     "asa_player_goals_added": AsaPlayerGoalsAddedRow,
     "fbref_player_season": FbrefPlayerSeasonRow,
+    "understat_league_players": UnderstatPlayerRow,
     "transfermarkt": TransfermarktRow,
 }
 

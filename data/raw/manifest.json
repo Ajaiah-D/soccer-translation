@@ -1,4 +1,16 @@
 {
+  "013ab7d1c865b2c4": {
+    "content_hash": "c7e16e0592cacb0e",
+    "endpoint": "player_season_standard",
+    "file": "fbref__player_season_standard__013ab7d1c865b2c4.parquet",
+    "params": {
+      "league": "USA-Major League Soccer",
+      "season": 2020
+    },
+    "pulled_at": "2026-07-11T16:13:53.424059+00:00",
+    "rows": 681,
+    "source": "fbref"
+  },
   "0442e3638c00a9b1": {
     "content_hash": "15881c80f67945d4",
     "endpoint": "player_xpass",
@@ -22,6 +34,30 @@
     "pulled_at": "2026-07-10T03:56:50.908385+00:00",
     "rows": 861,
     "source": "asa"
+  },
+  "0830dd970d3252df": {
+    "content_hash": "8a0fe16951482d4c",
+    "endpoint": "player_season_standard",
+    "file": "fbref__player_season_standard__0830dd970d3252df.parquet",
+    "params": {
+      "league": "USA-Major League Soccer",
+      "season": 2019
+    },
+    "pulled_at": "2026-07-11T16:13:35.934036+00:00",
+    "rows": 646,
+    "source": "fbref"
+  },
+  "09dff7ed1d7840a9": {
+    "content_hash": "e49d48a217eb052f",
+    "endpoint": "league_players",
+    "file": "understat__league_players__09dff7ed1d7840a9.parquet",
+    "params": {
+      "league": "EPL",
+      "season": 2024
+    },
+    "pulled_at": "2026-07-11T16:37:49.651008+00:00",
+    "rows": 562,
+    "source": "understat"
   },
   "09ee7917f6b15832": {
     "content_hash": "39a072ad47da9b8b",
@@ -238,6 +274,18 @@
     "pulled_at": "2026-07-10T03:58:54.781987+00:00",
     "rows": 930,
     "source": "asa"
+  },
+  "2e1354ee70f67efb": {
+    "content_hash": "5b2c2e4cf9c90558",
+    "endpoint": "league_players",
+    "file": "understat__league_players__2e1354ee70f67efb.parquet",
+    "params": {
+      "league": "EPL",
+      "season": 2022
+    },
+    "pulled_at": "2026-07-11T16:37:45.213738+00:00",
+    "rows": 554,
+    "source": "understat"
   },
   "2f472dddc121cda7": {
     "content_hash": "cc5c52060029d1e3",
@@ -491,6 +539,18 @@
     "rows": 633,
     "source": "asa"
   },
+  "44b6e8982b3f7912": {
+    "content_hash": "7d09aac162c8289d",
+    "endpoint": "player_season_standard",
+    "file": "fbref__player_season_standard__44b6e8982b3f7912.parquet",
+    "params": {
+      "league": "ENG-Premier League",
+      "season": 2021
+    },
+    "pulled_at": "2026-07-11T16:15:26.719549+00:00",
+    "rows": 546,
+    "source": "fbref"
+  },
   "4763938d98c1b1db": {
     "content_hash": "ed4b810bcd2e4f31",
     "endpoint": "player_goals_added",
@@ -560,6 +620,18 @@
     "rows": 675,
     "source": "asa"
   },
+  "4d7c14cefa28fe90": {
+    "content_hash": "cb9b16dc8cf073a3",
+    "endpoint": "player_season_standard",
+    "file": "fbref__player_season_standard__4d7c14cefa28fe90.parquet",
+    "params": {
+      "league": "ENG-Premier League",
+      "season": 2024
+    },
+    "pulled_at": "2026-07-11T16:16:20.010596+00:00",
+    "rows": 574,
+    "source": "fbref"
+  },
   "4dd0d9b85a6dae51": {
     "content_hash": "6b21bc21a890eaa5",
     "endpoint": "player_goals_added",
@@ -595,6 +667,42 @@
     "pulled_at": "2026-07-10T03:58:12.278821+00:00",
     "rows": 312,
     "source": "asa"
+  },
+  "530746683cf4b8b2": {
+    "content_hash": "514ffec8bbb78e1d",
+    "endpoint": "player_season_standard",
+    "file": "fbref__player_season_standard__530746683cf4b8b2.parquet",
+    "params": {
+      "league": "ENG-Premier League",
+      "season": 2018
+    },
+    "pulled_at": "2026-07-11T16:14:54.106100+00:00",
+    "rows": 508,
+    "source": "fbref"
+  },
+  "53e98125831fb8f9": {
+    "content_hash": "ac2f51683ea39042",
+    "endpoint": "league_players",
+    "file": "understat__league_players__53e98125831fb8f9.parquet",
+    "params": {
+      "league": "EPL",
+      "season": 2025
+    },
+    "pulled_at": "2026-07-11T16:37:51.602322+00:00",
+    "rows": 537,
+    "source": "understat"
+  },
+  "55a9e8fad65bb013": {
+    "content_hash": "d3eaaf7c307e3d3e",
+    "endpoint": "player_season_standard",
+    "file": "fbref__player_season_standard__55a9e8fad65bb013.parquet",
+    "params": {
+      "league": "ENG-Premier League",
+      "season": 2020
+    },
+    "pulled_at": "2026-07-11T16:15:14.307224+00:00",
+    "rows": 532,
+    "source": "fbref"
   },
   "55ba8661e8f72285": {
     "content_hash": "empty",
@@ -656,6 +764,18 @@
     "rows": 633,
     "source": "asa"
   },
+  "5a094e0ace18f04f": {
+    "content_hash": "f5adc032ab624b7d",
+    "endpoint": "player_season_standard",
+    "file": "fbref__player_season_standard__5a094e0ace18f04f.parquet",
+    "params": {
+      "league": "USA-Major League Soccer",
+      "season": 2023
+    },
+    "pulled_at": "2026-07-11T16:14:21.325859+00:00",
+    "rows": 855,
+    "source": "fbref"
+  },
   "5b9dbcdbc9b6607b": {
     "content_hash": "5b69fcb006f69167",
     "endpoint": "player_goals_added",
@@ -704,6 +824,18 @@
     "rows": 752,
     "source": "asa"
   },
+  "6041fd0ab98afa46": {
+    "content_hash": "6e61b243d5b521cc",
+    "endpoint": "league_players",
+    "file": "understat__league_players__6041fd0ab98afa46.parquet",
+    "params": {
+      "league": "EPL",
+      "season": 2021
+    },
+    "pulled_at": "2026-07-11T16:37:43.008226+00:00",
+    "rows": 537,
+    "source": "understat"
+  },
   "648709da5b96d75d": {
     "content_hash": "bb834b4f862f94ec",
     "endpoint": "player_xgoals",
@@ -727,6 +859,18 @@
     "pulled_at": "2026-07-10T03:58:23.886103+00:00",
     "rows": 0,
     "source": "asa"
+  },
+  "66ebb8e00e920f9f": {
+    "content_hash": "327b117c68bd5dd5",
+    "endpoint": "player_season_standard",
+    "file": "fbref__player_season_standard__66ebb8e00e920f9f.parquet",
+    "params": {
+      "league": "USA-Major League Soccer",
+      "season": 2024
+    },
+    "pulled_at": "2026-07-11T16:14:32.779824+00:00",
+    "rows": 819,
+    "source": "fbref"
   },
   "69d82f20aef17c25": {
     "content_hash": "5c99414c0b39b232",
@@ -787,6 +931,18 @@
     "pulled_at": "2026-07-10T03:58:25.150965+00:00",
     "rows": 0,
     "source": "asa"
+  },
+  "728c985c1e90f673": {
+    "content_hash": "253f2b7ec640daf4",
+    "endpoint": "league_players",
+    "file": "understat__league_players__728c985c1e90f673.parquet",
+    "params": {
+      "league": "EPL",
+      "season": 2023
+    },
+    "pulled_at": "2026-07-11T16:37:47.185576+00:00",
+    "rows": 570,
+    "source": "understat"
   },
   "73044b73c59dd9c1": {
     "content_hash": "empty",
@@ -859,6 +1015,18 @@
     "pulled_at": "2026-07-10T03:56:02.772882+00:00",
     "rows": 666,
     "source": "asa"
+  },
+  "780868a1fe1a7906": {
+    "content_hash": "16a5fbdc99f371b4",
+    "endpoint": "player_season_standard",
+    "file": "fbref__player_season_standard__780868a1fe1a7906.parquet",
+    "params": {
+      "league": "USA-Major League Soccer",
+      "season": 2025
+    },
+    "pulled_at": "2026-07-11T16:14:43.291886+00:00",
+    "rows": 882,
+    "source": "fbref"
   },
   "784cbf2ae62ad60a": {
     "content_hash": "empty",
@@ -980,6 +1148,18 @@
     "rows": 0,
     "source": "asa"
   },
+  "8228fed76ad3c0c8": {
+    "content_hash": "fe42b9d0f0b2fe9c",
+    "endpoint": "player_season_standard",
+    "file": "fbref__player_season_standard__8228fed76ad3c0c8.parquet",
+    "params": {
+      "league": "ENG-Premier League",
+      "season": 2025
+    },
+    "pulled_at": "2026-07-11T16:16:29.927078+00:00",
+    "rows": 551,
+    "source": "fbref"
+  },
   "83f9e179847e29e3": {
     "content_hash": "empty",
     "endpoint": "player_xpass",
@@ -1052,6 +1232,18 @@
     "rows": 0,
     "source": "asa"
   },
+  "8e585e567a1f7e53": {
+    "content_hash": "542684e89b023645",
+    "endpoint": "player_season_standard",
+    "file": "fbref__player_season_standard__8e585e567a1f7e53.parquet",
+    "params": {
+      "league": "ENG-Premier League",
+      "season": 2022
+    },
+    "pulled_at": "2026-07-11T16:15:39.187352+00:00",
+    "rows": 569,
+    "source": "fbref"
+  },
   "8f397b0426bd2036": {
     "content_hash": "empty",
     "endpoint": "player_goals_added",
@@ -1063,6 +1255,18 @@
     "pulled_at": "2026-07-10T03:59:58.603940+00:00",
     "rows": 0,
     "source": "asa"
+  },
+  "91bfed6b37029886": {
+    "content_hash": "4eafbf553cd50681",
+    "endpoint": "league_players",
+    "file": "understat__league_players__91bfed6b37029886.parquet",
+    "params": {
+      "league": "EPL",
+      "season": 2018
+    },
+    "pulled_at": "2026-07-11T16:37:36.411660+00:00",
+    "rows": 505,
+    "source": "understat"
   },
   "91d4e6c401f40e6b": {
     "content_hash": "640ffaaf7ebde4ac",
@@ -1160,6 +1364,18 @@
     "rows": 0,
     "source": "asa"
   },
+  "9ce64cea729ca198": {
+    "content_hash": "1394615caafa004f",
+    "endpoint": "league_players",
+    "file": "understat__league_players__9ce64cea729ca198.parquet",
+    "params": {
+      "league": "EPL",
+      "season": 2020
+    },
+    "pulled_at": "2026-07-11T16:37:40.615829+00:00",
+    "rows": 524,
+    "source": "understat"
+  },
   "9ddc5e68dc76b426": {
     "content_hash": "a88bcb027ba6c472",
     "endpoint": "player_goals_added",
@@ -1207,6 +1423,18 @@
     "pulled_at": "2026-07-10T03:57:09.041161+00:00",
     "rows": 675,
     "source": "asa"
+  },
+  "a31075622138b261": {
+    "content_hash": "2d44d915df4c5d3f",
+    "endpoint": "player_season_standard",
+    "file": "fbref__player_season_standard__a31075622138b261.parquet",
+    "params": {
+      "league": "ENG-Premier League",
+      "season": 2023
+    },
+    "pulled_at": "2026-07-11T16:16:10.105158+00:00",
+    "rows": 580,
+    "source": "fbref"
   },
   "a515c34ca0d24d9a": {
     "content_hash": "763cb53c78f6e596",
@@ -1375,6 +1603,18 @@
     "pulled_at": "2026-07-10T03:59:15.695623+00:00",
     "rows": 311,
     "source": "asa"
+  },
+  "b991d4f162246856": {
+    "content_hash": "4d879771cce06c35",
+    "endpoint": "player_season_standard",
+    "file": "fbref__player_season_standard__b991d4f162246856.parquet",
+    "params": {
+      "league": "USA-Major League Soccer",
+      "season": 2021
+    },
+    "pulled_at": "2026-07-11T16:14:06.825691+00:00",
+    "rows": 743,
+    "source": "fbref"
   },
   "bc1c4e94561e840f": {
     "content_hash": "empty",
@@ -1554,6 +1794,30 @@
     "pulled_at": "2026-07-10T03:57:21.419452+00:00",
     "rows": 572,
     "source": "asa"
+  },
+  "d4be4f250ca09387": {
+    "content_hash": "ba2170004130d353",
+    "endpoint": "player_season_standard",
+    "file": "fbref__player_season_standard__d4be4f250ca09387.parquet",
+    "params": {
+      "league": "ENG-Premier League",
+      "season": 2019
+    },
+    "pulled_at": "2026-07-11T16:15:03.763434+00:00",
+    "rows": 522,
+    "source": "fbref"
+  },
+  "d6dda9ba19c0ca31": {
+    "content_hash": "fbbcb36c4b3aa84c",
+    "endpoint": "league_players",
+    "file": "understat__league_players__d6dda9ba19c0ca31.parquet",
+    "params": {
+      "league": "EPL",
+      "season": 2019
+    },
+    "pulled_at": "2026-07-11T16:37:38.256587+00:00",
+    "rows": 515,
+    "source": "understat"
   },
   "d703bebbc5dd72bd": {
     "content_hash": "cce22c22fcc95cd9",

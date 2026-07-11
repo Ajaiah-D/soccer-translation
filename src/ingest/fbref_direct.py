@@ -72,28 +72,40 @@ class BrowserSession:
         if self._driver is not None:
             self._driver.quit()
 
-    def fetch(self, url: str) -> str | None:
+    def _relaunch(self) -> None:
+        if self._driver is not None:
+            try:
+                self._driver.quit()
+            except Exception:  # noqa: BLE001 - driver may already be dead
+                pass
+        self._driver = _launch_chrome()
+
+    def fetch(self, url: str, table_marker: str = "stats_") -> str | None:
         """Fetch one URL, returning the rendered HTML or None. The first page may
         present an interactive "verify you are human" checkbox; a single human click
-        clears the whole session, so the first page waits much longer."""
+        clears the whole session, so the first page waits much longer. A dead driver
+        (crash, window closed by hand) is relaunched between attempts."""
         if self._driver is None:
             self._driver = _launch_chrome()
         wait_seconds = 180 if self._first else 25
         html = None
-        for attempt in range(2):
+        for attempt in range(3):
             try:
                 self._driver.get(url)
                 for _ in range(wait_seconds):
                     page = self._driver.page_source
-                    if "stats_standard" in page:
+                    if table_marker in page:
                         html = page
                         break
                     time.sleep(1)
                 if html:
                     break
             except Exception as exc:  # noqa: BLE001 - per-page failure is recorded
-                log.warning("browser fetch failed (%s attempt %d): %s",
-                            url, attempt + 1, str(exc)[:120])
+                log.warning("browser fetch failed (%s attempt %d): %s - relaunching "
+                            "browser", url, attempt + 1, str(exc)[:100])
+                self._relaunch()
+                self._first = True  # a fresh browser may face the challenge again
+                wait_seconds = 180
             time.sleep(self._delay)
         self._first = False
         log.info("fetched %s -> %s", url, f"{len(html)} bytes" if html else "FAILED")

@@ -1,13 +1,13 @@
 # RUN REPORT - Cross-League Player Value Translation Engine
 
-_Generated 2026-07-10 05:16 UTC by `python -m src report`._
+_Generated 2026-07-11 16:44 UTC by `python -m src report`._
 
 ## Key numbers
 
-- normalized player-seasons: **21791** ({'asa': 20415, 'fbref': 1376})
-- qualifying moves: **689** across 576 players
-- league strengths (goals_added_raw_per90, anchor MLS=1.0): MLS 1.00, USLC 0.82, USL1 0.76, MLSNP 0.64
-- proof-of-concept verdict: **signal** - projected vs actual Spearman r=0.530 beats shuffled labels (p=0.0005, n=303)
+- normalized player-seasons: **34896** ({'asa': 20415, 'fbref': 10177, 'understat': 4304})
+- qualifying moves: **733** across 606 players
+- league strengths (goals_added_raw_per90, anchor MLS=1.0): MLS 1.00, USLC 0.82, USL1 0.76, MLSNP 0.65
+- proof-of-concept verdict: **signal** - projected vs actual Spearman r=0.551 beats shuffled labels (p=0.0005, n=324)
 
 ## Artifacts by phase
 
@@ -80,3 +80,27 @@ Only MLS 2018 and MLS 2022 scraped successfully from FBref; MLS 2019-2021/2023-2
 - **Artifact:** src/ingest/transfermarkt.py
 
 The Transfermarkt source is a stub backed by a small hand-entered fixture (interface documented in src/ingest/transfermarkt.py). Market-value validation labels stay out of the proof-of-concept until the owner provides the real scraper/feed.
+
+## RESOLVED: Crosswalk false-positive spot-check (owner sign-off 2026-07-11)
+
+- **Severity:** `info`
+- **Added:** 2026-07-11
+- **Artifact:** data/outputs/crosswalk_audit_sample.csv
+
+Owner reviewed data/outputs/crosswalk_audit_sample.csv in full and confirmed every match is correct. The crosswalk is cleared for downstream use.
+
+## RESOLVED: FBref coverage blocker (2026-07-11)
+
+- **Severity:** `info`
+- **Added:** 2026-07-11
+- **Artifact:** data/outputs/coverage_report.md
+
+All 16 FBref league-season slices are now cached (10,415 player-season rows) via the direct browser fetcher. Separately, FBref removed xG columns from its standard-stats pages, so Premier League xG/xA now comes from Understat's JSON endpoint - a plain-HTTP, fully repeatable path with no bot-protection interaction. The original blocker no longer constrains the calibration: ENG1 is in the league graph (n=24 moves touching, wide CI, honestly labeled).
+
+## Crosswalk false positive found and fixed: cross-system name collision
+
+- **Severity:** `info`
+- **Added:** 2026-07-11
+- **Artifact:** data/outputs/crosswalk_audit_sample.csv
+
+After adding Premier League data, 'Amy Rodriguez' (NWSL) auto-matched to 'Jay Rodriguez' (Premier League, same seasons, ~92 name score, no birth years available to penalize), fabricating an NWSL->ENG1 move. Fixed systematically: players from disjoint league systems (mens/womens) can never match, enforced in the matcher and covered by a regression test. The audit sample was regenerated after the fix; the earlier owner sign-off predates Premier League data and this sample refresh.

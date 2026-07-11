@@ -53,7 +53,9 @@ def score_match(name_a: str, name_b: str,
     Birth-year agreement adds up to +4 (capped at 100); a hard disagreement of
     >=2 years subtracts 25 (near-certain different person)."""
     base = fuzz.token_sort_ratio(normalize_name(name_a), normalize_name(name_b))
-    if birth_year_a and birth_year_b and not (pd.isna(birth_year_a) or pd.isna(birth_year_b)):
+    years_known = (birth_year_a is not None and birth_year_b is not None
+                   and not pd.isna(birth_year_a) and not pd.isna(birth_year_b))
+    if years_known and birth_year_a and birth_year_b:
         gap = abs(int(birth_year_a) - int(birth_year_b))
         if gap == 0:
             base = min(100.0, base + 4)
@@ -72,6 +74,10 @@ def match_records(
 
     Both frames need: <id>, `player_name`, optional `birth_year`, and `seasons`
     (a frozenset/set of ints used as the block: candidates must share a season).
+    An optional `groups` column (set of league-system groups, e.g. {'mens'} or
+    {'womens'}) adds a hard block: records from disjoint league systems never match
+    (a women's-league player must not bind to a men's-league record, however
+    similar the names).
     Returns one row per right record: right_id, matched left_id (or None),
     match_confidence, match_status in {'accepted', 'low_confidence', 'unmatched'}.
     """
@@ -99,11 +105,15 @@ def match_records(
         })
         best_score, best_id = -1.0, None
         r_seasons = set(r["seasons"]) if r["seasons"] else set()
+        r_groups = set(r["groups"]) if "groups" in r and r["groups"] else set()
         for pos in candidate_positions:
             l = left_records[pos]
             l_seasons = set(l["seasons"]) if l["seasons"] else set()
             if r_seasons and l_seasons and not (r_seasons & l_seasons):
                 continue  # season block: never active in overlapping seasons
+            l_groups = set(l["groups"]) if "groups" in l and l["groups"] else set()
+            if r_groups and l_groups and not (r_groups & l_groups):
+                continue  # league-system block: disjoint mens/womens systems
             s = score_match(l["player_name"], r["player_name"],
                             l.get("birth_year"), r.get("birth_year"))
             if s > best_score or (s == best_score and best_id is not None

@@ -12,18 +12,28 @@ from src.common.io import frame_hash, write_output
 from src.common.logging import get_logger, log_lineage
 from src.common.review_queue import add_review_item
 from src.harmonize.crosswalk import match_records
-from src.harmonize.metrics import normalize_asa, normalize_fbref, write_data_dictionary
+from src.harmonize.metrics import (
+    normalize_asa,
+    normalize_fbref,
+    normalize_understat,
+    write_data_dictionary,
+)
 
 log = get_logger("harmonize.runner")
 
 
 def _identity_blocks(player_seasons: pd.DataFrame, source: str) -> pd.DataFrame:
-    """One row per source player: name, birth_year, and the set of active seasons."""
+    """One row per source player: name, birth_year, the set of active seasons, and
+    the set of league-system groups (mens/womens) the player appeared in."""
+    from src.common.config import league_registry
+    groups_by_league = {code: spec.get("group") for code, spec in league_registry().items()}
     sub = player_seasons[player_seasons["source"] == source]
     return (sub.groupby("source_player_id")
             .agg(player_name=("player_name", "first"),
                  birth_year=("birth_year", "first"),
-                 seasons=("season", lambda s: frozenset(int(x) for x in s)))
+                 seasons=("season", lambda s: frozenset(int(x) for x in s)),
+                 groups=("league", lambda s: frozenset(
+                     g for g in (groups_by_league.get(l) for l in s) if g)))
             .reset_index())
 
 
@@ -34,30 +44,29 @@ def build_player_seasons() -> pd.DataFrame:
     goals_added = pd.read_parquet(interim / "asa_player_goals_added.parquet")
     players = pd.read_parquet(interim / "asa_players.parquet")
     fbref = pd.read_parquet(interim / "fbref_player_season.parquet")
+    understat_path = interim / "understat_league_players.parquet"
+    understat = (pd.read_parquet(understat_path) if understat_path.exists()
+                 else pd.DataFrame())
 
     asa_norm = normalize_asa(xgoals, xpass, goals_added, players)
     fbref_norm = normalize_fbref(fbref)
-    combined = pd.concat([asa_norm, fbref_norm], ignore_index=True)
+    understat_norm = normalize_understat(understat)
+    combined = pd.concat([asa_norm, fbref_norm, understat_norm], ignore_index=True)
     combined = combined.sort_values(
         ["source", "source_player_id", "league", "season"]).reset_index(drop=True)
     return combined
 
 
-def build_crosswalk(player_seasons: pd.DataFrame) -> tuple[pd.DataFrame, pd.DataFrame]:
-    """Returns (crosswalk, fbref_match_detail). Crosswalk: one row per source player id
-    with the person_id it resolves to and the match confidence."""
-    asa_ids = _identity_blocks(player_seasons, "asa")
-    fbref_ids = _identity_blocks(player_seasons, "fbref")
+EMPTY_MATCHES = pd.DataFrame(columns=["source_player_id", "matched_asa_id",
+                                      "candidate_asa_id", "match_confidence",
+                                      "match_status", "player_name", "source"])
 
-    if len(fbref_ids):
-        matches = match_records(asa_ids, fbref_ids, "source_player_id", "source_player_id")
-        matches = matches.rename(columns={
-            "matched_source_player_id": "matched_asa_id",
-            "candidate_source_player_id": "candidate_asa_id"})
-    else:
-        matches = pd.DataFrame(columns=["source_player_id", "matched_asa_id",
-                                        "candidate_asa_id", "match_confidence",
-                                        "match_status", "player_name"])
+
+def build_crosswalk(player_seasons: pd.DataFrame) -> tuple[pd.DataFrame, pd.DataFrame]:
+    """Returns (crosswalk, match_detail). Crosswalk: one row per source player id
+    with the person_id it resolves to and the match confidence. Every non-ASA
+    source is matched against the ASA identity backbone."""
+    asa_ids = _identity_blocks(player_seasons, "asa")
 
     rows = []
     for _, r in asa_ids.iterrows():
@@ -65,22 +74,40 @@ def build_crosswalk(player_seasons: pd.DataFrame) -> tuple[pd.DataFrame, pd.Data
                      "person_id": f"asa:{r['source_player_id']}",
                      "player_name": r["player_name"],
                      "match_confidence": 100.0, "match_status": "identity"})
-    for _, m in matches.iterrows():
-        person = (f"asa:{m['matched_asa_id']}" if m["match_status"] == "accepted"
-                  else f"fbref:{m['source_player_id']}")
-        rows.append({"source": "fbref", "source_player_id": m["source_player_id"],
-                     "person_id": person, "player_name": m["player_name"],
-                     "match_confidence": m["match_confidence"],
-                     "match_status": m["match_status"]})
+
+    other_sources = sorted(set(player_seasons["source"]) - {"asa"})
+    all_matches = []
+    expected_rows = len(asa_ids)
+    for source in other_sources:
+        source_ids = _identity_blocks(player_seasons, source)
+        expected_rows += len(source_ids)
+        if not len(source_ids):
+            continue
+        matches = match_records(asa_ids, source_ids, "source_player_id", "source_player_id")
+        matches = matches.rename(columns={
+            "matched_source_player_id": "matched_asa_id",
+            "candidate_source_player_id": "candidate_asa_id"})
+        matches["source"] = source
+        all_matches.append(matches)
+        for _, m in matches.iterrows():
+            person = (f"asa:{m['matched_asa_id']}" if m["match_status"] == "accepted"
+                      else f"{source}:{m['source_player_id']}")
+            rows.append({"source": source, "source_player_id": m["source_player_id"],
+                         "person_id": person, "player_name": m["player_name"],
+                         "match_confidence": m["match_confidence"],
+                         "match_status": m["match_status"]})
+
+    matches = (pd.concat(all_matches, ignore_index=True) if all_matches
+               else EMPTY_MATCHES.copy())
     crosswalk = pd.DataFrame(rows).sort_values(
         ["source", "source_player_id"]).reset_index(drop=True)
 
     # reconciliation: nothing silently dropped
-    assert len(crosswalk) == len(asa_ids) + len(fbref_ids), "crosswalk row count mismatch"
+    assert len(crosswalk) == expected_rows, "crosswalk row count mismatch"
     n_low = int((matches["match_status"] == "low_confidence").sum()) if len(matches) else 0
     n_un = int((matches["match_status"] == "unmatched").sum()) if len(matches) else 0
     log_lineage("crosswalk", "kept-source-scoped", n_low + n_un,
-                "fbref players without an accepted ASA match keep fbref-scoped person_id")
+                "players without an accepted ASA match keep source-scoped person_id")
     return crosswalk, matches
 
 

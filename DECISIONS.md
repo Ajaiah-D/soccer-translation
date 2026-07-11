@@ -4,6 +4,17 @@ Every non-trivial choice: what was decided, alternatives, reasoning, reversibili
 
 ---
 
+## D-014: Understat is the xG/xA source for European comparison leagues
+- **Decided:** Premier League player-season xG/xA comes from Understat's JSON endpoint (POST /main/getPlayersStats/), cached like every source. FBref's cached standard tables remain for identity/minutes/goals.
+- **Cause:** FBref removed the Expected (xG/xAG) columns from its standard-stats pages, and its bot protection requires an interactive verification that makes the browser path non-repeatable.
+- **Trade-offs:** Understat provides no birth dates or nationalities (the crosswalk leans on name + season blocking + the league-system block); ASA and Understat xG models differ, but the conversion factor absorbs systematic scale differences by construction - noted as added uncertainty, not hidden.
+- **Reversible:** yes
+
+## D-015: League-system (mens/womens) hard block in the crosswalk
+- **Decided:** Records whose league-system groups are disjoint can never match, regardless of name score. Groups are declared per league in config/leagues.yaml.
+- **Cause:** A real false positive: Amy Rodriguez (NWSL) auto-matched to Jay Rodriguez (Premier League, overlapping seasons, ~92 name score, no birth years available), fabricating an NWSL->ENG1 move that put NWSL into the men's calibration graph.
+- **Reversible:** yes (config + one matcher rule; regression-tested)
+
 ## D-013: FBref fetching moved from soccerdata to a direct browser fetcher
 - **Decided:** Replace the soccerdata scrape path with src/ingest/fbref_direct.py: one short Selenium session with the locally installed Chrome renders each missing league-season stats page (the site requires JavaScript execution; the first page may need a single human click on its verification checkbox, which clears the whole session), pages are spaced 6 seconds apart, and the standard table is parsed out of its HTML comment wrapper into the same column schema the old path produced.
 - **Alternatives:** keep soccerdata (its driver kept dying mid-session on this machine); plain HTTP with TLS impersonation (blocked: the protection layer demands JS execution); manual table downloads (owner explicitly declined).

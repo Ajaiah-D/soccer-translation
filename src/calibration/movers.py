@@ -29,7 +29,9 @@ def resolve_persons(player_seasons: pd.DataFrame, crosswalk: pd.DataFrame) -> pd
     assert merged["person_id"].notna().all(), "every player-season must resolve to a person"
 
     before = len(merged)
-    merged["_source_rank"] = (merged["source"] != "asa").astype(int)  # asa first
+    # preference when two sources cover the same person-league-season:
+    # asa (richest metrics) > understat (has xG/xA) > fbref (identity/minutes only)
+    merged["_source_rank"] = merged["source"].map({"asa": 0, "understat": 1}).fillna(2)
     merged = (merged.sort_values(["person_id", "league", "season", "_source_rank"])
               .drop_duplicates(["person_id", "league", "season"], keep="first")
               .drop(columns="_source_rank"))
