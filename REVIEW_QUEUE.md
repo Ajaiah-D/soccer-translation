@@ -46,3 +46,11 @@ Only MLS 2018 and MLS 2022 scraped successfully from FBref; MLS 2019-2021/2023-2
 - **Artifact:** src/ingest/transfermarkt.py
 
 The Transfermarkt source is a stub backed by a small hand-entered fixture (interface documented in src/ingest/transfermarkt.py). Market-value validation labels stay out of the proof-of-concept until the owner provides the real scraper/feed.
+
+## RESOLVED: Crosswalk false-positive spot-check (owner sign-off 2026-07-11)
+
+- **Severity:** `info`
+- **Added:** 2026-07-11
+- **Artifact:** data/outputs/crosswalk_audit_sample.csv
+
+Owner reviewed data/outputs/crosswalk_audit_sample.csv in full and confirmed every match is correct. The crosswalk is cleared for downstream use.

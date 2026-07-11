@@ -4,6 +4,12 @@ Every non-trivial choice: what was decided, alternatives, reasoning, reversibili
 
 ---
 
+## D-013: FBref fetching moved from soccerdata to a direct browser fetcher
+- **Decided:** Replace the soccerdata scrape path with src/ingest/fbref_direct.py: one short Selenium session with the locally installed Chrome renders each missing league-season stats page (the site requires JavaScript execution; the first page may need a single human click on its verification checkbox, which clears the whole session), pages are spaced 6 seconds apart, and the standard table is parsed out of its HTML comment wrapper into the same column schema the old path produced.
+- **Alternatives:** keep soccerdata (its driver kept dying mid-session on this machine); plain HTTP with TLS impersonation (blocked: the protection layer demands JS execution); manual table downloads (owner explicitly declined).
+- **Reasoning:** The browser path is the only one that worked reliably here; volume is tiny (one page per league-season, cached forever) and request spacing stays well under the site's published limits.
+- **Reversible:** yes (the cached_pull layer is unchanged; any fetcher that returns the same frame works)
+
 ## D-001: Task runner = Makefile + `python -m src` CLI (dual)
 - **Decided:** Provide a Makefile for POSIX/CI *and* a cross-platform `python -m src <phase>` CLI; both call the same entry points. Documentation treats the CLI as primary on this Windows host.
 - **Alternatives:** Makefile only (spec default); install GNU make on Windows.

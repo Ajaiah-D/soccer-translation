@@ -6,6 +6,9 @@ leagues:
     name: Major League Soccer
     asa: mls
     fbref: USA-Major League Soccer
+    fbref_comp_id: 22
+    fbref_slug: Major-League-Soccer
+    fbref_season_style: calendar
     tier: us_1
   USLC:
     name: USL Championship
@@ -38,6 +41,9 @@ leagues:
     name: Premier League
     asa: null
     fbref: ENG-Premier League
+    fbref_comp_id: 9
+    fbref_slug: Premier-League
+    fbref_season_style: cross
     tier: eng_1
 
 # Strong footballing priors used by the Phase 4 monotonicity gate:

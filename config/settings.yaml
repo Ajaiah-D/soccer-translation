@@ -29,6 +29,8 @@ ingest:
   rate_limit_seconds: 1.0
   max_retries: 3
   backoff_base_seconds: 2.0
+  # spacing between FBref page loads (stay well under the site's rate limits)
+  fbref_page_delay_seconds: 6.0
 
 crosswalk:
   # rapidfuzz token_sort_ratio threshold (0-100) for an auto-accepted match

@@ -16,6 +16,7 @@ dependencies = [
     "matplotlib>=3.9",
     "requests>=2.32",
     "pyarrow>=16",
+    "curl-cffi>=0.15.0",
 ]
 
 [dependency-groups]
