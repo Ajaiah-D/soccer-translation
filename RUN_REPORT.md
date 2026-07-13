@@ -1,6 +1,6 @@
 # RUN REPORT - Cross-League Player Value Translation Engine
 
-_Generated 2026-07-11 21:32 UTC by `python -m src report`._
+_Generated 2026-07-13 21:54 UTC by `python -m src report`._
 
 ## Key numbers
 
@@ -120,3 +120,11 @@ Championship / 2. Bundesliga / similar second tiers are not in the study: no ope
 - **Artifact:** data/outputs/calibration_diagnostics.md
 
 The SPI anchor puts Big-5 club quality at 1.6-1.9x MLS while the age-adjusted mover factors put per-90 production translation near 0.9-1.1x. Production factors are legitimately much flatter than club-quality gaps, but part of the residual is survivorship: movers who fail abroad rarely reach 900 qualifying minutes, so failures are undersampled and strong leagues look easier. Treat US<->Europe factors as directional with wide uncertainty; the American-pyramid factors are unaffected (dense, symmetric-age, single-source). Possible future mitigations: lower destination-minutes threshold with minutes-weighting, explicit selection modeling, European birth-year enrichment via Wikidata to age-adjust intra-Europe movers.
+
+## UPDATE: survivorship mitigations implemented; all priors satisfied (2026-07-11)
+
+- **Severity:** `info`
+- **Added:** 2026-07-11
+- **Artifact:** data/outputs/calibration_diagnostics.md
+
+After age adjustment (72% birth-year coverage for European movers via Wikidata), a 450-minute destination threshold with minutes-weighted estimation, and per-pair attrition reporting, every footballing prior is satisfied and ENG1>MLS / ESP1>MLS are confident: ENG1 1.36, ESP1 1.25, ITA1 1.15, FRA1 1.12, GER1 1.11, MLS 1.00, USLC 0.71, USL1 0.68, MLSNP 0.58 (xG+xA per 90). Validation improved to r=0.580 (n=372, p=0.0005). Residual caveats: total failures abroad remain invisible to ratios (attrition table quantifies frequency), and the anchor gap to SPI club-quality ratios persists by construction (production vs quality scales).
