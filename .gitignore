@@ -1,5 +1,6 @@
 # Environments
 .venv/
+.env
 __pycache__/
 *.pyc
 .pytest_cache/
@@ -20,3 +21,6 @@ notebooks/.ipynb_checkpoints/
 # OS
 Thumbs.db
 .DS_Store
+
+# Local run logs
+logs/

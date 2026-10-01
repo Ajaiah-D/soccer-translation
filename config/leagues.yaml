@@ -4,6 +4,7 @@
 leagues:
   MLS:
     name: Major League Soccer
+    api_football: 253
     asa: mls
     fbref: USA-Major League Soccer
     fbref_comp_id: 22
@@ -47,6 +48,7 @@ leagues:
 # FBref ids kept for the cached historical slices)
   ENG1:
     name: Premier League
+    api_football: 39
     asa: null
     fbref: ENG-Premier League
     fbref_comp_id: 9
@@ -58,6 +60,7 @@ leagues:
     tier: eng_1
   GER1:
     name: Bundesliga
+    api_football: 78
     asa: null
     fbref: null
     understat: Bundesliga
@@ -66,6 +69,7 @@ leagues:
     tier: ger_1
   ESP1:
     name: La Liga
+    api_football: 140
     asa: null
     fbref: null
     understat: La_liga
@@ -74,6 +78,7 @@ leagues:
     tier: esp_1
   ITA1:
     name: Serie A
+    api_football: 135
     asa: null
     fbref: null
     understat: Serie_A
@@ -82,6 +87,7 @@ leagues:
     tier: ita_1
   FRA1:
     name: Ligue 1
+    api_football: 61
     asa: null
     fbref: null
     understat: Ligue_1
@@ -91,8 +97,11 @@ leagues:
 
 # Anchor-only leagues: no open per-player data source, included so the SPI anchor
 # can report their relative strength; they never enter the mover calibration.
+# (ENG2 now has API-Football player data being backfilled; it stays anchor-only until
+# that catalog is integrated into harmonize/calibration.)
   ENG2:
     name: EFL Championship
+    api_football: 40
     asa: null
     fbref: null
     spi: English League Championship
@@ -107,6 +116,54 @@ leagues:
     anchor_only: true
     group: mens
     tier: ger_2
+
+# Scouting-catalog leagues: player data from API-Football only (free tier covers
+# seasons 2022-2024). Not yet part of harmonize/calibration.
+  POR1:
+    name: Primeira Liga
+    api_football: 94
+    group: mens
+    tier: por_1
+  NED1:
+    name: Eredivisie
+    api_football: 88
+    group: mens
+    tier: ned_1
+  BEL1:
+    name: Jupiler Pro League
+    api_football: 144
+    group: mens
+    tier: bel_1
+  BRA1:
+    name: Brasileirao Serie A
+    api_football: 71
+    group: mens
+    tier: bra_1
+  ARG1:
+    name: Liga Profesional Argentina
+    api_football: 128
+    group: mens
+    tier: arg_1
+  AUT1:
+    name: Austrian Bundesliga
+    api_football: 218
+    group: mens
+    tier: aut_1
+  SUI1:
+    name: Swiss Super League
+    api_football: 207
+    group: mens
+    tier: sui_1
+  DEN1:
+    name: Danish Superliga
+    api_football: 119
+    group: mens
+    tier: den_1
+  SCO1:
+    name: Scottish Premiership
+    api_football: 179
+    group: mens
+    tier: sco_1
 
 # Strong footballing priors used by the Phase 4 monotonicity gate:
 # each entry means "left league is stronger than right league" for men's pyramid metrics.

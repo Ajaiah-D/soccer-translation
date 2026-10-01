@@ -41,6 +41,19 @@ python -m uv run python -m src phase2
 python -m uv run pytest
 ```
 
+### API-Football catalog (wide league coverage, daily backfill)
+
+Needs a free key from dashboard.api-football.com in a gitignored `.env` file
+(`API_FOOTBALL_KEY=...`). The free plan allows 100 requests/day, seasons
+2022-2024, and pages 1-3 only, so players are pulled per team and the catalog
+fills over about four weeks; every run resumes where the last one stopped.
+
+```
+python -m uv run python -m src apif          # spend today's quota on uncached pages
+python -m uv run python -m src apif-status   # progress, from cache only (no network)
+scripts\apif_daily.cmd                        # same as apif, logged to logs\ (for Task Scheduler)
+```
+
 On POSIX systems `make setup`, `make all`, `make phase1` ... wrap the same commands.
 
 ## Key outputs

@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import functools
+import os
 from pathlib import Path
 from typing import Any
 
@@ -22,6 +23,19 @@ def load_settings() -> dict[str, Any]:
 def load_leagues() -> dict[str, Any]:
     with open(CONFIG_DIR / "leagues.yaml", encoding="utf-8") as f:
         return yaml.safe_load(f)
+
+
+def read_env_var(name: str, env_file: Path = PROJECT_ROOT / ".env") -> str | None:
+    """Secret lookup: process environment first, then the gitignored .env file
+    (KEY=value lines, # comments). None when absent from both."""
+    if os.environ.get(name):
+        return os.environ[name]
+    if env_file.exists():
+        for line in env_file.read_text(encoding="utf-8").splitlines():
+            key, sep, value = line.strip().partition("=")
+            if sep and key.strip() == name:
+                return value.strip().strip('"').strip("'") or None
+    return None
 
 
 def random_seed() -> int:

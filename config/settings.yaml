@@ -16,6 +16,10 @@ seasons:
   fbref:
     start: 2018
     end: 2025
+  # the free API-Football plan only serves these seasons (API error names the window)
+  api_football:
+    start: 2022
+    end: 2024
 
 paths:
   data_raw: data/raw
@@ -35,6 +39,19 @@ ingest:
   # verification click, so live FBref fetching is OPT-IN. The pipeline runs fully
   # unattended on ASA + Understat; already-cached FBref slices are always used.
   fbref_fetch_enabled: false
+
+api_football:
+  base_url: https://v3.football.api-sports.io
+  # key is read from the API_FOOTBALL_KEY env var or the gitignored .env file
+  key_env_var: API_FOOTBALL_KEY
+  # requests left untouched each day (manual probes, retries)
+  daily_reserve: 5
+  # free plan caps requests per minute; 7s spacing stays under 10/min
+  request_delay_seconds: 7.0
+  # free plan rejects page > 3, so players are pulled per team (a squad fits in 3
+  # pages of 20); a team needing more is reported as truncated
+  max_page: 3
+  timeout_seconds: 30
 
 crosswalk:
   # rapidfuzz token_sort_ratio threshold (0-100) for an auto-accepted match

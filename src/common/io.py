@@ -64,6 +64,18 @@ def _parquet_safe(df: pd.DataFrame) -> pd.DataFrame:
     return df
 
 
+def _cache_file(source: str, endpoint: str, params: dict[str, Any]) -> tuple[str, str, Path]:
+    key = cache_key(source, endpoint, params)
+    fname = f"{source}__{endpoint}__{key}.parquet"
+    return key, fname, data_path("data_raw") / fname
+
+
+def cached_frame(source: str, endpoint: str, params: dict[str, Any]) -> pd.DataFrame | None:
+    """The cached frame for a pull, or None if it was never pulled. Never fetches."""
+    _, _, fpath = _cache_file(source, endpoint, params)
+    return pd.read_parquet(fpath) if fpath.exists() else None
+
+
 def cached_pull(
     source: str,
     endpoint: str,
@@ -76,9 +88,7 @@ def cached_pull(
     An empty fetch result is cached too (as a legitimate 'no data for this slice' answer),
     so re-runs stay offline.
     """
-    key = cache_key(source, endpoint, params)
-    fname = f"{source}__{endpoint}__{key}.parquet"
-    fpath = data_path("data_raw") / fname
+    key, fname, fpath = _cache_file(source, endpoint, params)
 
     if fpath.exists() and not refresh:
         return pd.read_parquet(fpath)

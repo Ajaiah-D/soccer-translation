@@ -1,4 +1,4 @@
-"""Cross-platform phase runner: `python -m src <phase0|phase1|...|all|report>`.
+"""Cross-platform phase runner: `python -m src <phase0|phase1|...|all|report|apif|apif-status>`.
 
 Equivalent to the Makefile targets; both call these entry points.
 Running with no argument performs a no-op environment check and exits 0 (Phase 0 gate).
@@ -60,7 +60,7 @@ def run_phase(name: str, refresh: bool = False) -> None:
 def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(prog="python -m src")
     parser.add_argument("target", nargs="?", default=None,
-                        choices=PHASES + ["all", "report"],
+                        choices=PHASES + ["all", "report", "apif", "apif-status"],
                         help="phase to run; omit for a no-op environment check")
     parser.add_argument("--refresh", action="store_true",
                         help="bypass cache and re-pull raw data (phase1 only)")
@@ -83,6 +83,20 @@ def main(argv: list[str] | None = None) -> int:
     if args.target == "report":
         from src.report import write_run_report
         write_run_report()
+        return 0
+
+    if args.target == "apif":
+        # one day's slice of the resumable API-Football backfill (quota-bounded)
+        from src.ingest.api_football import run_backfill
+        run_backfill()
+        return 0
+
+    if args.target == "apif-status":
+        from src.ingest.api_football import (api_football_targets, catalog_status,
+                                             write_catalog_report)
+        max_page = int(load_settings()["api_football"]["max_page"])
+        report = write_catalog_report(catalog_status(api_football_targets(), max_page), None)
+        print(report.read_text(encoding="utf-8"))
         return 0
 
     run_phase(args.target, refresh=args.refresh)
