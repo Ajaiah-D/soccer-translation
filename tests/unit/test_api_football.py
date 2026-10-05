@@ -10,6 +10,7 @@ from src.common.config import read_env_var
 from src.common.io import cached_frame, cached_pull
 from src.ingest.api_football import (
     ApiFootballError,
+    ApiFootballTransientError,
     Target,
     api_football_targets,
     backfill,
@@ -18,6 +19,7 @@ from src.ingest.api_football import (
     flatten_players,
     parse_page,
     parse_teams,
+    with_retries,
     write_catalog_report,
 )
 
@@ -179,10 +181,67 @@ def test_backfill_never_requests_past_the_plan_page_cap(tmp_cache):
 def test_backfill_stops_on_api_error_and_caches_nothing_for_that_page(tmp_cache):
     fetch, _ = _fake_site(*SITE, error_on=lambda path, p: path == "players")
     result = backfill(fetch, TARGETS, budget=100, max_page=3)
-    assert result.fetched == 1 and not result.complete
+    # the refused request is counted too: it may still use up quota
+    assert result.fetched == 2 and not result.complete
     assert "request limit" in result.stopped_reason
     assert cached_frame("api_football", "players",
                         {"league": 1, "season": 2023, "team": 10, "page": 1}) is None
+
+
+def test_backfill_skips_a_team_on_transient_failure_and_keeps_going(tmp_cache):
+    """A timeout on one team (real case: Hertha 2022 page 2, two nights running) must
+    not halt the catalog: skip that team, finish the rest, retry it on a later run."""
+    base_fetch, calls = _fake_site(*SITE)
+
+    def fetch(path, params):
+        if path == "players" and params["team"] == 10 and params["page"] == 2:
+            calls.append((path, dict(params)))
+            raise ApiFootballTransientError("players request failed: Read timed out.")
+        return base_fetch(path, params)
+
+    result = backfill(fetch, TARGETS, budget=100, max_page=3)
+    assert _pages(calls) == [("teams", 1), (10, 1), (10, 2), (11, 1),
+                             ("teams", 2), (20, 1), (20, 2)]
+    assert not result.complete and result.skipped == 1
+    assert cached_frame("api_football", "players",
+                        {"league": 1, "season": 2023, "team": 10, "page": 2}) is None
+
+    calls.clear()
+    result = backfill(base_fetch, TARGETS, budget=100, max_page=3)
+    assert _pages(calls) == [(10, 2)] and result.complete
+
+
+def test_with_retries_recovers_from_transient_failures():
+    attempts = []
+
+    def flaky(path, params):
+        attempts.append(1)
+        if len(attempts) < 3:
+            raise ApiFootballTransientError("Read timed out.")
+        return {"ok": True}
+
+    assert with_retries(flaky, attempts=3, backoff=lambda n: None)("players", {}) == {"ok": True}
+    assert len(attempts) == 3
+
+
+def test_with_retries_gives_up_after_the_last_attempt():
+    def down(path, params):
+        raise ApiFootballTransientError("Read timed out.")
+
+    with pytest.raises(ApiFootballTransientError):
+        with_retries(down, attempts=3, backoff=lambda n: None)("players", {})
+
+
+def test_with_retries_does_not_retry_plan_or_quota_errors():
+    attempts = []
+
+    def refused(path, params):
+        attempts.append(1)
+        raise ApiFootballError("plan: Free plans do not have access to this season")
+
+    with pytest.raises(ApiFootballError):
+        with_retries(refused, attempts=3, backoff=lambda n: None)("players", {})
+    assert len(attempts) == 1
 
 
 def test_catalog_status_reads_progress_from_cache_only(tmp_cache):

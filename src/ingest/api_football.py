@@ -41,7 +41,11 @@ Fetch = Callable[[str, dict[str, Any]], dict[str, Any]]
 
 
 class ApiFootballError(RuntimeError):
-    """The API answered with an error (plan, quota, auth) or was unreachable."""
+    """The API refused a request (plan, quota, auth): stop the run."""
+
+
+class ApiFootballTransientError(ApiFootballError):
+    """A request failed in a way worth retrying (timeout, connection drop, 5xx, 429)."""
 
 
 @dataclass(frozen=True)
@@ -56,6 +60,9 @@ class BackfillResult:
     fetched: int
     complete: bool
     stopped_reason: str | None = None
+    # teams (or league-seasons, if their team list failed) left for a later run
+    # after a transient failure survived every retry
+    skipped: int = 0
 
 
 def api_football_targets() -> list[Target]:
@@ -147,8 +154,10 @@ class _BudgetSpent(Exception):
 def backfill(fetch: Fetch, targets: list[Target], budget: int,
              max_page: int) -> BackfillResult:
     """Walk targets team by team and page by page, fetching only uncached responses,
-    until the catalog is complete, the budget is spent, or the API refuses."""
-    fetched = 0
+    until the catalog is complete, the budget is spent, or the API refuses. A
+    transient failure skips only the team it hit (nothing is cached for it, so a later
+    run retries it); one slow request never stalls the whole catalog."""
+    fetched = skipped = 0
 
     def get(endpoint: str, params: dict[str, int],
             parse: Callable[[dict[str, Any]], pd.DataFrame]) -> pd.DataFrame:
@@ -158,9 +167,8 @@ def backfill(fetch: Fetch, targets: list[Target], budget: int,
             return df
         if fetched >= budget:
             raise _BudgetSpent
-        df = cached_pull(SOURCE, endpoint, params, lambda: parse(fetch(endpoint, params)))
-        fetched += 1
-        return df
+        fetched += 1  # a failed request may still count against the daily quota
+        return cached_pull(SOURCE, endpoint, params, lambda: parse(fetch(endpoint, params)))
 
     def players(payload: dict[str, Any]) -> pd.DataFrame:
         rows, n_pages = parse_page(payload)
@@ -168,20 +176,32 @@ def backfill(fetch: Fetch, targets: list[Target], budget: int,
 
     try:
         for target in targets:
-            teams = get("teams", _teams_params(target), parse_teams)
+            try:
+                teams = get("teams", _teams_params(target), parse_teams)
+            except ApiFootballTransientError as exc:
+                log.warning("api_football skipping %s for now: %s", target, exc)
+                skipped += 1
+                continue
             for team_id in teams["team_id"]:
                 page, last = 1, None
-                while last is None or page <= last:
-                    df = get("players", _players_params(target, team_id, page), players)
-                    if last is None:
-                        last = min(_page_total(df, page), max_page)
-                    page += 1
+                try:
+                    while last is None or page <= last:
+                        df = get("players", _players_params(target, team_id, page), players)
+                        if last is None:
+                            last = min(_page_total(df, page), max_page)
+                        page += 1
+                except ApiFootballTransientError as exc:
+                    log.warning("api_football skipping %s team %s for now (page %d): %s",
+                                target, team_id, page, exc)
+                    skipped += 1
     except _BudgetSpent:
-        return BackfillResult(fetched, False, "daily budget spent")
+        return BackfillResult(fetched, False, "daily budget spent", skipped)
     except ApiFootballError as exc:
         log.warning("api_football stopped after %d requests: %s", fetched, exc)
-        return BackfillResult(fetched, False, str(exc))
-    return BackfillResult(fetched, True)
+        return BackfillResult(fetched, False, str(exc), skipped)
+    return BackfillResult(fetched, skipped == 0,
+                          f"{skipped} skipped after transient failures" if skipped else None,
+                          skipped)
 
 
 def catalog_status(targets: list[Target], max_page: int) -> pd.DataFrame:
@@ -216,21 +236,51 @@ def _get(key: str, path: str, params: dict[str, Any] | None = None) -> dict[str,
         resp = requests.get(f"{cfg['base_url']}/{path}", params=params,
                             headers={"x-apisports-key": key},
                             timeout=float(cfg["timeout_seconds"]))
-        resp.raise_for_status()
+    except requests.RequestException as exc:
+        raise ApiFootballTransientError(f"{path} request failed: {exc}") from exc
+    if resp.status_code == 429 or resp.status_code >= 500:
+        raise ApiFootballTransientError(f"{path} request failed: HTTP {resp.status_code}")
+    if resp.status_code >= 400:
+        raise ApiFootballError(f"{path} request refused: HTTP {resp.status_code}")
+    try:
         return resp.json()
-    except (requests.RequestException, ValueError) as exc:
-        raise ApiFootballError(f"{path} request failed: {exc}") from exc
+    except ValueError as exc:
+        raise ApiFootballTransientError(f"{path} returned invalid JSON: {exc}") from exc
+
+
+def with_retries(fetch: Fetch, attempts: int,
+                 backoff: Callable[[int], None]) -> Fetch:
+    """Retry transient failures up to `attempts` tries in total, calling backoff(n)
+    after failed try n. Plan/quota/auth refusals are raised at once."""
+    def wrapped(path: str, params: dict[str, Any]) -> dict[str, Any]:
+        for attempt in range(1, attempts + 1):
+            try:
+                return fetch(path, params)
+            except ApiFootballTransientError as exc:
+                if attempt == attempts:
+                    raise
+                log.info("api_football %s %s attempt %d failed (%s); retrying",
+                         path, params, attempt, exc)
+                backoff(attempt)
+        raise AssertionError("unreachable")
+
+    return wrapped
 
 
 def live_fetcher(key: str) -> Fetch:
-    """Network fetcher, spaced to stay under the per-minute cap."""
+    """Network fetcher, spaced to stay under the per-minute cap, with retries on
+    transient failures (ingest.max_retries tries, exponential backoff)."""
     delay = float(load_settings()["api_football"]["request_delay_seconds"])
+    ingest = load_settings()["ingest"]
 
     def fetch(path: str, params: dict[str, Any]) -> dict[str, Any]:
         time.sleep(delay)
         return _get(key, path, params)
 
-    return fetch
+    def backoff(attempt: int) -> None:
+        time.sleep(float(ingest["backoff_base_seconds"]) * 2 ** attempt)
+
+    return with_retries(fetch, int(ingest["max_retries"]), backoff)
 
 
 def write_catalog_report(status: pd.DataFrame, result: BackfillResult | None) -> Path:
