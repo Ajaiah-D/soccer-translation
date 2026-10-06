@@ -331,6 +331,20 @@
     "rows": 20,
     "source": "api_football"
   },
+  "0c72c40a2c2e0da7": {
+    "content_hash": "dc40afe3772c8c2d",
+    "endpoint": "players",
+    "file": "api_football__players__0c72c40a2c2e0da7.parquet",
+    "params": {
+      "league": 78,
+      "page": 2,
+      "season": 2023,
+      "team": 162
+    },
+    "pulled_at": "2026-10-05T06:37:21.542096+00:00",
+    "rows": 20,
+    "source": "api_football"
+  },
   "0c7a7e5760a19ae5": {
     "content_hash": "3a3b7a347861ebfc",
     "endpoint": "players",
@@ -399,6 +413,48 @@
     "rows": 20,
     "source": "api_football"
   },
+  "0e9c3ce5950c023d": {
+    "content_hash": "1e8a1759737f0adf",
+    "endpoint": "players",
+    "file": "api_football__players__0e9c3ce5950c023d.parquet",
+    "params": {
+      "league": 78,
+      "page": 3,
+      "season": 2023,
+      "team": 157
+    },
+    "pulled_at": "2026-10-05T06:36:18.376015+00:00",
+    "rows": 19,
+    "source": "api_football"
+  },
+  "0ec9f046fbb11cb2": {
+    "content_hash": "487babbefc64e2f0",
+    "endpoint": "players",
+    "file": "api_football__players__0ec9f046fbb11cb2.parquet",
+    "params": {
+      "league": 78,
+      "page": 1,
+      "season": 2023,
+      "team": 192
+    },
+    "pulled_at": "2026-10-05T06:42:34.375892+00:00",
+    "rows": 20,
+    "source": "api_football"
+  },
+  "0ef9cc330c7cf138": {
+    "content_hash": "03d8129fc1242589",
+    "endpoint": "players",
+    "file": "api_football__players__0ef9cc330c7cf138.parquet",
+    "params": {
+      "league": 78,
+      "page": 1,
+      "season": 2023,
+      "team": 170
+    },
+    "pulled_at": "2026-10-05T06:39:36.449109+00:00",
+    "rows": 20,
+    "source": "api_football"
+  },
   "0f267cab54b60f10": {
     "content_hash": "d5b46ab341813ed6",
     "endpoint": "players",
@@ -424,6 +480,34 @@
       "team": 1596
     },
     "pulled_at": "2026-09-30T22:06:41.610695+00:00",
+    "rows": 20,
+    "source": "api_football"
+  },
+  "11652b2c69dd6028": {
+    "content_hash": "9f155a0df4565690",
+    "endpoint": "players",
+    "file": "api_football__players__11652b2c69dd6028.parquet",
+    "params": {
+      "league": 78,
+      "page": 3,
+      "season": 2023,
+      "team": 165
+    },
+    "pulled_at": "2026-10-05T06:38:31.844275+00:00",
+    "rows": 12,
+    "source": "api_football"
+  },
+  "11c0e44ef075aca4": {
+    "content_hash": "0d36a489a223b422",
+    "endpoint": "players",
+    "file": "api_football__players__11c0e44ef075aca4.parquet",
+    "params": {
+      "league": 78,
+      "page": 2,
+      "season": 2023,
+      "team": 182
+    },
+    "pulled_at": "2026-10-05T06:42:04.496123+00:00",
     "rows": 20,
     "source": "api_football"
   },
@@ -575,6 +659,20 @@
     },
     "pulled_at": "2026-10-01T01:04:09.961399+00:00",
     "rows": 20,
+    "source": "api_football"
+  },
+  "17b530286ae1acea": {
+    "content_hash": "1cc32522d6153852",
+    "endpoint": "players",
+    "file": "api_football__players__17b530286ae1acea.parquet",
+    "params": {
+      "league": 78,
+      "page": 3,
+      "season": 2023,
+      "team": 173
+    },
+    "pulled_at": "2026-10-05T06:40:40.285701+00:00",
+    "rows": 3,
     "source": "api_football"
   },
   "17f12f08b86ecd61": {
@@ -1025,6 +1123,20 @@
     "rows": 635,
     "source": "asa"
   },
+  "2026f98b22187512": {
+    "content_hash": "7d7c0b0a19636b84",
+    "endpoint": "players",
+    "file": "api_football__players__2026f98b22187512.parquet",
+    "params": {
+      "league": 78,
+      "page": 3,
+      "season": 2022,
+      "team": 174
+    },
+    "pulled_at": "2026-10-05T06:33:44.221533+00:00",
+    "rows": 7,
+    "source": "api_football"
+  },
   "208eb647f15b60c2": {
     "content_hash": "ca061707ccaeaf3b",
     "endpoint": "player_xgoals",
@@ -1199,6 +1311,34 @@
     "rows": 20,
     "source": "api_football"
   },
+  "2430e4b10412dcf1": {
+    "content_hash": "cec3b87df6027723",
+    "endpoint": "players",
+    "file": "api_football__players__2430e4b10412dcf1.parquet",
+    "params": {
+      "league": 78,
+      "page": 2,
+      "season": 2023,
+      "team": 161
+    },
+    "pulled_at": "2026-10-05T06:36:57.477434+00:00",
+    "rows": 20,
+    "source": "api_football"
+  },
+  "246680686c7c065f": {
+    "content_hash": "c3a34c0a1da967c3",
+    "endpoint": "players",
+    "file": "api_football__players__246680686c7c065f.parquet",
+    "params": {
+      "league": 78,
+      "page": 2,
+      "season": 2022,
+      "team": 176
+    },
+    "pulled_at": "2026-10-05T06:34:07.653901+00:00",
+    "rows": 15,
+    "source": "api_football"
+  },
   "24969a5cde69e0d1": {
     "content_hash": "d65658f88a0fdc1e",
     "endpoint": "player_xpass",
@@ -1319,6 +1459,20 @@
     "rows": 20,
     "source": "api_football"
   },
+  "289d7868ef7236e8": {
+    "content_hash": "66062d4a6aeee920",
+    "endpoint": "players",
+    "file": "api_football__players__289d7868ef7236e8.parquet",
+    "params": {
+      "league": 78,
+      "page": 3,
+      "season": 2023,
+      "team": 192
+    },
+    "pulled_at": "2026-10-05T06:42:51.654319+00:00",
+    "rows": 3,
+    "source": "api_football"
+  },
   "290e8c359dea14a4": {
     "content_hash": "31e48eb2858a83ef",
     "endpoint": "player_xpass",
@@ -1330,6 +1484,20 @@
     "pulled_at": "2026-07-10T03:57:51.431976+00:00",
     "rows": 325,
     "source": "asa"
+  },
+  "29a38fa1d4e53436": {
+    "content_hash": "25f70dd5cc0e5995",
+    "endpoint": "players",
+    "file": "api_football__players__29a38fa1d4e53436.parquet",
+    "params": {
+      "league": 78,
+      "page": 3,
+      "season": 2022,
+      "team": 169
+    },
+    "pulled_at": "2026-10-05T06:32:13.508093+00:00",
+    "rows": 4,
+    "source": "api_football"
   },
   "29afba39fa44c94f": {
     "content_hash": "91153b8d1cdf9d6f",
@@ -1661,6 +1829,20 @@
     "rows": 343,
     "source": "asa"
   },
+  "2f6d8ae72fab9a1a": {
+    "content_hash": "b5d62230d315a07c",
+    "endpoint": "players",
+    "file": "api_football__players__2f6d8ae72fab9a1a.parquet",
+    "params": {
+      "league": 78,
+      "page": 3,
+      "season": 2022,
+      "team": 192
+    },
+    "pulled_at": "2026-10-05T06:35:46.626480+00:00",
+    "rows": 1,
+    "source": "api_football"
+  },
   "2f7808b0aa8ce8e3": {
     "content_hash": "f479b61a8a1c41f9",
     "endpoint": "players",
@@ -1879,6 +2061,20 @@
     "rows": 589,
     "source": "understat"
   },
+  "3545807dfd01ea22": {
+    "content_hash": "49c915674e3515fe",
+    "endpoint": "players",
+    "file": "api_football__players__3545807dfd01ea22.parquet",
+    "params": {
+      "league": 78,
+      "page": 1,
+      "season": 2022,
+      "team": 173
+    },
+    "pulled_at": "2026-10-05T06:33:11.783482+00:00",
+    "rows": 20,
+    "source": "api_football"
+  },
   "354de1a56a6476fb": {
     "content_hash": "40b6452aa6256a78",
     "endpoint": "player_goals_added",
@@ -1916,6 +2112,20 @@
       "team": 66
     },
     "pulled_at": "2026-10-02T01:12:28.477298+00:00",
+    "rows": 20,
+    "source": "api_football"
+  },
+  "36b04e7064e47ac1": {
+    "content_hash": "357220b85eebb9b0",
+    "endpoint": "players",
+    "file": "api_football__players__36b04e7064e47ac1.parquet",
+    "params": {
+      "league": 78,
+      "page": 2,
+      "season": 2023,
+      "team": 169
+    },
+    "pulled_at": "2026-10-05T06:39:20.827485+00:00",
     "rows": 20,
     "source": "api_football"
   },
@@ -2067,6 +2277,20 @@
     "rows": 20,
     "source": "api_football"
   },
+  "39b687a9dd4f8d9f": {
+    "content_hash": "f52f2cfbfb863819",
+    "endpoint": "players",
+    "file": "api_football__players__39b687a9dd4f8d9f.parquet",
+    "params": {
+      "league": 78,
+      "page": 1,
+      "season": 2022,
+      "team": 172
+    },
+    "pulled_at": "2026-10-05T06:32:47.557491+00:00",
+    "rows": 20,
+    "source": "api_football"
+  },
   "39e55e067d209e81": {
     "content_hash": "22cc9a41182805ba",
     "endpoint": "players",
@@ -2161,6 +2385,20 @@
     "rows": 20,
     "source": "api_football"
   },
+  "3bdc23432f16d197": {
+    "content_hash": "empty",
+    "endpoint": "players",
+    "file": "api_football__players__3bdc23432f16d197.parquet",
+    "params": {
+      "league": 78,
+      "page": 1,
+      "season": 2023,
+      "team": 158
+    },
+    "pulled_at": "2026-10-05T06:36:25.999026+00:00",
+    "rows": 0,
+    "source": "api_football"
+  },
   "3d113e86df9812ca": {
     "content_hash": "12762118925768e2",
     "endpoint": "players",
@@ -2213,6 +2451,34 @@
     "rows": 20,
     "source": "api_football"
   },
+  "3eb762e7fe9a5d53": {
+    "content_hash": "08288d921d285a47",
+    "endpoint": "players",
+    "file": "api_football__players__3eb762e7fe9a5d53.parquet",
+    "params": {
+      "league": 78,
+      "page": 2,
+      "season": 2023,
+      "team": 167
+    },
+    "pulled_at": "2026-10-05T06:38:49.399468+00:00",
+    "rows": 19,
+    "source": "api_football"
+  },
+  "3f3e526908c21382": {
+    "content_hash": "efd84851a6d19c5c",
+    "endpoint": "players",
+    "file": "api_football__players__3f3e526908c21382.parquet",
+    "params": {
+      "league": 78,
+      "page": 3,
+      "season": 2023,
+      "team": 164
+    },
+    "pulled_at": "2026-10-05T06:38:08.564347+00:00",
+    "rows": 4,
+    "source": "api_football"
+  },
   "3f4ebb3271602c67": {
     "content_hash": "f1f3a3323d07bc53",
     "endpoint": "league_players",
@@ -2250,6 +2516,20 @@
     "pulled_at": "2026-07-10T03:59:37.452348+00:00",
     "rows": 0,
     "source": "asa"
+  },
+  "4080cf91098cd0c6": {
+    "content_hash": "23ba1873b9189e49",
+    "endpoint": "players",
+    "file": "api_football__players__4080cf91098cd0c6.parquet",
+    "params": {
+      "league": 78,
+      "page": 2,
+      "season": 2023,
+      "team": 165
+    },
+    "pulled_at": "2026-10-05T06:38:23.962081+00:00",
+    "rows": 20,
+    "source": "api_football"
   },
   "40916fce0dc30478": {
     "content_hash": "empty",
@@ -2433,6 +2713,20 @@
     },
     "pulled_at": "2026-10-01T01:06:59.756753+00:00",
     "rows": 6,
+    "source": "api_football"
+  },
+  "44182e7983076901": {
+    "content_hash": "1461de2948c589a0",
+    "endpoint": "players",
+    "file": "api_football__players__44182e7983076901.parquet",
+    "params": {
+      "league": 78,
+      "page": 1,
+      "season": 2023,
+      "team": 165
+    },
+    "pulled_at": "2026-10-05T06:38:16.242744+00:00",
+    "rows": 20,
     "source": "api_football"
   },
   "44b6e8982b3f7912": {
@@ -2755,6 +3049,20 @@
     "pulled_at": "2026-07-11T20:39:33.757067+00:00",
     "rows": 575,
     "source": "understat"
+  },
+  "4dc73a3d751e97cd": {
+    "content_hash": "ad8bf07d801c782b",
+    "endpoint": "players",
+    "file": "api_football__players__4dc73a3d751e97cd.parquet",
+    "params": {
+      "league": 78,
+      "page": 1,
+      "season": 2022,
+      "team": 176
+    },
+    "pulled_at": "2026-10-05T06:33:59.466817+00:00",
+    "rows": 20,
+    "source": "api_football"
   },
   "4dd0d9b85a6dae51": {
     "content_hash": "6b21bc21a890eaa5",
@@ -3110,6 +3418,20 @@
     "rows": 0,
     "source": "asa"
   },
+  "55bd68a67137d745": {
+    "content_hash": "64b5fbe93cf0b7bb",
+    "endpoint": "players",
+    "file": "api_football__players__55bd68a67137d745.parquet",
+    "params": {
+      "league": 78,
+      "page": 2,
+      "season": 2023,
+      "team": 192
+    },
+    "pulled_at": "2026-10-05T06:42:43.501349+00:00",
+    "rows": 20,
+    "source": "api_football"
+  },
   "56bfa282d2f0f7a5": {
     "content_hash": "317e5612bc60e933",
     "endpoint": "player_goals_added",
@@ -3334,6 +3656,20 @@
     "rows": 20,
     "source": "api_football"
   },
+  "5ac7aa8cd68b189b": {
+    "content_hash": "c1fe839a9b1f7921",
+    "endpoint": "players",
+    "file": "api_football__players__5ac7aa8cd68b189b.parquet",
+    "params": {
+      "league": 78,
+      "page": 2,
+      "season": 2023,
+      "team": 180
+    },
+    "pulled_at": "2026-10-05T06:41:24.321012+00:00",
+    "rows": 18,
+    "source": "api_football"
+  },
   "5b9dbcdbc9b6607b": {
     "content_hash": "5b69fcb006f69167",
     "endpoint": "player_goals_added",
@@ -3399,6 +3735,20 @@
       "team": 65
     },
     "pulled_at": "2026-10-04T01:03:10.148574+00:00",
+    "rows": 20,
+    "source": "api_football"
+  },
+  "5dbb42efaab5cd53": {
+    "content_hash": "602a17f1ff178459",
+    "endpoint": "players",
+    "file": "api_football__players__5dbb42efaab5cd53.parquet",
+    "params": {
+      "league": 78,
+      "page": 1,
+      "season": 2023,
+      "team": 168
+    },
+    "pulled_at": "2026-10-05T06:38:57.317207+00:00",
     "rows": 20,
     "source": "api_football"
   },
@@ -3477,6 +3827,20 @@
     "pulled_at": "2026-07-11T16:37:43.008226+00:00",
     "rows": 537,
     "source": "understat"
+  },
+  "60c1d4acf0bbe503": {
+    "content_hash": "ef5bf661f8ebf0a7",
+    "endpoint": "players",
+    "file": "api_football__players__60c1d4acf0bbe503.parquet",
+    "params": {
+      "league": 78,
+      "page": 2,
+      "season": 2022,
+      "team": 174
+    },
+    "pulled_at": "2026-10-05T06:33:36.443245+00:00",
+    "rows": 20,
+    "source": "api_football"
   },
   "60cc01b38adc4116": {
     "content_hash": "254f0ae93c5555b7",
@@ -3639,6 +4003,20 @@
     "pulled_at": "2026-07-11T20:39:38.233699+00:00",
     "rows": 585,
     "source": "understat"
+  },
+  "64709bb161fdbbe3": {
+    "content_hash": "4778325ff556c28d",
+    "endpoint": "players",
+    "file": "api_football__players__64709bb161fdbbe3.parquet",
+    "params": {
+      "league": 78,
+      "page": 2,
+      "season": 2023,
+      "team": 181
+    },
+    "pulled_at": "2026-10-05T06:41:40.749745+00:00",
+    "rows": 20,
+    "source": "api_football"
   },
   "648709da5b96d75d": {
     "content_hash": "bb834b4f862f94ec",
@@ -4350,6 +4728,34 @@
     "rows": 40,
     "source": "wikidata"
   },
+  "760fbb2c1d3d29bc": {
+    "content_hash": "e8682f92f6a02cad",
+    "endpoint": "players",
+    "file": "api_football__players__760fbb2c1d3d29bc.parquet",
+    "params": {
+      "league": 78,
+      "page": 3,
+      "season": 2023,
+      "team": 182
+    },
+    "pulled_at": "2026-10-05T06:42:26.516857+00:00",
+    "rows": 7,
+    "source": "api_football"
+  },
+  "768ea321cd365b01": {
+    "content_hash": "5eb84fffb7f3833f",
+    "endpoint": "players",
+    "file": "api_football__players__768ea321cd365b01.parquet",
+    "params": {
+      "league": 78,
+      "page": 1,
+      "season": 2022,
+      "team": 175
+    },
+    "pulled_at": "2026-10-05T06:33:51.781152+00:00",
+    "rows": 1,
+    "source": "api_football"
+  },
   "76d57e8799103524": {
     "content_hash": "d445eac457f6a37c",
     "endpoint": "players",
@@ -4693,6 +5099,20 @@
     "rows": 879,
     "source": "asa"
   },
+  "7d3600aa4eb70b72": {
+    "content_hash": "c443b590f88366c6",
+    "endpoint": "players",
+    "file": "api_football__players__7d3600aa4eb70b72.parquet",
+    "params": {
+      "league": 78,
+      "page": 1,
+      "season": 2023,
+      "team": 164
+    },
+    "pulled_at": "2026-10-05T06:37:53.243196+00:00",
+    "rows": 20,
+    "source": "api_football"
+  },
   "7d37edc9497f35c9": {
     "content_hash": "077aabe0e807e7c5",
     "endpoint": "players",
@@ -4947,6 +5367,20 @@
     "rows": 20,
     "source": "api_football"
   },
+  "82c94078f64496bf": {
+    "content_hash": "aaa3a0fe2f4a0690",
+    "endpoint": "players",
+    "file": "api_football__players__82c94078f64496bf.parquet",
+    "params": {
+      "league": 78,
+      "page": 1,
+      "season": 2023,
+      "team": 182
+    },
+    "pulled_at": "2026-10-05T06:41:56.222482+00:00",
+    "rows": 20,
+    "source": "api_football"
+  },
   "82e33d5102a787b8": {
     "content_hash": "308b1a170529842d",
     "endpoint": "players",
@@ -5038,6 +5472,20 @@
     "pulled_at": "2026-07-10T03:59:12.474341+00:00",
     "rows": 268,
     "source": "asa"
+  },
+  "856eb5087d90d8a1": {
+    "content_hash": "d98489c4a9975e37",
+    "endpoint": "players",
+    "file": "api_football__players__856eb5087d90d8a1.parquet",
+    "params": {
+      "league": 78,
+      "page": 2,
+      "season": 2022,
+      "team": 172
+    },
+    "pulled_at": "2026-10-05T06:32:55.905463+00:00",
+    "rows": 20,
+    "source": "api_football"
   },
   "858ba912fe5e0a36": {
     "content_hash": "b8403847ff8bae7c",
@@ -5251,6 +5699,20 @@
     "rows": 20,
     "source": "api_football"
   },
+  "8b63238ed0ec0e68": {
+    "content_hash": "cf37d0b8d722572e",
+    "endpoint": "players",
+    "file": "api_football__players__8b63238ed0ec0e68.parquet",
+    "params": {
+      "league": 78,
+      "page": 3,
+      "season": 2023,
+      "team": 172
+    },
+    "pulled_at": "2026-10-05T06:40:15.870324+00:00",
+    "rows": 6,
+    "source": "api_football"
+  },
   "8badf46fa4f283bf": {
     "content_hash": "caf83125dc4f7d4a",
     "endpoint": "league_players",
@@ -5302,6 +5764,20 @@
     "pulled_at": "2026-07-10T03:59:54.753158+00:00",
     "rows": 0,
     "source": "asa"
+  },
+  "8e3761ad14f7d999": {
+    "content_hash": "a33b18f01c73bdeb",
+    "endpoint": "players",
+    "file": "api_football__players__8e3761ad14f7d999.parquet",
+    "params": {
+      "league": 78,
+      "page": 1,
+      "season": 2023,
+      "team": 169
+    },
+    "pulled_at": "2026-10-05T06:39:12.931644+00:00",
+    "rows": 20,
+    "source": "api_football"
   },
   "8e585e567a1f7e53": {
     "content_hash": "542684e89b023645",
@@ -5563,6 +6039,20 @@
     "rows": 20,
     "source": "api_football"
   },
+  "95bfe28d3f35c607": {
+    "content_hash": "1831b279f6c8cbde",
+    "endpoint": "players",
+    "file": "api_football__players__95bfe28d3f35c607.parquet",
+    "params": {
+      "league": 78,
+      "page": 1,
+      "season": 2022,
+      "team": 170
+    },
+    "pulled_at": "2026-10-05T06:32:21.178344+00:00",
+    "rows": 20,
+    "source": "api_football"
+  },
   "9643554bbc85344b": {
     "content_hash": "81633d9c646fc8ec",
     "endpoint": "players",
@@ -5574,6 +6064,34 @@
       "team": 42
     },
     "pulled_at": "2026-10-03T01:02:39.619541+00:00",
+    "rows": 20,
+    "source": "api_football"
+  },
+  "96c134b7bc4fe825": {
+    "content_hash": "6f6978da72266ed7",
+    "endpoint": "players",
+    "file": "api_football__players__96c134b7bc4fe825.parquet",
+    "params": {
+      "league": 78,
+      "page": 1,
+      "season": 2023,
+      "team": 167
+    },
+    "pulled_at": "2026-10-05T06:38:40.159876+00:00",
+    "rows": 20,
+    "source": "api_football"
+  },
+  "96cb87a59870c73b": {
+    "content_hash": "190dcb6cf3e0d7c7",
+    "endpoint": "players",
+    "file": "api_football__players__96cb87a59870c73b.parquet",
+    "params": {
+      "league": 78,
+      "page": 2,
+      "season": 2023,
+      "team": 173
+    },
+    "pulled_at": "2026-10-05T06:40:32.615889+00:00",
     "rows": 20,
     "source": "api_football"
   },
@@ -6119,6 +6637,20 @@
     "rows": 782,
     "source": "asa"
   },
+  "a0769a1b90e3fa38": {
+    "content_hash": "a6f85ee1da4ea388",
+    "endpoint": "players",
+    "file": "api_football__players__a0769a1b90e3fa38.parquet",
+    "params": {
+      "league": 78,
+      "page": 3,
+      "season": 2023,
+      "team": 162
+    },
+    "pulled_at": "2026-10-05T06:37:29.241988+00:00",
+    "rows": 6,
+    "source": "api_football"
+  },
   "a12f0c674a2b2ba8": {
     "content_hash": "d3a80b02e5548c56",
     "endpoint": "players",
@@ -6227,6 +6759,18 @@
     "rows": 580,
     "source": "fbref"
   },
+  "a3698320f7dfb27f": {
+    "content_hash": "391ff40168c27abb",
+    "endpoint": "teams",
+    "file": "api_football__teams__a3698320f7dfb27f.parquet",
+    "params": {
+      "league": 78,
+      "season": 2023
+    },
+    "pulled_at": "2026-10-05T06:35:54.294062+00:00",
+    "rows": 19,
+    "source": "api_football"
+  },
   "a36d8b4ff8fb3cc6": {
     "content_hash": "4d998ffd94fa12ad",
     "endpoint": "league_players",
@@ -6302,6 +6846,20 @@
       "team": 36
     },
     "pulled_at": "2026-10-03T01:09:29.619016+00:00",
+    "rows": 20,
+    "source": "api_football"
+  },
+  "a42e1ed9a5b336fe": {
+    "content_hash": "3e4a6954af928efe",
+    "endpoint": "players",
+    "file": "api_football__players__a42e1ed9a5b336fe.parquet",
+    "params": {
+      "league": 78,
+      "page": 1,
+      "season": 2022,
+      "team": 192
+    },
+    "pulled_at": "2026-10-05T06:35:30.718618+00:00",
     "rows": 20,
     "source": "api_football"
   },
@@ -6669,6 +7227,20 @@
     "rows": 0,
     "source": "asa"
   },
+  "ad1b2515011c1268": {
+    "content_hash": "95a7c24ec0e78f69",
+    "endpoint": "players",
+    "file": "api_football__players__ad1b2515011c1268.parquet",
+    "params": {
+      "league": 78,
+      "page": 2,
+      "season": 2023,
+      "team": 164
+    },
+    "pulled_at": "2026-10-05T06:38:00.978114+00:00",
+    "rows": 20,
+    "source": "api_football"
+  },
   "ad1b9b7ac26760e3": {
     "content_hash": "942d123430ed1e2f",
     "endpoint": "player_season_standard",
@@ -6759,6 +7331,20 @@
     "rows": 40,
     "source": "wikidata"
   },
+  "add89cade7c2d7de": {
+    "content_hash": "dd01b2fb1823049c",
+    "endpoint": "players",
+    "file": "api_football__players__add89cade7c2d7de.parquet",
+    "params": {
+      "league": 78,
+      "page": 2,
+      "season": 2023,
+      "team": 172
+    },
+    "pulled_at": "2026-10-05T06:40:07.963878+00:00",
+    "rows": 20,
+    "source": "api_football"
+  },
   "ae5a9fc897b8beea": {
     "content_hash": "737f7d4e1da12bd5",
     "endpoint": "league_players",
@@ -6783,6 +7369,20 @@
     "rows": 731,
     "source": "asa"
   },
+  "aec781ba884fa782": {
+    "content_hash": "485083aebe55e04c",
+    "endpoint": "players",
+    "file": "api_football__players__aec781ba884fa782.parquet",
+    "params": {
+      "league": 78,
+      "page": 2,
+      "season": 2022,
+      "team": 192
+    },
+    "pulled_at": "2026-10-05T06:35:38.869705+00:00",
+    "rows": 20,
+    "source": "api_football"
+  },
   "aede6e99d1f5b267": {
     "content_hash": "70571696e76d7bb8",
     "endpoint": "players",
@@ -6795,6 +7395,20 @@
     },
     "pulled_at": "2026-10-01T01:00:16.514852+00:00",
     "rows": 4,
+    "source": "api_football"
+  },
+  "af24967e2b5c9d52": {
+    "content_hash": "09faaff7f2872223",
+    "endpoint": "players",
+    "file": "api_football__players__af24967e2b5c9d52.parquet",
+    "params": {
+      "league": 78,
+      "page": 2,
+      "season": 2023,
+      "team": 163
+    },
+    "pulled_at": "2026-10-05T06:37:45.356097+00:00",
+    "rows": 19,
     "source": "api_football"
   },
   "af8a614fcc12a98a": {
@@ -6979,6 +7593,20 @@
     "rows": 19,
     "source": "api_football"
   },
+  "b3e7b5a6d84dc984": {
+    "content_hash": "5a657406d2f55a95",
+    "endpoint": "players",
+    "file": "api_football__players__b3e7b5a6d84dc984.parquet",
+    "params": {
+      "league": 78,
+      "page": 2,
+      "season": 2022,
+      "team": 169
+    },
+    "pulled_at": "2026-10-05T06:32:05.746718+00:00",
+    "rows": 20,
+    "source": "api_football"
+  },
   "b41639baf2971334": {
     "content_hash": "empty",
     "endpoint": "player_xgoals",
@@ -6990,6 +7618,20 @@
     "pulled_at": "2026-07-10T03:59:59.943589+00:00",
     "rows": 0,
     "source": "asa"
+  },
+  "b41bde6b81492a74": {
+    "content_hash": "1ff2b014adc5e857",
+    "endpoint": "players",
+    "file": "api_football__players__b41bde6b81492a74.parquet",
+    "params": {
+      "league": 78,
+      "page": 2,
+      "season": 2023,
+      "team": 160
+    },
+    "pulled_at": "2026-10-05T06:36:41.580464+00:00",
+    "rows": 16,
+    "source": "api_football"
   },
   "b5c9f021fda394b8": {
     "content_hash": "857dd4f11c66789d",
@@ -7353,6 +7995,34 @@
     "rows": 828,
     "source": "asa"
   },
+  "bd8452612d25848a": {
+    "content_hash": "6fb252992909314a",
+    "endpoint": "players",
+    "file": "api_football__players__bd8452612d25848a.parquet",
+    "params": {
+      "league": 78,
+      "page": 1,
+      "season": 2022,
+      "team": 174
+    },
+    "pulled_at": "2026-10-05T06:33:27.967263+00:00",
+    "rows": 20,
+    "source": "api_football"
+  },
+  "bdb6bc30af7b7607": {
+    "content_hash": "02817da3d5f99394",
+    "endpoint": "players",
+    "file": "api_football__players__bdb6bc30af7b7607.parquet",
+    "params": {
+      "league": 78,
+      "page": 1,
+      "season": 2023,
+      "team": 181
+    },
+    "pulled_at": "2026-10-05T06:41:32.621160+00:00",
+    "rows": 20,
+    "source": "api_football"
+  },
   "be0495ac97fff3c7": {
     "content_hash": "6bae787d76ed34b8",
     "endpoint": "player_xpass",
@@ -7405,6 +8075,20 @@
     },
     "pulled_at": "2026-10-04T01:03:43.255879+00:00",
     "rows": 20,
+    "source": "api_football"
+  },
+  "bfa99248140ebcf7": {
+    "content_hash": "02526dfade7fa543",
+    "endpoint": "players",
+    "file": "api_football__players__bfa99248140ebcf7.parquet",
+    "params": {
+      "league": 78,
+      "page": 2,
+      "season": 2022,
+      "team": 173
+    },
+    "pulled_at": "2026-10-05T06:33:19.938897+00:00",
+    "rows": 17,
     "source": "api_football"
   },
   "bfb495adc62528d4": {
@@ -7503,6 +8187,20 @@
     "rows": 20,
     "source": "api_football"
   },
+  "c2366c39e06c8a44": {
+    "content_hash": "a448db4c11a6989e",
+    "endpoint": "players",
+    "file": "api_football__players__c2366c39e06c8a44.parquet",
+    "params": {
+      "league": 78,
+      "page": 3,
+      "season": 2023,
+      "team": 181
+    },
+    "pulled_at": "2026-10-05T06:41:48.324471+00:00",
+    "rows": 2,
+    "source": "api_football"
+  },
   "c277df24bcafd4c7": {
     "content_hash": "9a79fb1275bed974",
     "endpoint": "players",
@@ -7553,6 +8251,34 @@
       "team": 65
     },
     "pulled_at": "2026-10-03T01:06:46.757821+00:00",
+    "rows": 20,
+    "source": "api_football"
+  },
+  "c46c1be6641872e7": {
+    "content_hash": "f215f7f577963c01",
+    "endpoint": "players",
+    "file": "api_football__players__c46c1be6641872e7.parquet",
+    "params": {
+      "league": 78,
+      "page": 3,
+      "season": 2023,
+      "team": 169
+    },
+    "pulled_at": "2026-10-05T06:39:28.545679+00:00",
+    "rows": 17,
+    "source": "api_football"
+  },
+  "c47c8b89a11d69c4": {
+    "content_hash": "a5c88f673a7c62ce",
+    "endpoint": "players",
+    "file": "api_football__players__c47c8b89a11d69c4.parquet",
+    "params": {
+      "league": 78,
+      "page": 1,
+      "season": 2023,
+      "team": 163
+    },
+    "pulled_at": "2026-10-05T06:37:37.207759+00:00",
     "rows": 20,
     "source": "api_football"
   },
@@ -7607,6 +8333,20 @@
     "pulled_at": "2026-07-11T20:38:50.393996+00:00",
     "rows": 494,
     "source": "understat"
+  },
+  "c581ad915283aed1": {
+    "content_hash": "1f8156b41e8d77c6",
+    "endpoint": "players",
+    "file": "api_football__players__c581ad915283aed1.parquet",
+    "params": {
+      "league": 78,
+      "page": 2,
+      "season": 2022,
+      "team": 170
+    },
+    "pulled_at": "2026-10-05T06:32:31.823055+00:00",
+    "rows": 20,
+    "source": "api_football"
   },
   "c581f1f27dc1385f": {
     "content_hash": "a001abdf9fa6be9a",
@@ -7711,6 +8451,20 @@
     "pulled_at": "2026-07-11T20:38:52.184533+00:00",
     "rows": 481,
     "source": "understat"
+  },
+  "c97d792bd9184a71": {
+    "content_hash": "b52155d9f2150f74",
+    "endpoint": "players",
+    "file": "api_football__players__c97d792bd9184a71.parquet",
+    "params": {
+      "league": 78,
+      "page": 1,
+      "season": 2022,
+      "team": 182
+    },
+    "pulled_at": "2026-10-05T06:35:12.312303+00:00",
+    "rows": 20,
+    "source": "api_football"
   },
   "c9ea72fe207d95d9": {
     "content_hash": "d9b382b42135a33a",
@@ -7934,6 +8688,20 @@
     "rows": 553,
     "source": "understat"
   },
+  "d00b3c3c0cf8f8dc": {
+    "content_hash": "2a4747f58e21cf43",
+    "endpoint": "players",
+    "file": "api_football__players__d00b3c3c0cf8f8dc.parquet",
+    "params": {
+      "league": 78,
+      "page": 2,
+      "season": 2023,
+      "team": 170
+    },
+    "pulled_at": "2026-10-05T06:39:44.599825+00:00",
+    "rows": 20,
+    "source": "api_football"
+  },
   "d08d03c8bdf57c9c": {
     "content_hash": "3c362a623177879d",
     "endpoint": "players",
@@ -8044,6 +8812,20 @@
     "rows": 572,
     "source": "asa"
   },
+  "d4af1a723d18cfe0": {
+    "content_hash": "dbf0cfeaa95546d5",
+    "endpoint": "players",
+    "file": "api_football__players__d4af1a723d18cfe0.parquet",
+    "params": {
+      "league": 78,
+      "page": 3,
+      "season": 2022,
+      "team": 170
+    },
+    "pulled_at": "2026-10-05T06:32:39.417977+00:00",
+    "rows": 5,
+    "source": "api_football"
+  },
   "d4be4f250ca09387": {
     "content_hash": "ba2170004130d353",
     "endpoint": "player_season_standard",
@@ -8094,6 +8876,20 @@
     },
     "pulled_at": "2026-10-03T01:08:29.440009+00:00",
     "rows": 20,
+    "source": "api_football"
+  },
+  "d67394b952385273": {
+    "content_hash": "6c6a2c0120a6d336",
+    "endpoint": "players",
+    "file": "api_football__players__d67394b952385273.parquet",
+    "params": {
+      "league": 78,
+      "page": 3,
+      "season": 2023,
+      "team": 170
+    },
+    "pulled_at": "2026-10-05T06:39:52.194820+00:00",
+    "rows": 5,
     "source": "api_football"
   },
   "d697e1fced008f35": {
@@ -8202,6 +8998,20 @@
     "rows": 20,
     "source": "api_football"
   },
+  "d98222d3a299851f": {
+    "content_hash": "f5a29b0c1de19f2e",
+    "endpoint": "players",
+    "file": "api_football__players__d98222d3a299851f.parquet",
+    "params": {
+      "league": 78,
+      "page": 3,
+      "season": 2022,
+      "team": 172
+    },
+    "pulled_at": "2026-10-05T06:33:03.647571+00:00",
+    "rows": 8,
+    "source": "api_football"
+  },
   "d9d3d96da186c27d": {
     "content_hash": "2057d339867129cf",
     "endpoint": "players",
@@ -8212,6 +9022,20 @@
     "pulled_at": "2026-07-10T03:56:34.329645+00:00",
     "rows": 3749,
     "source": "asa"
+  },
+  "d9dd9a4453528296": {
+    "content_hash": "e77b6ce1317ed8fe",
+    "endpoint": "players",
+    "file": "api_football__players__d9dd9a4453528296.parquet",
+    "params": {
+      "league": 78,
+      "page": 2,
+      "season": 2023,
+      "team": 168
+    },
+    "pulled_at": "2026-10-05T06:39:05.045290+00:00",
+    "rows": 20,
+    "source": "api_football"
   },
   "d9e3b9496b700965": {
     "content_hash": "fb8ccbc73531f1ce",
@@ -8507,6 +9331,20 @@
     "rows": 0,
     "source": "asa"
   },
+  "e28808889c3d39cc": {
+    "content_hash": "ea44b7b5b5cc2e5e",
+    "endpoint": "players",
+    "file": "api_football__players__e28808889c3d39cc.parquet",
+    "params": {
+      "league": 78,
+      "page": 1,
+      "season": 2023,
+      "team": 161
+    },
+    "pulled_at": "2026-10-05T06:36:49.746099+00:00",
+    "rows": 20,
+    "source": "api_football"
+  },
   "e3052e38159a8ccb": {
     "content_hash": "2f892a4660a9d14d",
     "endpoint": "players",
@@ -8549,6 +9387,20 @@
     "rows": 9,
     "source": "api_football"
   },
+  "e33feea1d8b9bcfb": {
+    "content_hash": "fab9e6b7f573afac",
+    "endpoint": "players",
+    "file": "api_football__players__e33feea1d8b9bcfb.parquet",
+    "params": {
+      "league": 78,
+      "page": 1,
+      "season": 2023,
+      "team": 173
+    },
+    "pulled_at": "2026-10-05T06:40:24.256446+00:00",
+    "rows": 20,
+    "source": "api_football"
+  },
   "e3c64b126509fc28": {
     "content_hash": "420576d85122d46a",
     "endpoint": "players",
@@ -8589,6 +9441,20 @@
     },
     "pulled_at": "2026-10-02T01:05:38.141330+00:00",
     "rows": 20,
+    "source": "api_football"
+  },
+  "e4e8e0ea8f74d39c": {
+    "content_hash": "a863ad8207db2a77",
+    "endpoint": "players",
+    "file": "api_football__players__e4e8e0ea8f74d39c.parquet",
+    "params": {
+      "league": 78,
+      "page": 3,
+      "season": 2023,
+      "team": 176
+    },
+    "pulled_at": "2026-10-05T06:41:06.899041+00:00",
+    "rows": 3,
     "source": "api_football"
   },
   "e6c36a45b258fb9d": {
@@ -8642,6 +9508,20 @@
     "pulled_at": "2026-07-10T03:58:45.076675+00:00",
     "rows": 1019,
     "source": "asa"
+  },
+  "e7f5cc5a39d4115a": {
+    "content_hash": "659a71a430415a6a",
+    "endpoint": "players",
+    "file": "api_football__players__e7f5cc5a39d4115a.parquet",
+    "params": {
+      "league": 78,
+      "page": 1,
+      "season": 2023,
+      "team": 162
+    },
+    "pulled_at": "2026-10-05T06:37:13.406874+00:00",
+    "rows": 20,
+    "source": "api_football"
   },
   "e7fa1a6734e6b5b0": {
     "content_hash": "2175b32c1e523ac6",
@@ -8711,6 +9591,20 @@
     "rows": 20,
     "source": "api_football"
   },
+  "e84a2a0172d2070b": {
+    "content_hash": "4037ce0302b06bdf",
+    "endpoint": "players",
+    "file": "api_football__players__e84a2a0172d2070b.parquet",
+    "params": {
+      "league": 78,
+      "page": 1,
+      "season": 2023,
+      "team": 176
+    },
+    "pulled_at": "2026-10-05T06:40:51.212961+00:00",
+    "rows": 20,
+    "source": "api_football"
+  },
   "e88ca55039000ab7": {
     "content_hash": "4bb0f0bfdeacec89",
     "endpoint": "players",
@@ -8765,6 +9659,20 @@
     },
     "pulled_at": "2026-10-01T01:08:49.251847+00:00",
     "rows": 19,
+    "source": "api_football"
+  },
+  "eaab1d537c239e4a": {
+    "content_hash": "1b6faa97c2899d01",
+    "endpoint": "players",
+    "file": "api_football__players__eaab1d537c239e4a.parquet",
+    "params": {
+      "league": 78,
+      "page": 1,
+      "season": 2023,
+      "team": 160
+    },
+    "pulled_at": "2026-10-05T06:36:33.923344+00:00",
+    "rows": 20,
     "source": "api_football"
   },
   "eac51ca3b1fe94f1": {
@@ -8845,6 +9753,20 @@
     },
     "pulled_at": "2026-10-02T01:01:18.735045+00:00",
     "rows": 20,
+    "source": "api_football"
+  },
+  "ec2104aaed1dae17": {
+    "content_hash": "52e14e9aada9f15a",
+    "endpoint": "players",
+    "file": "api_football__players__ec2104aaed1dae17.parquet",
+    "params": {
+      "league": 78,
+      "page": 3,
+      "season": 2023,
+      "team": 161
+    },
+    "pulled_at": "2026-10-05T06:37:05.128642+00:00",
+    "rows": 5,
     "source": "api_football"
   },
   "ec65ce02631ce59a": {
@@ -9075,6 +9997,20 @@
     "pulled_at": "2026-07-10T03:59:19.140902+00:00",
     "rows": 286,
     "source": "asa"
+  },
+  "efcd217a82c5f443": {
+    "content_hash": "a8567035dc5953b7",
+    "endpoint": "players",
+    "file": "api_football__players__efcd217a82c5f443.parquet",
+    "params": {
+      "league": 78,
+      "page": 1,
+      "season": 2023,
+      "team": 157
+    },
+    "pulled_at": "2026-10-05T06:36:02.423743+00:00",
+    "rows": 20,
+    "source": "api_football"
   },
   "f00fbb1594cc1427": {
     "content_hash": "180d5978b6df7808",
@@ -9328,6 +10264,34 @@
     "rows": 29,
     "source": "api_football"
   },
+  "f5efe760eab2091d": {
+    "content_hash": "727cf95f83e4defb",
+    "endpoint": "players",
+    "file": "api_football__players__f5efe760eab2091d.parquet",
+    "params": {
+      "league": 78,
+      "page": 2,
+      "season": 2023,
+      "team": 157
+    },
+    "pulled_at": "2026-10-05T06:36:10.638387+00:00",
+    "rows": 20,
+    "source": "api_football"
+  },
+  "f65a5e17d48a46fc": {
+    "content_hash": "80719ceda4af3d36",
+    "endpoint": "players",
+    "file": "api_football__players__f65a5e17d48a46fc.parquet",
+    "params": {
+      "league": 78,
+      "page": 1,
+      "season": 2023,
+      "team": 180
+    },
+    "pulled_at": "2026-10-05T06:41:16.200091+00:00",
+    "rows": 20,
+    "source": "api_football"
+  },
   "f6cf6c0a2d29e79b": {
     "content_hash": "bfacc790e5b6443e",
     "endpoint": "players",
@@ -9339,6 +10303,20 @@
       "team": 1600
     },
     "pulled_at": "2026-10-01T01:09:12.451364+00:00",
+    "rows": 20,
+    "source": "api_football"
+  },
+  "f70621c20a7eef7c": {
+    "content_hash": "3d1dbd6ae5463090",
+    "endpoint": "players",
+    "file": "api_football__players__f70621c20a7eef7c.parquet",
+    "params": {
+      "league": 78,
+      "page": 2,
+      "season": 2022,
+      "team": 182
+    },
+    "pulled_at": "2026-10-05T06:35:21.733287+00:00",
     "rows": 20,
     "source": "api_football"
   },
@@ -9438,6 +10416,20 @@
     "rows": 20,
     "source": "api_football"
   },
+  "f847e70f31d72421": {
+    "content_hash": "8fdf870182c42248",
+    "endpoint": "players",
+    "file": "api_football__players__f847e70f31d72421.parquet",
+    "params": {
+      "league": 78,
+      "page": 1,
+      "season": 2023,
+      "team": 172
+    },
+    "pulled_at": "2026-10-05T06:40:00.071752+00:00",
+    "rows": 20,
+    "source": "api_football"
+  },
   "f989d8d093d8ef16": {
     "content_hash": "5133a0ac138c9ecf",
     "endpoint": "players",
@@ -9463,6 +10455,20 @@
       "team": 50
     },
     "pulled_at": "2026-10-04T01:01:13.113378+00:00",
+    "rows": 20,
+    "source": "api_football"
+  },
+  "fb1f37eb8beb6547": {
+    "content_hash": "6827a3b9edb8fe11",
+    "endpoint": "players",
+    "file": "api_football__players__fb1f37eb8beb6547.parquet",
+    "params": {
+      "league": 78,
+      "page": 2,
+      "season": 2023,
+      "team": 176
+    },
+    "pulled_at": "2026-10-05T06:40:59.133621+00:00",
     "rows": 20,
     "source": "api_football"
   },
