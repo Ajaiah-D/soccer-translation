@@ -6,19 +6,34 @@ from players who actually moved, and validated by retrodicting held-out movers.
 
 ## What it does
 
-1. **Ingest** (Phase 1): player-season metrics from American Soccer Analysis
-   (goals added, xG, xPass for MLS / USL Championship / USL League One / MLS NEXT Pro /
-   NWSL / USL Super League), FBref standard stats (MLS + Premier League), and a
-   Transfermarkt stub. All pulls cached to `data/raw/` with a manifest; re-runs are
-   fully offline.
+1. **Ingest** (Phase 1): player-season data, 2018-2025, from:
+   - **American Soccer Analysis** via `itscalledsoccer` (goals added, xG, xPass for
+     MLS / USL Championship / USL League One / MLS NEXT Pro / NWSL / USL Super League).
+   - **Understat** JSON endpoint for xG/xA in the Big-5 European leagues (Premier
+     League, Bundesliga, La Liga, Serie A, Ligue 1). Plain HTTP, runs unattended (D-014, D-019).
+   - **FBref**, cache-first: already-cached slices (MLS, Premier League) are always used.
+     Live fetching uses a short Selenium/Chrome session and is **opt-in** with
+     `ingest.fbref_fetch_enabled` in `config/settings.yaml` (default `false`), because
+     FBref's bot protection can ask for a manual verification click (D-013, D-017).
+   - **Transfermarkt**: a stub that serves a hand-entered fixture
+     (`tests/fixtures/transfermarkt_fixture.csv`) until a real feed exists. It does not
+     affect the proof-of-concept verdict.
+
+   All pulls are cached to `data/raw/` with a manifest, so re-runs are fully offline.
+   Seasons, leagues and rate limits live in `config/settings.yaml` and `config/leagues.yaml`.
 2. **Harmonize** (Phase 2): one player identity across sources (blocked fuzzy matching
    with a confidence score and a human audit sample) and all metrics normalized to a
-   common per-90 schema (`docs/data_dictionary.md`).
-3. **Movers** (Phase 3): players with 900+ minute seasons in two different leagues
-   within a 2-season window.
-4. **Calibrate** (Phase 4): pairwise league conversion factors from mover log-ratios,
-   shrunk toward 1.0 for small samples, chained to MLS = 1.0 by weighted least squares,
-   with bootstrap confidence intervals.
+   common per-90 schema (`docs/data_dictionary.md`). Players with no birth year
+   (Understat has none) who could be movers get one from **Wikidata** (cached SPARQL
+   lookups; names that match several players are skipped, never guessed; D-025).
+3. **Movers** (Phase 3): players with 900+ minutes in the origin season and 450+ in
+   the destination season, in two different leagues within a 2-season window (D-023).
+4. **Calibrate** (Phase 4): pairwise league conversion factors from age-adjusted mover
+   log-ratios, shrunk toward 1.0 for small samples, chained to MLS = 1.0 by weighted
+   least squares, with bootstrap confidence intervals. Results are compared against
+   **FiveThirtyEight SPI** club ratings, read from a pinned Internet Archive snapshot.
+   SPI is only used to check the results, never as an input. It is also the only
+   strength estimate for EFL Championship and 2. Bundesliga (D-020, D-022).
 5. **Validate** (Phase 5): held-out movers are projected using factors re-estimated on
    the training half only; skill is tested against a permutation baseline and an
    explicit verdict (signal / no signal / inconclusive) is proposed for human review.
@@ -41,6 +56,15 @@ python -m uv run python -m src phase2
 python -m uv run pytest
 ```
 
+**Fresh clone:** `data/raw/manifest.json` is committed, but the parquet files it lists
+are gitignored, so a fresh clone has the manifest without the data. The Phase 1 manifest
+gate (`tests/data/test_artifact_gates.py`) checks that every manifest entry's file
+exists, so it fails until those files are rebuilt. `phase1` re-pulls the ASA and
+Understat entries. It does not rebuild the FBref entries (live fetching is off by
+default), the Wikidata entries (written in Phase 2), the SPI entry (Phase 4) or the
+API-Football entries (`apif`). So in a fresh clone, running `phase1` alone is not
+enough for the gate to pass.
+
 ### API-Football catalog (wide league coverage, daily backfill)
 
 Needs a free key from dashboard.api-football.com in a gitignored `.env` file
@@ -53,6 +77,27 @@ python -m uv run python -m src apif          # spend today's quota on uncached p
 python -m uv run python -m src apif-status   # progress, from cache only (no network)
 scripts\apif_daily.cmd                        # same as apif, logged to logs\ (for Task Scheduler)
 ```
+
+What it pulls: per-player season stats (minutes, position, shots, key passes, tackles,
+interceptions, duels, dribbles, birth dates) for the 16 leagues in `config/leagues.yaml`
+that have an `api_football` id: the Big 5, Portugal, Netherlands, Belgium, Championship,
+Brazil, Argentina, MLS, Austria, Switzerland, Denmark and Scotland. That is 48
+league-seasons, about 2,600 requests. Each run reads the day's remaining quota from
+`/status` and keeps `api_football.daily_reserve` (5) requests unused, so a full day's
+run makes about 95 requests. Every response is cached and listed in the manifest. API
+errors are never cached, so a refused request is retried on a later run. Progress is
+written to `data/outputs/api_football_catalog.md`.
+
+On this machine a daily Windows Task Scheduler job, **"soccer-translation apif
+backfill"**, runs `scripts\apif_daily.cmd` every evening and appends to
+`logs\apif_daily.log`.
+
+**Status (DECISIONS.md D-026):** "The catalog is not yet wired into
+harmonize/calibration." The backfill only fills the raw cache. None of its data reaches
+Phases 2-5, the league factors or `RUN_REPORT.md`. Leagues that only API-Football
+covers (POR1, NED1, BEL1, BRA1, ARG1, AUT1, SUI1, DEN1, SCO1) are not calibrated, and
+ENG2 is still anchor-only. Known limits: no xG or progression metrics, positions are
+only G/D/M/F, and the free plan cannot reach 2025+ seasons.
 
 On POSIX systems `make setup`, `make all`, `make phase1` ... wrap the same commands.
 
@@ -68,7 +113,25 @@ On POSIX systems `make setup`, `make all`, `make phase1` ... wrap the same comma
 | `data/outputs/league_strength.parquet` | league factors + bootstrap CIs |
 | `data/outputs/calibration_diagnostics.md` | n per pair, shrinkage, prior checks |
 | `data/outputs/proof_of_concept.md` | held-out retrodiction + verdict |
+| `data/outputs/api_football_catalog.md` | API-Football backfill progress (not part of phases 1-5) |
+| `docs/CLUB_BRIEF.md` / `docs/TECHNICAL_REPORT.md` | write-ups for scouts / technical readers |
 | `DECISIONS.md` / `REVIEW_QUEUE.md` | decision log / human review queue |
+
+### Two calibration metrics: why the factors don't match
+
+Phase 4 calculates factors separately for each metric in `calibration.metrics`, so the
+same league has a different factor under each metric:
+
+- **`xg_xa_per90`** (xG + xA per 90): available for every calibrated league, US and
+  European. `docs/CLUB_BRIEF.md` and the portfolio website use this metric, e.g.
+  **USLC 0.71**, USL1 0.68, MLSNP 0.58, ENG1 1.36.
+- **`goals_added_raw_per90`** (ASA goals added per 90): ASA-only, so it covers the US
+  leagues only. This is `validation.primary_metric`, so `RUN_REPORT.md`'s "Key numbers"
+  line uses it, e.g. **USLC 0.79**, USL1 0.73, MLSNP 0.64.
+
+The two sets measure different things and do not conflict. When you quote a factor,
+name its metric. These are the numbers from the current run; rerunning the pipeline
+can change them.
 
 ## Honesty guarantees
 
