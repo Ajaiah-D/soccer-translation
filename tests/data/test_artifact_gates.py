@@ -55,14 +55,21 @@ def test_coverage_report_has_zero_silent_gaps():
 
 @pytest.mark.gate_phase1
 def test_manifest_records_every_cached_pull():
+    """Every manifest entry is well-formed; entries from sources Phase 1 pulls have
+    their parquet on disk. Other sources' files are gitignored and rebuilt by later
+    phases or `apif`, so a fresh clone lacks them after phase1 (D-027)."""
     from src.common.io import _load_manifest
+    from src.ingest.runner import phase1_sources
     manifest = _load_manifest()
     if not manifest:
         pytest.skip("manifest absent - run `python -m src phase1` first")
+    checked = phase1_sources()
     for key, entry in manifest.items():
         assert {"source", "endpoint", "params", "pulled_at", "rows",
-                "content_hash"} <= set(entry)
-        assert (data_path("data_raw") / entry["file"]).exists()
+                "content_hash", "file"} <= set(entry), f"{key}: missing keys"
+        if entry["source"] in checked:
+            assert (data_path("data_raw") / entry["file"]).exists(), \
+                f"{key}: {entry['file']} missing from data/raw"
 
 
 # ---------------- Phase 2 ----------------

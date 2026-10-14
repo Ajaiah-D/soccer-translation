@@ -7,7 +7,8 @@ from pathlib import Path
 
 import pandas as pd
 
-from src.common.config import asa_league_codes, data_path, fbref_league_codes, seasons
+from src.common.config import (asa_league_codes, data_path, fbref_league_codes,
+                               load_settings, seasons)
 from src.common.contracts import validate_frame
 from src.common.io import write_output
 from src.common.logging import get_logger
@@ -94,6 +95,16 @@ def write_coverage_report(asa_frames: dict[str, pd.DataFrame],
     out = data_path("data_outputs") / "coverage_report.md"
     out.write_text("\n".join(lines), encoding="utf-8")
     return out
+
+
+def phase1_sources() -> set[str]:
+    """Manifest sources that run_phase1 (re)writes. FBref only counts when live
+    fetching is enabled; otherwise phase 1 just reads whatever slices are cached.
+    Other manifest sources come from later phases or `apif` (D-027)."""
+    sources = {"asa", "understat"}
+    if bool(load_settings()["ingest"].get("fbref_fetch_enabled", False)):
+        sources.add("fbref")
+    return sources
 
 
 def run_phase1(refresh: bool = False) -> None:

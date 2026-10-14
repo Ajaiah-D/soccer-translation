@@ -4,6 +4,12 @@ Every non-trivial choice: what was decided, alternatives, reasoning, reversibili
 
 ---
 
+## D-027: Manifest stays committed; the Phase 1 manifest gate checks only Phase 1 sources
+- **Decided:** `data/raw/manifest.json` stays committed as the provenance record for every raw pull (source, endpoint, params, pull time, rows, content hash), while the parquet files stay gitignored. The Phase 1 gate `test_manifest_records_every_cached_pull` still checks that every entry has the required fields, but only requires the file on disk for sources Phase 1 pulls: ASA and Understat, plus FBref when `ingest.fbref_fetch_enabled` is true (`src.ingest.runner.phase1_sources`).
+- **Alternatives:** keep checking every entry (a fresh clone fails Phase 1 and `python -m src all` stops there, because Wikidata is written in Phase 2, SPI in Phase 4, API-Football by `apif`, and FBref is not fetched by default); stop committing the manifest (loses the provenance record); commit the raw parquet files (large, and would redistribute third-party data).
+- **Why:** Fresh-clone reproducibility. A gate should check what its own phase produces; the other sources' files are rebuilt by the step that writes them.
+- **Reversible:** yes (`phase1_sources` in `src/ingest/runner.py`)
+
 ## D-023: Asymmetric minutes thresholds with precision weighting
 - **Decided:** A move needs >=900 minutes in the ORIGIN season (trustworthy baseline) but only >=450 in the DESTINATION season, and every mover's log-ratio is weighted by the harmonic mean of the two seasons' minutes (in 90s). Shrinkage still uses raw mover counts.
 - **Why:** The old symmetric 900/900 rule silently excluded partial failures abroad, biasing strong destination leagues toward "easy" (survivorship). Lowering only the destination side pulls those failures into the sample; minutes-weighting keeps short noisy stints from dominating. A sensitivity table in the diagnostics shows factors under both definitions.

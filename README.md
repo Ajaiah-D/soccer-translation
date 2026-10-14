@@ -57,13 +57,15 @@ python -m uv run pytest
 ```
 
 **Fresh clone:** `data/raw/manifest.json` is committed, but the parquet files it lists
-are gitignored, so a fresh clone has the manifest without the data. The Phase 1 manifest
-gate (`tests/data/test_artifact_gates.py`) checks that every manifest entry's file
-exists, so it fails until those files are rebuilt. `phase1` re-pulls the ASA and
-Understat entries. It does not rebuild the FBref entries (live fetching is off by
-default), the Wikidata entries (written in Phase 2), the SPI entry (Phase 4) or the
-API-Football entries (`apif`). So in a fresh clone, running `phase1` alone is not
-enough for the gate to pass.
+are gitignored, so a fresh clone has the manifest without the data. The manifest stays
+committed as a record of where every pull came from. `phase1` re-pulls the ASA and
+Understat entries, and the Phase 1 manifest gate (`tests/data/test_artifact_gates.py`)
+only checks files for the sources Phase 1 pulls: ASA and Understat, plus FBref when
+`ingest.fbref_fetch_enabled` is `true` (D-027). It still checks that every entry has
+the required fields. The other entries' files are rebuilt elsewhere: Wikidata in
+Phase 2, SPI in Phase 4, API-Football by `apif`, and FBref only when live fetching is
+on. So on a fresh clone, running `phase1` is enough for its gate to pass. Phases 2 and 4
+re-pull their Wikidata and SPI files over the network when they are missing.
 
 ### API-Football catalog (wide league coverage, daily backfill)
 
