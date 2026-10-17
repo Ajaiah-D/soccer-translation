@@ -135,6 +135,25 @@ The two sets measure different things and do not conflict. When you quote a fact
 name its metric. These are the numbers from the current run; rerunning the pipeline
 can change them.
 
+## Headline result (current run)
+
+- **1,871 qualifying moves** by 1,460 players, 2018-2025, across nine leagues: the
+  five European top flights plus MLS, USL Championship, USL League One and MLS NEXT Pro.
+- **League strengths** (`xg_xa_per90`, MLS = 1.00): Premier League 1.36, La Liga 1.25,
+  Serie A 1.15, Ligue 1 1.12, Bundesliga 1.11, USLC 0.71, USL1 0.68, MLS NEXT Pro 0.58.
+- **Validation:** on 372 held-out moves, projected vs actual output has Spearman
+  r = 0.580 (permutation p = 0.0005), and the strength adjustment cuts mean absolute
+  error from 0.0606 to 0.0520 against an unadjusted projection. The held-out test uses
+  `goals_added_raw_per90`, which only exists for the US leagues, so it validates the
+  American-pyramid factors. The European factors are checked against SPI ordering, not
+  against held-out movers.
+- **Limit:** the projection ranks movers well but is not a good yes/no predictor of
+  who will succeed (success-classification AUC 0.43, not better than chance).
+- **Moves that fail:** 54% of MLS NEXT Pro players who moved up to MLS never reached 450
+  minutes there (`data/outputs/movers_summary.md`).
+
+Sources: `RUN_REPORT.md`, `data/outputs/proof_of_concept.md`, `docs/CLUB_BRIEF.md`.
+
 ## Honesty guarantees
 
 - No silent imputation; dropped or excluded rows are counted in a lineage log.
